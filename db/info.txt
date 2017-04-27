@@ -1,0 +1,12 @@
+-- init --
+
+initdb -D scrum-db
+postgres -D scrum-db/ -k. -p 12345 &
+createdb -h localhost -p 12345
+psql -h localhost -p 12345 -a -f database.sql
+
+-- iniciar servidores + psql ---
+
+postgres -D scrum-db/ -k. -p 12345 &
+
+psql -h localhost -p 12345 -d scrum -U gps;
