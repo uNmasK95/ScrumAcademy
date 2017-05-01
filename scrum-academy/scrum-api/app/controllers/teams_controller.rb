@@ -1,6 +1,5 @@
 class TeamsController < ApplicationController
-
-    before_action :set_team, only: [:show, :update, :destroy]
+before_action :set_team, only: [:show, :update, :destroy]
 
     # GET /teams
     def index
@@ -27,7 +26,7 @@ class TeamsController < ApplicationController
 
     # DELETE /teams/:id
     def destroy
-        team.destroy
+        @team.destroy
         head :no_content
     end
 
@@ -40,4 +39,6 @@ class TeamsController < ApplicationController
     def set_team
         @team = Team.find(params[:id])    
     end
+
+
 end

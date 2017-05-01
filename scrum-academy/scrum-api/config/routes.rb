@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     #end
   #end
 
-  resources :teams
+  resources :teams do 
+    resources :users, :controller => 'teams_users_controller'
+  end
 
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'
