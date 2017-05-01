@@ -4,16 +4,20 @@ Rails.application.routes.draw do
   resources :functions
   resources :users,  only: [:index, :show]
 
-  #resources :projects do 
-   # resources :userstories do 
-    #  resources :sprints do 
-     #   resources :tasks 
-     # end
-    #end
-  #end
+  resources :projects do 
+    resources :teams, :controller => 'projects_teams'
+    resources :userstories do
+      resources :sprints do
+        resources :tasks do
+          resources :comments
+          resources :doubts
+        end
+      end
+    end
+  end
 
   resources :teams do 
-    resources :users, :controller => 'teams_users_controller'
+    resources :users, :controller => 'teams_users'
   end
 
   post 'auth/login', to: 'authentication#authenticate'

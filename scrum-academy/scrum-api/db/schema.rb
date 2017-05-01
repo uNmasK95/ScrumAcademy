@@ -10,13 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428165830) do
+ActiveRecord::Schema.define(version: 20170501213955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "functions", force: :cascade do |t|
     t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_teams", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "team_id"
+    t.boolean "valid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_teams_on_project_id"
+    t.index ["team_id"], name: "index_project_teams_on_team_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.date "startDate"
+    t.date "endDate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,6 +73,8 @@ ActiveRecord::Schema.define(version: 20170428165830) do
     t.index ["type_id"], name: "index_users_on_type_id"
   end
 
+  add_foreign_key "project_teams", "projects"
+  add_foreign_key "project_teams", "teams"
   add_foreign_key "team_users", "functions"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
