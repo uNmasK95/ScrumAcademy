@@ -9,8 +9,11 @@ import { AppComponent } from './app.component';
 import { DragdropComponent } from './dragdrop/dragdrop.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { AuthGuard } from './guards/auth.guard';
+import { DashboardComponent } from './navigation/dashboard/dashboard.component';
+import { ProjectComponent } from './navigation/dashboard/project/project.component';
+import { CreateProjectComponent } from './navigation/dashboard/create-project/create-project.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { AuthGuard } from './guards/auth.guard';
     DragdropComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    NavigationComponent,
+    DashboardComponent,
+    ProjectComponent,
+    CreateProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -27,10 +33,13 @@ import { AuthGuard } from './guards/auth.guard';
     HttpModule,
     CommonModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent, canActivate: [AuthGuard] },
+      {path: '', component: NavigationComponent, canActivate: [AuthGuard] },
       {path: 'app-login', component: LoginComponent},
       {path: 'app-register', component: RegisterComponent},
-      {path: 'app-home', component: HomeComponent},
+      {path: 'app-navigation', component: NavigationComponent},
+      {path: 'app-dashboard', component: DashboardComponent},
+      {path: 'app-create-project', component: CreateProjectComponent},
+      {path: 'app-project', component: ProjectComponent},
       // otherwise redirect to home
       { path: '**', redirectTo: '' }
     ])
