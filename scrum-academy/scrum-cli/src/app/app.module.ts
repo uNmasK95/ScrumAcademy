@@ -15,6 +15,17 @@ import { DashboardComponent } from './navigation/dashboard/dashboard.component';
 import { ProjectComponent } from './navigation/dashboard/project/project.component';
 import { CreateProjectComponent } from './navigation/dashboard/create-project/create-project.component';
 import { routing } from './app.routes';
+import { ProjectListComponent } from './navigation/dashboard/project/project-list/project-list.component';
+import { ProjectItemComponent } from './navigation/dashboard/project/project-list/project-item.component';
+import { ProjectDetailComponent } from './navigation/dashboard/project/project-detail/project-detail.component';
+import { TeamsComponent } from './navigation/teams/teams.component';
+import { UserStoriesComponent } from './navigation/user-stories/user-stories.component';
+import { QuestionsComponent } from './navigation/questions/questions.component';
+import { ProfileComponent } from './navigation/profile/profile.component';
+import { TeamsItemComponent } from './navigation/teams/teams-item/teams-item.component';
+import { QuestionsListComponent } from './navigation/questions/questions-list/questions-list.component';
+import { QuestionsItemComponent } from './navigation/questions/questions-list/questions-item.component';
+import { QuestionsDetailComponent } from './navigation/questions/questions-detail/questions-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +36,18 @@ import { routing } from './app.routes';
     NavigationComponent,
     DashboardComponent,
     ProjectComponent,
-    CreateProjectComponent
+    CreateProjectComponent,
+    ProjectListComponent,
+    ProjectDetailComponent,
+    ProjectItemComponent,
+    TeamsComponent,
+    UserStoriesComponent,
+    QuestionsComponent,
+    ProfileComponent,
+    TeamsItemComponent,
+    QuestionsListComponent,
+    QuestionsItemComponent,
+    QuestionsDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -8,14 +8,14 @@ import { DashboardComponent } from './navigation/dashboard/dashboard.component';
 import { CreateProjectComponent } from './navigation/dashboard/create-project/create-project.component';
 import { ProjectComponent } from './navigation/dashboard/project/project.component';
 import { NAVIGATION_ROUTES } from './navigation/navigation.routes';
+import { TeamsComponent } from './navigation/teams/teams.component';
 
 export const routes: Routes = [
-    { path: '', component: LoginComponent/*, canActivate: [AuthGuard]*/ },
-    { path: 'home', component: NavigationComponent,  children: NAVIGATION_ROUTES},
+   // { path: '', component: LoginComponent/*, canActivate: [AuthGuard]*/ },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent }
+    { path: 'register', component: RegisterComponent },
 
-
+    { path: '', component: NavigationComponent,  children: NAVIGATION_ROUTES}
 
 ]
 

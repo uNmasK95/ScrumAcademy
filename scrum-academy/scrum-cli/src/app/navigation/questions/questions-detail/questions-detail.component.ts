@@ -3,12 +3,13 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Rx";
 
 @Component({
-  selector: 'app-project-detail',
-  templateUrl: './project-detail.component.html',
-  styleUrls: ['./project-detail.component.css']
+  selector: 'questions-detail',
+  templateUrl: './questions-detail.component.html',
+  styleUrls: ['./questions-detail.component.css']
 })
-export class ProjectDetailComponent implements OnInit {
-  projectIndex: number;
+export class QuestionsDetailComponent implements OnInit {
+  questionIndex: number;
+  que = "aqui pergunta?";
   private subscription: Subscription;
   constructor(private router: Router,
               private route: ActivatedRoute) { }
@@ -16,7 +17,7 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.route.params.subscribe(
       (params: any) => {
-        this.projectIndex = params['id'];
+        this.questionIndex = params['id'];
       });
   }
 

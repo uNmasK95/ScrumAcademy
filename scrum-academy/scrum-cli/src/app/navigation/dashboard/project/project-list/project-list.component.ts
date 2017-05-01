@@ -15,7 +15,6 @@ export class ProjectListComponent implements OnInit {
   p5: Project = new Project("Project1","desc", new Date(), new Date());
   p6: Project = new Project("Project1","desc", new Date(), new Date());
   projects: Project[] =  [this.p1,this.p2,this.p3,this.p4,this.p5,this.p6];
-  projects2: String[] = ["PRojecto1","Project2"];
   constructor() { }
 
   ngOnInit() {

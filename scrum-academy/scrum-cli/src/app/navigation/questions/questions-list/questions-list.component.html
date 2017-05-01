@@ -1,0 +1,8 @@
+<h1>Questions</h1>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <questions-item *ngFor="let q of questions; let i = index" [question]="q" [questionId]="i"></questions-item>
+    </ul>
+  </div>
+</div>

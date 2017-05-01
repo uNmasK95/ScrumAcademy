@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     //this.router.navigate([this.returnUrl]);
     console.log("aqui")
-    this.router.navigate(["/home"]);
+    this.router.navigate(["projects"]);
   }
 
 }
