@@ -24,7 +24,7 @@ export class RegisterComponent {
                     this.loading = false;
                 });*/
                 console.log("aqui2");
-          this.router.navigate(['/app-login']);       
+          this.router.navigate(['/login']);       
     }
 
 }

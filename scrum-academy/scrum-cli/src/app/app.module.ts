@@ -14,6 +14,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { DashboardComponent } from './navigation/dashboard/dashboard.component';
 import { ProjectComponent } from './navigation/dashboard/project/project.component';
 import { CreateProjectComponent } from './navigation/dashboard/create-project/create-project.component';
+import { routing } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -32,17 +33,7 @@ import { CreateProjectComponent } from './navigation/dashboard/create-project/cr
     DragulaModule,
     HttpModule,
     CommonModule,
-    RouterModule.forRoot([
-      {path: '', component: NavigationComponent, canActivate: [AuthGuard] },
-      {path: 'app-login', component: LoginComponent},
-      {path: 'app-register', component: RegisterComponent},
-      {path: 'app-navigation', component: NavigationComponent},
-      {path: 'app-dashboard', component: DashboardComponent},
-      {path: 'app-create-project', component: CreateProjectComponent},
-      {path: 'app-project', component: ProjectComponent},
-      // otherwise redirect to home
-      { path: '**', redirectTo: '' }
-    ])
+    routing
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
