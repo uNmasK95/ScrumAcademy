@@ -1,0 +1,12 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <user-stories-item *ngFor="let us of userStories; let i = index" [userStorie]="us" [userStorieId]="i" (click)="onSelect(us,i)"></user-stories-item>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="userStorieSelected">
+  <user-stories-detail [userStorie]="userStorieSelected" [userStorieId]="userStorieIdSelected"></user-stories-detail>
+</div>

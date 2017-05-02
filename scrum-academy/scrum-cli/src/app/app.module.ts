@@ -26,6 +26,9 @@ import { TeamsItemComponent } from './navigation/teams/teams-item/teams-item.com
 import { QuestionsListComponent } from './navigation/questions/questions-list/questions-list.component';
 import { QuestionsItemComponent } from './navigation/questions/questions-list/questions-item.component';
 import { QuestionsDetailComponent } from './navigation/questions/questions-detail/questions-detail.component';
+import { UserStoriesDetailComponent } from './navigation/user-stories/user-stories-detail/user-stories-detail.component';
+import { UserStoriesListComponent } from './navigation/user-stories/user-stories-list/user-stories-list.component';
+import { UserStoriesItemComponent } from './navigation/user-stories/user-stories-list/user-stories-item.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { QuestionsDetailComponent } from './navigation/questions/questions-detai
     TeamsItemComponent,
     QuestionsListComponent,
     QuestionsItemComponent,
-    QuestionsDetailComponent
+    QuestionsDetailComponent,
+    UserStoriesDetailComponent,
+    UserStoriesListComponent,
+    UserStoriesItemComponent
   ],
   imports: [
     BrowserModule,

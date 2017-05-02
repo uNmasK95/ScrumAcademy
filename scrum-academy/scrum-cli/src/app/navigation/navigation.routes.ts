@@ -15,14 +15,14 @@ export const NAVIGATION_ROUTES: Routes = [
 
     { path: 'projects', component: DashboardComponent },
     { path: 'projects/new', component: CreateProjectComponent },
-    { path: 'projects/:id/userstories', component: UserStoriesComponent },
+    { path: 'projects/:id/userstories', component: UserStoriesComponent }, //depois de criar projecto
     { path: 'projects/:id', component: ProjectDetailComponent },
 
 
     { path: 'teams', component: TeamsComponent },
-    { path: 'userstories', component: UserStoriesComponent },
+    { path: 'userstories', component: UserStoriesComponent }, // tab direto
     { path: 'questions', component: QuestionsComponent },
-    { path: 'questions/:id', component: QuestionsDetailComponent },
+    //{ path: 'questions/:id', component: QuestionsDetailComponent },
     { path: 'profile/:id', component: ProfileComponent },
     //{ path: 'profile/:id', component: ProfileComponent },
 
