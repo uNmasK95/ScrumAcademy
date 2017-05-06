@@ -1,3 +1,33 @@
-<p>
-  profile works!
-</p>
+
+<div class="container">
+	<div class="row">
+    <div class="col-xs-6 col-md-offset-2">
+		  <h1>Profile</h1>
+    </div>
+	</div>
+
+  <div class="row">
+      <div class="col-sm-3">
+          <div class="card">
+              <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
+              <div class="avatar">
+                  <img src="/../../assets/img/profile2.jpg" class="avatar img-circle" alt="avatar" width="70" height="70"/>
+              </div>
+              <div class="content">
+                  <p>{{userLogged.username}} <br>
+                      {{userLogged.email}}</p>
+                  <p><button type="button" class="btn btn-default" (click)="edit()">Edit</button></p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="row" *ngIf="editSelected">
+      <div class="col-sm-9">
+          <div class="card edit">
+            <profile-edit [userLogged]="userLogged"></profile-edit>
+          </div>
+      </div>
+  </div>
+
+</div>

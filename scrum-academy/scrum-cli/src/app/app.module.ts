@@ -29,6 +29,9 @@ import { QuestionsDetailComponent } from './navigation/questions/questions-detai
 import { UserStoriesDetailComponent } from './navigation/user-stories/user-stories-detail/user-stories-detail.component';
 import { UserStoriesListComponent } from './navigation/user-stories/user-stories-list/user-stories-list.component';
 import { UserStoriesItemComponent } from './navigation/user-stories/user-stories-list/user-stories-item.component';
+import { UserStoriesEditComponent } from './navigation/user-stories/user-stories-edit/user-stories-edit.component';
+import { UserStoriesNewComponent } from './navigation/user-stories/user-stories-new/user-stories-new.component';
+import { ProfileEditComponent } from './navigation/profile/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { UserStoriesItemComponent } from './navigation/user-stories/user-stories
     QuestionsDetailComponent,
     UserStoriesDetailComponent,
     UserStoriesListComponent,
-    UserStoriesItemComponent
+    UserStoriesItemComponent,
+    UserStoriesEditComponent,
+    UserStoriesNewComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
