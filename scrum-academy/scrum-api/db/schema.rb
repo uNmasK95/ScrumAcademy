@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501213955) do
+ActiveRecord::Schema.define(version: 20170501225706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string "description"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_comments_on_task_id"
+  end
+
+  create_table "doubts", force: :cascade do |t|
+    t.string "description"
+    t.string "answer"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_doubts_on_task_id"
+  end
 
   create_table "functions", force: :cascade do |t|
     t.string "description", null: false
@@ -22,9 +39,9 @@ ActiveRecord::Schema.define(version: 20170501213955) do
   end
 
   create_table "project_teams", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "team_id"
-    t.boolean "valid"
+    t.bigint "project_id", null: false
+    t.bigint "team_id", null: false
+    t.boolean "validTeam", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_project_teams_on_project_id"
@@ -32,18 +49,40 @@ ActiveRecord::Schema.define(version: 20170501213955) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.date "startDate"
-    t.date "endDate"
+    t.string "name", null: false
+    t.string "description", null: false
+    t.date "startDate", null: false
+    t.date "endDate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "team_users", force: :cascade do |t|
+  create_table "sprints", force: :cascade do |t|
+    t.string "description"
+    t.date "startDate"
+    t.date "endDate"
     t.bigint "team_id"
+    t.bigint "userstorie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_sprints_on_team_id"
+    t.index ["userstorie_id"], name: "index_sprints_on_userstorie_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "description"
+    t.bigint "userstorie_id"
     t.bigint "user_id"
-    t.bigint "function_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+    t.index ["userstorie_id"], name: "index_tasks_on_userstorie_id"
+  end
+
+  create_table "team_users", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "function_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["function_id"], name: "index_team_users_on_function_id"
@@ -73,10 +112,26 @@ ActiveRecord::Schema.define(version: 20170501213955) do
     t.index ["type_id"], name: "index_users_on_type_id"
   end
 
+  create_table "userstories", force: :cascade do |t|
+    t.string "description"
+    t.integer "priority"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_userstories_on_project_id"
+  end
+
+  add_foreign_key "comments", "tasks"
+  add_foreign_key "doubts", "tasks"
   add_foreign_key "project_teams", "projects"
   add_foreign_key "project_teams", "teams"
+  add_foreign_key "sprints", "teams"
+  add_foreign_key "sprints", "userstories", column: "userstorie_id"
+  add_foreign_key "tasks", "users"
+  add_foreign_key "tasks", "userstories", column: "userstorie_id"
   add_foreign_key "team_users", "functions"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
   add_foreign_key "users", "types"
+  add_foreign_key "userstories", "projects"
 end

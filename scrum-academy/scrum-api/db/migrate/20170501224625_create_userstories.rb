@@ -1,9 +1,10 @@
 class CreateUserstories < ActiveRecord::Migration[5.1]
   def change
     create_table :userstories do |t|
-      t.string :description
-      t.integer :priority
-      t.references :project, foreign_key: true
+      t.string :description, null: false
+      t.integer :priority, default: 0
+      t.references :project, foreign_key: true, null: false
+      t.integer :score, default: 0
 
       t.timestamps
     end

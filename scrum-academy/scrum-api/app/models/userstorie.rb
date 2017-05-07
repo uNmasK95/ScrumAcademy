@@ -1,9 +1,11 @@
 class Userstorie < ApplicationRecord
+  
   belongs_to :project
 
   has_many :task
-  has_many :sprint
+  has_many :userstorie_sprints
+  has_many :sprint, through: :userstorie_sprints
 
   # validation
-  validates_presence_of :description, :priority, :project_id
+  validates_presence_of :description, :priority, :project_id, :score
 end
