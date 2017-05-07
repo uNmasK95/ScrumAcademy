@@ -9,5 +9,4 @@ import { Team } from '../team';
 export class TeamsItemComponent  {
   @Input() team: Team;
   @Input() teamId: number;
-
 }

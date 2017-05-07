@@ -9,29 +9,30 @@ import { AppComponent } from './app.component';
 import { DragdropComponent } from './dragdrop/dragdrop.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { NavigationComponent } from './navigation/navigation.component';
 import { AuthGuard } from './guards/auth.guard';
-import { DashboardComponent } from './navigation/dashboard/dashboard.component';
-import { ProjectComponent } from './navigation/dashboard/project/project.component';
-import { CreateProjectComponent } from './navigation/dashboard/create-project/create-project.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProjectComponent } from './dashboard/project/project.component';
+import { CreateProjectComponent } from './dashboard/create-project/create-project.component';
 import { routing } from './app.routes';
-import { ProjectListComponent } from './navigation/dashboard/project/project-list/project-list.component';
-import { ProjectItemComponent } from './navigation/dashboard/project/project-list/project-item.component';
-import { ProjectDetailComponent } from './navigation/dashboard/project/project-detail/project-detail.component';
-import { TeamsComponent } from './navigation/teams/teams.component';
-import { UserStoriesComponent } from './navigation/user-stories/user-stories.component';
-import { QuestionsComponent } from './navigation/questions/questions.component';
-import { ProfileComponent } from './navigation/profile/profile.component';
-import { TeamsItemComponent } from './navigation/teams/teams-item/teams-item.component';
-import { QuestionsListComponent } from './navigation/questions/questions-list/questions-list.component';
-import { QuestionsItemComponent } from './navigation/questions/questions-list/questions-item.component';
-import { QuestionsDetailComponent } from './navigation/questions/questions-detail/questions-detail.component';
-import { UserStoriesDetailComponent } from './navigation/user-stories/user-stories-detail/user-stories-detail.component';
-import { UserStoriesListComponent } from './navigation/user-stories/user-stories-list/user-stories-list.component';
-import { UserStoriesItemComponent } from './navigation/user-stories/user-stories-list/user-stories-item.component';
-import { UserStoriesEditComponent } from './navigation/user-stories/user-stories-edit/user-stories-edit.component';
-import { UserStoriesNewComponent } from './navigation/user-stories/user-stories-new/user-stories-new.component';
-import { ProfileEditComponent } from './navigation/profile/profile-edit/profile-edit.component';
+import { ProjectListComponent } from './dashboard/project/project-list/project-list.component';
+import { ProjectItemComponent } from './dashboard/project/project-list/project-item.component';
+import { ProjectDetailComponent } from './dashboard/project/project-detail/project-detail.component';
+import { TeamsComponent } from './teams/teams.component';
+import { UserStoriesComponent } from './user-stories/user-stories.component';
+import { QuestionsComponent } from './questions/questions.component';
+import { ProfileComponent } from './profile/profile.component';
+import { TeamsItemComponent } from './teams/teams-item/teams-item.component';
+import { QuestionsListComponent } from './questions/questions-list/questions-list.component';
+import { QuestionsItemComponent } from './questions/questions-list/questions-item.component';
+import { QuestionsDetailComponent } from './questions/questions-detail/questions-detail.component';
+import { UserStoriesDetailComponent } from './user-stories/user-stories-detail/user-stories-detail.component';
+import { UserStoriesListComponent } from './user-stories/user-stories-list/user-stories-list.component';
+import { UserStoriesItemComponent } from './user-stories/user-stories-list/user-stories-item.component';
+import { UserStoriesEditComponent } from './user-stories/user-stories-edit/user-stories-edit.component';
+import { UserStoriesNewComponent } from './user-stories/user-stories-new/user-stories-new.component';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
+import { IsAuthenticatedService } from './is-authenticated.service';
+import { HttpUtilService } from './http-util.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,6 @@ import { ProfileEditComponent } from './navigation/profile/profile-edit/profile-
     DragdropComponent,
     LoginComponent,
     RegisterComponent,
-    NavigationComponent,
     DashboardComponent,
     ProjectComponent,
     CreateProjectComponent,
@@ -67,9 +67,10 @@ import { ProfileEditComponent } from './navigation/profile/profile-edit/profile-
     DragulaModule,
     HttpModule,
     CommonModule,
-    routing
+    routing,
+    HttpModule
   ],
-  providers: [AuthGuard],
+  providers: [IsAuthenticatedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

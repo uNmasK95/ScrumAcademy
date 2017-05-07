@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-project.component.css']
 })
 export class CreateProjectComponent implements OnInit {
-
+  projCreated: boolean = false;
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSelect(){
+    this.projCreated=true;
+  }
 }

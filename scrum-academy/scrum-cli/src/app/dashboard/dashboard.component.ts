@@ -12,4 +12,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  isLogged(){
+    //console.log("das:" + localStorage['token']);
+    if(localStorage['token']){
+      return true;
+    }
+    return false;
+  }
 }

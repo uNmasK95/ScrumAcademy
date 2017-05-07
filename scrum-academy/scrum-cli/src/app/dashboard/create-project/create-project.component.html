@@ -39,14 +39,16 @@
 
                   <div class="form-group"> 
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button [routerLink]="['/projects',1,'userstories']" type="submit" class="btn btn-default">Submit</button>
+                      <button type="submit" class="btn btn-default" (click)="onSelect()">Submit</button>
                     </div>
                   </div>
                 </form>
-
               </div>
             </div>
 
+            <div *ngIf="projCreated">
+              <user-stories ></user-stories>
+            </div>
 				</div>
 			</div>
 		</div>
