@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IsAuthenticatedService } from './is-authenticated.service';
+import { LoginGuardService } from './login-guard.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ export class AppComponent {
   type: string;
   constructor(
     private isAuthenticatedService: IsAuthenticatedService,
-    private router: Router) { }
+    private router: Router,
+    private loginGuardService: LoginGuardService) { }
 
   ngOnInit() {
   }
@@ -22,6 +24,12 @@ export class AppComponent {
     
     localStorage['token'] = 77;
     localStorage['type'] = 2; //1-PO,2-SM ou Dev
+    console.log("aqui ctl");
+        this.loginGuardService.getAll()
+        .subscribe(
+            resultado => console.log(resultado)
+        );
+
     //console.log(localStorage['token']);
   }
 

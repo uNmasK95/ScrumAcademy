@@ -33,6 +33,7 @@ import { UserStoriesNewComponent } from './user-stories/user-stories-new/user-st
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { IsAuthenticatedService } from './is-authenticated.service';
 import { HttpUtilService } from './http-util.service';
+import { LoginGuardService } from "./login-guard.service";
 
 @NgModule({
   declarations: [
@@ -70,7 +71,10 @@ import { HttpUtilService } from './http-util.service';
     routing,
     HttpModule
   ],
-  providers: [IsAuthenticatedService],
+  providers: [
+    IsAuthenticatedService,
+    LoginGuardService,
+    HttpUtilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
