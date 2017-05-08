@@ -7,13 +7,19 @@
             <b>Projects - Choosen</b>
           </div>
           <div class="col-md-2">
-            <button type="button" [routerLink]="['projects/new']" class="btn btn-primary">Create Project</button>
+            <button type="button" [routerLink]="['projects/new']" class="btn btn-primary" *ngIf="getType()==1">Create Project</button>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-8 col-md-offset-2 crl">
-            <app-project></app-project>
+            <project></project>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 crl">
+            <button type="button" [routerLink]="['/']" class="btn btn-primary" *ngIf="getType()==2">Create Team</button>
           </div>
         </div>
 

@@ -21,6 +21,7 @@ export class AppComponent {
     this.isAuthenticatedService.login(username,pass);
     
     localStorage['token'] = 77;
+    localStorage['type'] = 2; //1-PO,2-SM ou Dev
     //console.log(localStorage['token']);
   }
 
@@ -32,6 +33,10 @@ export class AppComponent {
   isLogged(){
     //console.log("Cpn isLogged"+this.isAuthenticatedService.getLoginStatus());
     return this.isAuthenticatedService.getLoginStatus();
+  }
+
+  getType(){
+    return localStorage['type'];
   }
 
  /* home(){

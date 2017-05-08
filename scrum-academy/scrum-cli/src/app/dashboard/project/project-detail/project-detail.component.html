@@ -4,11 +4,6 @@
     <!--h1>{{selectedRecipe?.name}}</h1-->
     <h1>PROJECT</h1>
   </div>
-  <!--div class="col-xs-12">
-    <button class="btn btn-success" (click)="onAddToShoppingList()">To Shopping List</button>
-    <button class="btn btn-primary" (click)="onEdit()">Edit</button>
-    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
-  </div-->
 </div>
 <hr>
 <div class="row">
@@ -17,15 +12,24 @@
     Id do project selecionado: {{projectIndex}} {{crl}}
   </div>
 </div>
-<div class="row">
-  <div class="col-xs-12">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let item of selectedRecipe?.ingredients">{{item.name}} ({{item.amount}})</li>
-    </ul>
-  </div>
-</div>
-<div class="row">
+
+<!--É product owner-->
+<div class="row" *ngIf="getType()==1">
   <div class="col-xs-12">
     <user-stories></user-stories>
+  </div>
+</div>
+
+<!--Neste projecto é Scrum Master-->
+<div class="row" *ngIf="getType()==2">
+  <div class="col-xs-12">
+    SOU SCRUM MASTER AQUI
+  </div>
+</div>
+
+<!--Neste projecto é Developer-->
+<div class="row" *ngIf="getType()==3">
+  <div class="col-xs-12">
+    Neste projecto Sou developer
   </div>
 </div>

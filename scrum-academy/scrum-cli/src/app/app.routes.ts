@@ -14,6 +14,7 @@ import { QuestionsComponent } from './questions/questions.component';
 import { QuestionsDetailComponent } from './questions/questions-detail/questions-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProjectDetailComponent } from './dashboard/project/project-detail/project-detail.component';
+import { IsAuthenticatedService } from './is-authenticated.service';
 
 export const routes: Routes = [
    // { path: '', component: LoginComponent/*, canActivate: [AuthGuard]*/ },
@@ -27,11 +28,11 @@ export const routes: Routes = [
     { path: 'projects/:id', component: ProjectDetailComponent },
 
 
-    { path: 'teams', component: TeamsComponent },
-    { path: 'userstories', component: UserStoriesComponent }, // tab direto
-    { path: 'questions', component: QuestionsComponent },
+    { path: 'teams', component: TeamsComponent, canActivate: [ IsAuthenticatedService ] },
+    { path: 'userstories', component: UserStoriesComponent, canActivate: [ IsAuthenticatedService ] }, // tab direto
+    { path: 'questions', component: QuestionsComponent, canActivate: [ IsAuthenticatedService ] },
     //{ path: 'questions/:id', component: QuestionsDetailComponent },
-    { path: 'profile/:id', component: ProfileComponent },
+    { path: 'profile/:id', component: ProfileComponent, canActivate: [ IsAuthenticatedService ] },
     //{ path: 'profile/:id', component: ProfileComponent },
 
     { path: '', component: DashboardComponent/*, canActivate: [AuthGuard]*/ }

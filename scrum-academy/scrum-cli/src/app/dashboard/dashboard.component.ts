@@ -19,4 +19,8 @@ export class DashboardComponent implements OnInit {
     }
     return false;
   }
+
+  getType(){ //estas funcoes se calhar vao pra um service que faça sempre isto que for preciso
+    return localStorage['type'];
+  }
 }

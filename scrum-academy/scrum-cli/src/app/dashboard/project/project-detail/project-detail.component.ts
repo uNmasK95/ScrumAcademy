@@ -20,4 +20,8 @@ export class ProjectDetailComponent implements OnInit {
       });
   }
 
+  getType(){
+    return 2; //Exemplo
+  }
+
 }
