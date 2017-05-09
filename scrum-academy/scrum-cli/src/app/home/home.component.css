@@ -1,0 +1,21 @@
+
+.container{
+    border: 1px solid black;
+}
+.row{
+    border: 1px solid red;
+}
+html, body{
+  height:100%;
+}
+b{
+  color: black;
+  font-size: 150%;
+}
+.crl{
+    border: 1px solid blue;
+}
+
+.nameProj{
+    padding-top: 20px;
+}
