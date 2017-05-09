@@ -4,28 +4,19 @@ Rails.application.routes.draw do
   resources :functions
   resources :users,  only: [:index, :show]
 
-  # resources :projects do 
-  #   resources :teams, :controller => 'projects_teams'
-  #   resources :userstories do
-  #     resources :sprints do
-  #       resources :tasks do
-  #         resources :comments
-  #         resources :doubts
-  #       end
-  #     end
-  #   end
-  # end
 
-  # resources :teams do 
-  #   resources :users, :controller => 'teams_users'
-  # end
 
-  resources :requests
+  resources :teams do 
+    post 'users', to: 'teams#add'
+  end
+
+
+
   resources :statement do 
     resources :features
+    resources :requests
   end
   
-  resources :teams
 
   resources :projects do
     resources :sprints

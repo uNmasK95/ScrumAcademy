@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     # POST /signup
     # return authenticated token upon signup
     def create
+        #TODO change that
         param = user_params
         param[:type] = Type.find(params[:type])
         user = User.create!(param)

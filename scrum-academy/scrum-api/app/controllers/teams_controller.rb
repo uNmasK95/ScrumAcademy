@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
     before_action :set_team, only: [:show, :update, :destroy]
+    before_action :set_user, only: [:add]
 
     # GET /teams
     def index
@@ -10,6 +11,16 @@ class TeamsController < ApplicationController
     # POST /teams
     def create
         @team = Team.create!(team_params)
+        json_response(@team, :created)
+    end
+
+    # POST /teams/:team_id/users
+    def add
+        TeamUser.create!({
+            team_id: @team.id,
+            user_id: @user.id,
+            function_id: @function.id
+        })
         json_response(@team, :created)
     end
     
@@ -40,5 +51,9 @@ class TeamsController < ApplicationController
         @team = Team.find(params[:id])    
     end
 
-
+    def set_user
+        @team = Team.find(params[:team_id])
+        @user = User.find(params[:user])
+        @function = Function.find(params[:function])
+    end
 end
