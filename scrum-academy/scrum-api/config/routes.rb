@@ -3,16 +3,12 @@ Rails.application.routes.draw do
   resources :types
   resources :functions
   resources :users,  only: [:index, :show]
-
-
-
   resources :teams do 
     post 'users', to: 'teams#add'
   end
 
 
-
-  resources :statement do 
+  resources :statements do 
     resources :features
     resources :requests
   end
