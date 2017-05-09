@@ -7,5 +7,5 @@ class Userstorie < ApplicationRecord
   has_many :sprint, through: :userstorie_sprints
 
   # validation
-  validates_presence_of :description, :priority, :project_id, :score
+  validates_presence_of :description, :priority, :score, :project_id
 end

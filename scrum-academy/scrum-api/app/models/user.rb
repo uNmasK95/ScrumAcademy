@@ -7,6 +7,7 @@ class User < ApplicationRecord
     has_many :team_users
     has_many :team, through: :team_users
     has_many :task
+    has_many :statement
 
     # validation
     validates_presence_of :email, :password, :name, :type
