@@ -11,6 +11,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
+import { UserService } from "./services/user.service";
+import { AuthenticationService } from "./services/authentication.service";
+import { AlertService } from "./services/altert.service";
+import { AlertComponent } from "./directives/alert.component";
+import { HttpUtilService } from "./services/http-util.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +23,8 @@ import { AuthGuard } from './guards/auth.guard';
     DragdropComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,13 @@ import { AuthGuard } from './guards/auth.guard';
       { path: '**', redirectTo: '' }
     ])
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard,
+    AlertService,
+    AuthenticationService,
+    UserService,
+    HttpUtilService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
