@@ -34,7 +34,8 @@ class UserstoriesController < ApplicationController
 
     def userstorie_params
         params.permit(:description, :priority, :project_id)
-
+    end
+    
     def set_project
         @project = Project.find( params[:project_id] )
     end
