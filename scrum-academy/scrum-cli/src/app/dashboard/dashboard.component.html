@@ -13,13 +13,13 @@
 
         <div class="row">
           <div class="col-md-8 col-md-offset-2 crl">
-            <project></project>
+            <button type="button" [routerLink]="['/']" class="btn btn-primary" *ngIf="getType()==2">Create Team</button>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-8 col-md-offset-2 crl">
-            <button type="button" [routerLink]="['/']" class="btn btn-primary" *ngIf="getType()==2">Create Team</button>
+            <project></project>
           </div>
         </div>
 

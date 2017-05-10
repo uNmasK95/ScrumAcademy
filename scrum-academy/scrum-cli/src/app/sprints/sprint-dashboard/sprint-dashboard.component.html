@@ -1,0 +1,14 @@
+<body>
+  <div class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesAss'>
+      <!--div>User Storie 1</div>
+      <div>User Storie 2</div>
+      <div>User Storie 1</div-->
+      <div *ngFor='let us of userStoriesAss' [innerHtml]='us'></div>
+  </div>
+
+  <div class='wrapper'>
+      <div class='container'>
+          <pre>{{userStoriesAss | json}}</pre><br>
+      </div>
+  </div>
+</body>

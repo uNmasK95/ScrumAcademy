@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-6">
+    <h1>Project X - Sprints</h1>
+  </div>
+  <div class="col-md-6">
+    <button type="button" [routerLink]="['new']" class="btn btn-primary btn-lg">Create Sprint</button>
+  </div> 
+</div>
+
+<div class="row">
+  
+  <!--Lista sprints-->
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-5">
+          <h2>Sprint:</h2>
+        </div>
+        <div class="col-md-7">
+          <h2>User Stories:</h2>
+        </div>
+      </div>
+    </div>
+    <sprints-list></sprints-list>
+  </div>
+
+  <!--Lista User stories-->
+  <div class="col-md-4">
+    <h2>User Stories to Associate:</h2>
+    <sprints-user-stories-list></sprints-user-stories-list>
+  </div>
+
+</div>

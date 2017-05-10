@@ -13,8 +13,10 @@ import { UserStoriesComponent } from './user-stories/user-stories.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { QuestionsDetailComponent } from './questions/questions-detail/questions-detail.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ProjectDetailComponent } from './dashboard/project/project-detail/project-detail.component';
 import { IsAuthenticatedService } from './is-authenticated.service';
+import { SprintsComponent } from "app/sprints/sprints.component";
+import { SprintCreateComponent } from "app/sprints/sprint-create/sprint-create.component";
+import { SprintsUserStoriesTasksComponent } from "app/sprints/sprints-user-stories-tasks/sprints-user-stories-tasks.component";
 
 export const routes: Routes = [
    // { path: '', component: LoginComponent/*, canActivate: [AuthGuard]*/ },
@@ -24,9 +26,13 @@ export const routes: Routes = [
     //Novas
     { path: 'projects', component: DashboardComponent },
     { path: 'projects/new', component: CreateProjectComponent },
-    { path: 'projects/:id/userstories', component: UserStoriesComponent }, //depois de criar projecto
-    { path: 'projects/:id', component: ProjectDetailComponent },
+    { path: 'projects/:id/userstories', component: UserStoriesComponent }, //para PO
 
+    { path: 'projects/:id/sprints', component: SprintsComponent }, //para SM (estes acho que tem de ter um canActivate)
+    { path: 'projects/:id/sprints/new', component: SprintCreateComponent }, //para SM //mudar comp
+    { path: 'projects/:id/sprints/:id2', component: SprintsUserStoriesTasksComponent }, //para SM //mudar comp
+
+    { path: 'projects/:id', component: UserStoriesComponent }, //para Dev    
 
     { path: 'teams', component: TeamsComponent, canActivate: [ IsAuthenticatedService ] },
     { path: 'userstories', component: UserStoriesComponent, canActivate: [ IsAuthenticatedService ] }, // tab direto

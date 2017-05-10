@@ -16,7 +16,6 @@ import { CreateProjectComponent } from './dashboard/create-project/create-projec
 import { routing } from './app.routes';
 import { ProjectListComponent } from './dashboard/project/project-list/project-list.component';
 import { ProjectItemComponent } from './dashboard/project/project-list/project-item.component';
-import { ProjectDetailComponent } from './dashboard/project/project-detail/project-detail.component';
 import { TeamsComponent } from './teams/teams.component';
 import { UserStoriesComponent } from './user-stories/user-stories.component';
 import { QuestionsComponent } from './questions/questions.component';
@@ -34,6 +33,16 @@ import { ProfileEditComponent } from './profile/profile-edit/profile-edit.compon
 import { IsAuthenticatedService } from './is-authenticated.service';
 import { HttpUtilService } from './http-util.service';
 import { LoginGuardService } from "./login-guard.service";
+import { SprintsComponent } from './sprints/sprints.component';
+import { SprintsListComponent } from './sprints/sprints-list/sprints-list.component';
+import { SprintsItemComponent } from "app/sprints/sprints-list/sprints-item.component";
+import { SprintCreateComponent } from './sprints/sprint-create/sprint-create.component';
+import { SprintDashboardComponent } from './sprints/sprint-dashboard/sprint-dashboard.component';
+import { SprintsUserStoriesListComponent } from './sprints/sprints-user-stories-list/sprints-user-stories-list.component';
+import { DaterangepickerModule } from 'angular-2-daterangepicker';
+import { SprintsUserStoriesTasksComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks.component';
+import { SprintsUserStoriesTasksListComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks-list/sprints-user-stories-tasks-list.component';
+import { SprintsUserStoriesTasksItemComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks-item/sprints-user-stories-tasks-item.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +54,6 @@ import { LoginGuardService } from "./login-guard.service";
     ProjectComponent,
     CreateProjectComponent,
     ProjectListComponent,
-    ProjectDetailComponent,
     ProjectItemComponent,
     TeamsComponent,
     UserStoriesComponent,
@@ -60,7 +68,16 @@ import { LoginGuardService } from "./login-guard.service";
     UserStoriesItemComponent,
     UserStoriesEditComponent,
     UserStoriesNewComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    SprintsComponent,
+    SprintsListComponent,
+    SprintsItemComponent,
+    SprintCreateComponent,
+    SprintDashboardComponent,
+    SprintsUserStoriesListComponent,
+    SprintsUserStoriesTasksComponent,
+    SprintsUserStoriesTasksListComponent,
+    SprintsUserStoriesTasksItemComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +86,8 @@ import { LoginGuardService } from "./login-guard.service";
     HttpModule,
     CommonModule,
     routing,
-    HttpModule
+    HttpModule,
+    DaterangepickerModule
   ],
   providers: [
     IsAuthenticatedService,
