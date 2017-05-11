@@ -1,2 +1,0 @@
-class TeamsUsersController < ApplicationController
-end
