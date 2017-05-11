@@ -1,0 +1,1 @@
+cd scrum-academy/scrum-api/ && bundle exec rails server
