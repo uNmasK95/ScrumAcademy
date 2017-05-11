@@ -88,8 +88,7 @@ test:
 #
 production:
   <<: *default
-  host: localhost
-  port: 12345
+  host: postgres://fxwhfyewzdyfdr:3cd6d8f1d787a9149bbea2b3e4b07edb7db655ef6cf792a3ac927938d09f2a5d@ec2-54-204-1-40.compute-1.amazonaws.com:5432/d49ih45199lecs
   database: scrum
   username: gps
   password:
