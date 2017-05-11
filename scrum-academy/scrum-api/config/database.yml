@@ -88,7 +88,7 @@ test:
 #
 production:
   <<: *default
-  host: postgres://fxwhfyewzdyfdr:3cd6d8f1d787a9149bbea2b3e4b07edb7db655ef6cf792a3ac927938d09f2a5d@ec2-54-204-1-40.compute-1.amazonaws.com:5432/d49ih45199lecs
+  host: postgres://vpaglptthephqy:064358aeef77c85f6f384a39c9ba231308b8fb0fee656efc24d305b0e98ed034@ec2-54-204-1-40.compute-1.amazonaws.com:5432/damqf9srqpvjjj
   database: scrum
   username: gps
   password:
