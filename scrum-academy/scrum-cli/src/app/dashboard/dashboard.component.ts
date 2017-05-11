@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
 
   isLogged(){
     //console.log("das:" + localStorage['token']);
-    if(localStorage['token']){
+    if(localStorage['currentUser']){
       return true;
     }
     return false;

@@ -13,7 +13,7 @@ import { UserStoriesComponent } from './user-stories/user-stories.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { QuestionsDetailComponent } from './questions/questions-detail/questions-detail.component';
 import { ProfileComponent } from './profile/profile.component';
-import { IsAuthenticatedService } from './is-authenticated.service';
+import { IsAuthenticatedService } from './services/is-authenticated.service';
 import { SprintsComponent } from "app/sprints/sprints.component";
 import { SprintCreateComponent } from "app/sprints/sprint-create/sprint-create.component";
 import { SprintsUserStoriesTasksComponent } from "app/sprints/sprints-user-stories-tasks/sprints-user-stories-tasks.component";

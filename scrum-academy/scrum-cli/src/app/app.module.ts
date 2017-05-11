@@ -30,9 +30,9 @@ import { UserStoriesItemComponent } from './user-stories/user-stories-list/user-
 import { UserStoriesEditComponent } from './user-stories/user-stories-edit/user-stories-edit.component';
 import { UserStoriesNewComponent } from './user-stories/user-stories-new/user-stories-new.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
-import { IsAuthenticatedService } from './is-authenticated.service';
-import { HttpUtilService } from './http-util.service';
-import { LoginGuardService } from "./login-guard.service";
+import { IsAuthenticatedService } from './services/is-authenticated.service';
+import { HttpUtilService } from './services/http-util.service';
+import { LoginGuardService } from "./services/login-guard.service";
 import { SprintsComponent } from './sprints/sprints.component';
 import { SprintsListComponent } from './sprints/sprints-list/sprints-list.component';
 import { SprintsItemComponent } from "app/sprints/sprints-list/sprints-item.component";
@@ -43,6 +43,8 @@ import { DaterangepickerModule } from 'angular-2-daterangepicker';
 import { SprintsUserStoriesTasksComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks.component';
 import { SprintsUserStoriesTasksListComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks-list/sprints-user-stories-tasks-list.component';
 import { SprintsUserStoriesTasksItemComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks-item/sprints-user-stories-tasks-item.component';
+import { AlertService } from "app/services/alert.service";
+import { AlertComponent } from "app/directives/alert.component";
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { SprintsUserStoriesTasksItemComponent } from './sprints/sprints-user-sto
     SprintsUserStoriesListComponent,
     SprintsUserStoriesTasksComponent,
     SprintsUserStoriesTasksListComponent,
-    SprintsUserStoriesTasksItemComponent
+    SprintsUserStoriesTasksItemComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +95,8 @@ import { SprintsUserStoriesTasksItemComponent } from './sprints/sprints-user-sto
   providers: [
     IsAuthenticatedService,
     LoginGuardService,
-    HttpUtilService],
+    HttpUtilService,
+    AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

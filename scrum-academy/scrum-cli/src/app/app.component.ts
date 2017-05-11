@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IsAuthenticatedService } from './is-authenticated.service';
-import { LoginGuardService } from './login-guard.service';
+import { IsAuthenticatedService } from './services/is-authenticated.service';
+import { LoginGuardService } from './services/login-guard.service';
 
 @Component({
   selector: 'app-root',
