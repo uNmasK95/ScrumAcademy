@@ -7,28 +7,39 @@
 						<div class="col-lg-12">
 							<!--form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: block;"-->
 							<h1>Register</h1>
-							<form id="register-form" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
-								<div class="form-group">
-									<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+							<alert></alert>
+							<form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+								<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }" >
+									<input type="text" name="username" id="username" [(ngModel)]="model.username" tabindex="1" class="form-control" placeholder="Username" value="" #username="ngModel" required />
+									<div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+								</div>
+								<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+									<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" [(ngModel)]="model.email" #email="ngModel" required >
+									<div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+								</div>
+								<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+									<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password"  [(ngModel)]="model.password" #password="ngModel" required >
+									<div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+								</div>
+								<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !confirmpassword.valid }">
+									<input type="password" name="confirmpassword" id="confirmpassword" tabindex="2" class="form-control" placeholder="Confirm Password"  [(ngModel)]="model.confirmpassword" #confirmpassword="ngModel" required >
+									<div *ngIf="f.submitted && !password.valid" class="help-block">Confirma password is required</div>
 								</div>
 								<div class="form-group">
-									<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
-								</div>
-								<div class="form-group">
-									<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-								</div>
-								<div class="form-group">
-									<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+									<label class="col-lg-3 control-label">Type User:</label>
+									<div class="col-lg-8">
+										<input type="radio" value="1" name="type" [(ngModel)]="model.type"> Product Owner
+     									<input type="radio" value="2" name="type" [(ngModel)]="model.type"> Scrum Master/ Developer
+									</div>
 								</div>
 								<div class="form-group">
 									<div class="row">
 										<div class="col-sm-6">
 											<!--input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now"-->
-											<button name="register-submit" id="register-submit" tabindex="4" [disabled]="loading" class="form-control btn btn-register">Register</button>
-											
+											<button [disabled]="loading" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register">Register</button>
 										</div>
 										<div class="col-sm-6">
-											<button name="cancel" [routerLink]="['/login']" class="form-control btn btn-cancel">Cancel</button>
+											<button [disabled]="loading" type="button" name="cancel" [routerLink]="['/login']" class="form-control btn btn-cancel">Cancel</button>
 										</div>
 									</div>
 								</div> 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { Options } from 'angular-2-daterangepicker';
+//import { Options } from 'angular-2-daterangepicker';
 
 @Component({
   selector: 'sprint-create',

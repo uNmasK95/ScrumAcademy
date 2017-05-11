@@ -39,7 +39,7 @@ import { SprintsItemComponent } from "app/sprints/sprints-list/sprints-item.comp
 import { SprintCreateComponent } from './sprints/sprint-create/sprint-create.component';
 import { SprintDashboardComponent } from './sprints/sprint-dashboard/sprint-dashboard.component';
 import { SprintsUserStoriesListComponent } from './sprints/sprints-user-stories-list/sprints-user-stories-list.component';
-import { DaterangepickerModule } from 'angular-2-daterangepicker';
+//import { DaterangepickerModule } from 'angular-2-daterangepicker';
 import { SprintsUserStoriesTasksComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks.component';
 import { SprintsUserStoriesTasksListComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks-list/sprints-user-stories-tasks-list.component';
 import { SprintsUserStoriesTasksItemComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks-item/sprints-user-stories-tasks-item.component';
@@ -90,7 +90,7 @@ import { AlertComponent } from "app/directives/alert.component";
     CommonModule,
     routing,
     HttpModule,
-    DaterangepickerModule
+    //DaterangepickerModule
   ],
   providers: [
     IsAuthenticatedService,

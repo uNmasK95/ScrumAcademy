@@ -45,6 +45,19 @@ export class IsAuthenticatedService {
     localStorage.removeItem('currentUser');
   }
 
+  register(username: string,email: string, password:string, type : string){
+    return this.http.post(this.httpUtil.url('/signup'), JSON.stringify({ name: username, email: email, password: password, type: type}), this.httpUtil.headers())
+               .map(
+                 (response : Response) => {
+                   let data = response.json();
+                   console.log("RegisterService"+data);
+                   if(data && data.auth_token){
+                      localStorage.setItem('currentUser',JSON.stringify(data));
+                   }
+                 }
+               )
+  }
+
   //
   canActivate() {
   		if (this.getLoginStatus()) {
