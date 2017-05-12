@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   resources :statements do 
     resources :features
-    resources :requests
   end
+  resources :requests
   
 
   # resources :projects do
