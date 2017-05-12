@@ -14,17 +14,18 @@ export class UserService {
         return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
     }*/
 
-    getByEmail(email: string) {
-        return this.http.get('/users', this.httpUtil.headers()).map(this.httpUtil.extrairDados);
+    getById(id: number) {
+       return this.http.get(this.httpUtil.url('/users/' + id), this.httpUtil.headers()).map(this.httpUtil.extrairDados);
+        //console.log(this.http.get('https://evening-anchorage-49793.herokuapp.com/types'));
     }
 
-    informcacoesUser(mail: string){
-        let data = this.getByEmail(mail).catch(this.httpUtil.processarErros);
-      //  this.user.email = da.email;
+   // informcacoesUser(mail: string){
+      //  let data = this.(mail).catch(this.httpUtil.processarErros);
+       // this.user.email = da.email;
        // this.user.id = da.id;
        // this.user.type = da.type.id;
        // this.user.name = da.name;
-    }
+    //}
 
     /*create(user: User) {
         return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());

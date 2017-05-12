@@ -33,7 +33,8 @@ export class IsAuthenticatedService {
                       let data = response.json();
                       console.log(data);
                       if(data && data.auth_token){
-                        localStorage.setItem('currentUser',JSON.stringify(data));
+                        localStorage.setItem('currentUser',data.auth_token);
+                        localStorage.setItem('id',data.user_id);
                       }
                   }
                 )
@@ -53,6 +54,7 @@ export class IsAuthenticatedService {
                    console.log("RegisterService"+data);
                    if(data && data.auth_token){
                       localStorage.setItem('currentUser',JSON.stringify(data));
+                      localStorage.setItem('id',data.user_id);
                    }
                  }
                )
