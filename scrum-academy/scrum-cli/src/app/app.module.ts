@@ -9,13 +9,42 @@ import { AppComponent } from './app.component';
 import { DragdropComponent } from './dragdrop/dragdrop.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './guards/auth.guard';
-import { UserService } from "./services/user.service";
-import { AuthenticationService } from "./services/authentication.service";
-import { AlertService } from "./services/altert.service";
-import { AlertComponent } from "./directives/alert.component";
-import { HttpUtilService } from "./services/http-util.service";
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProjectComponent } from './dashboard/project/project.component';
+import { CreateProjectComponent } from './dashboard/create-project/create-project.component';
+import { routing } from './app.routes';
+import { ProjectListComponent } from './dashboard/project/project-list/project-list.component';
+import { ProjectItemComponent } from './dashboard/project/project-list/project-item.component';
+import { TeamsComponent } from './teams/teams.component';
+import { UserStoriesComponent } from './user-stories/user-stories.component';
+import { QuestionsComponent } from './questions/questions.component';
+import { ProfileComponent } from './profile/profile.component';
+import { TeamsItemComponent } from './teams/teams-item/teams-item.component';
+import { QuestionsListComponent } from './questions/questions-list/questions-list.component';
+import { QuestionsItemComponent } from './questions/questions-list/questions-item.component';
+import { QuestionsDetailComponent } from './questions/questions-detail/questions-detail.component';
+import { UserStoriesDetailComponent } from './user-stories/user-stories-detail/user-stories-detail.component';
+import { UserStoriesListComponent } from './user-stories/user-stories-list/user-stories-list.component';
+import { UserStoriesItemComponent } from './user-stories/user-stories-list/user-stories-item.component';
+import { UserStoriesEditComponent } from './user-stories/user-stories-edit/user-stories-edit.component';
+import { UserStoriesNewComponent } from './user-stories/user-stories-new/user-stories-new.component';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
+import { IsAuthenticatedService } from './services/is-authenticated.service';
+import { HttpUtilService } from './services/http-util.service';
+import { LoginGuardService } from "./services/login-guard.service";
+import { SprintsComponent } from './sprints/sprints.component';
+import { SprintsListComponent } from './sprints/sprints-list/sprints-list.component';
+import { SprintsItemComponent } from "app/sprints/sprints-list/sprints-item.component";
+import { SprintCreateComponent } from './sprints/sprint-create/sprint-create.component';
+import { SprintDashboardComponent } from './sprints/sprint-dashboard/sprint-dashboard.component';
+import { SprintsUserStoriesListComponent } from './sprints/sprints-user-stories-list/sprints-user-stories-list.component';
+//import { DaterangepickerModule } from 'angular-2-daterangepicker';
+import { SprintsUserStoriesTasksComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks.component';
+import { SprintsUserStoriesTasksListComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks-list/sprints-user-stories-tasks-list.component';
+import { SprintsUserStoriesTasksItemComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks-item/sprints-user-stories-tasks-item.component';
+import { AlertService } from "app/services/alert.service";
+import { AlertComponent } from "app/directives/alert.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +52,34 @@ import { HttpUtilService } from "./services/http-util.service";
     DragdropComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
+    DashboardComponent,
+    ProjectComponent,
+    CreateProjectComponent,
+    ProjectListComponent,
+    ProjectItemComponent,
+    TeamsComponent,
+    UserStoriesComponent,
+    QuestionsComponent,
+    ProfileComponent,
+    TeamsItemComponent,
+    QuestionsListComponent,
+    QuestionsItemComponent,
+    QuestionsDetailComponent,
+    UserStoriesDetailComponent,
+    UserStoriesListComponent,
+    UserStoriesItemComponent,
+    UserStoriesEditComponent,
+    UserStoriesNewComponent,
+    ProfileEditComponent,
+    SprintsComponent,
+    SprintsListComponent,
+    SprintsItemComponent,
+    SprintCreateComponent,
+    SprintDashboardComponent,
+    SprintsUserStoriesListComponent,
+    SprintsUserStoriesTasksComponent,
+    SprintsUserStoriesTasksListComponent,
+    SprintsUserStoriesTasksItemComponent,
     AlertComponent
   ],
   imports: [
@@ -32,22 +88,15 @@ import { HttpUtilService } from "./services/http-util.service";
     DragulaModule,
     HttpModule,
     CommonModule,
-    RouterModule.forRoot([
-      {path: '', component: HomeComponent, canActivate: [AuthGuard] },
-      {path: 'app-login', component: LoginComponent},
-      {path: 'app-register', component: RegisterComponent},
-      {path: 'app-home', component: HomeComponent},
-      // otherwise redirect to home
-      { path: '**', redirectTo: '' }
-    ])
+    routing,
+    HttpModule,
+    //DaterangepickerModule
   ],
   providers: [
-    AuthGuard,
-    AlertService,
-    AuthenticationService,
-    UserService,
-    HttpUtilService
-  ],
+    IsAuthenticatedService,
+    LoginGuardService,
+    HttpUtilService,
+    AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

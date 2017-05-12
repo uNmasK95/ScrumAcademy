@@ -1,0 +1,27 @@
+
+<div class="col-md-12">
+  <div class="col-md-5">
+    <div class="pull-left">
+      <h2 class="list-group-item-text">{{userstorie}}</h2>
+    </div>
+  </div>
+
+  <!--Dashboard tasks -->
+  <div class="col-md-7">
+    <body>
+      <div class='container' [dragula]='"second-bag"' [dragulaModel]='tasks'>
+          <!--div>User Storie 1</div>
+          <div>User Storie 2</div>
+          <div><span class='handle'>+</span>User Storie 1</div-->
+          <div *ngFor='let t of tasks'><span class='add' (click)="addTask()">+</span>{{t}}</div>
+      </div>
+
+      <div class='wrapper'>
+          <div class='container'>
+              <pre>{{tasks | json}}</pre><br>
+          </div>
+      </div>
+    </body>
+  </div>
+
+</div>

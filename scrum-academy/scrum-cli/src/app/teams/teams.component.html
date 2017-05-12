@@ -1,0 +1,9 @@
+
+<h1>Teams</h1>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <teams-item *ngFor="let t of teams; let i = index" [team]="t" [teamId]="i"></teams-item>
+    </ul>
+  </div>
+</div>

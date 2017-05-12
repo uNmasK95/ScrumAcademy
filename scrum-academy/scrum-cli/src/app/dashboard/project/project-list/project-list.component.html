@@ -1,0 +1,7 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <project-item *ngFor="let p of projects; let i = index" [project]="p" [projectId]="i"></project-item>
+    </ul>
+  </div>
+</div>
