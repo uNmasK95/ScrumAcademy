@@ -36,8 +36,38 @@ class RequestsController < ApplicationController
 
         if (not params[:accept].blank?) and params[:accept].to_s == "true"
             #TODO create project and usertories
+            puts "vou fazer o create do project"
+            puts  @request.statement.name
+            puts @request.statement.description
+            puts Time.now.strftime("%d/%m/%Y")
+            puts @request.statement.endDate
+            puts @request.statement.id
+            puts @request.team.id
+            begin
+                @project = Project.create!( {
+                    name: @request.statement.name, 
+                    description: @request.statement.description, 
+                    startDate: Time.now.strftime("%d/%m/%Y"),
+                    endDate: @request.statement.endDate,
+                    statement_id: @request.statement.id,
+                    team_id: @request.team.id
+                } )
+
+                puts @project
+
+                @request.statement.feature.map{ |feature| 
+            
+                    puts "ola"
+                
+                }
+            rescue RecordInvalid
+                puts "teste"
+                @project.userstorie.delete()
+                @project.delete()
+                raise(ExceptionHandler::ProjectCreationError, Message.project_creation_error)
+            end
         end
-        
+
         head :no_content
     end
 

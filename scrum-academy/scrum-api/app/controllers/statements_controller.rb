@@ -3,6 +3,7 @@ class StatementsController < ApplicationController
 
     # GET /statements
     def index
+        #TODO add filter by endDate
         if not params[:user].blank?
             @statements = Statement.where( user: params[:user] )
         else

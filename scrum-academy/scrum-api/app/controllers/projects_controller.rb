@@ -3,7 +3,12 @@ class ProjectsController < ApplicationController
 
     # GET /projects
     def index
-        @projects = Project.all
+        # filter by team
+        if not params[:team].blank?
+            @projects = Project.where( team_id: params[:team])
+        else
+            @projects = Project.all
+        end
         json_response(@projects)
     end
 
@@ -33,7 +38,7 @@ class ProjectsController < ApplicationController
     private
 
     def project_params
-        params.permit(:name, :description, :startDate, :endDate)
+        params.permit(:name, :description, :startDate, :endDate, :statement_id, :team_id)
     end
 
     def set_project

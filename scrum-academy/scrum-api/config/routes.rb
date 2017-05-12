@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :requests
   
 
-  # resources :projects do
+  resources :projects do
   #   resources :sprints
   #   resources :userstories do 
   #     resources :task do 
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   #       resources :doubts
   #     end
   #   end
-  # end
+  end
 
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'
