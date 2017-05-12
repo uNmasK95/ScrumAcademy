@@ -33,6 +33,11 @@ class RequestsController < ApplicationController
     # PUT /requests/:id
     def update 
         @request.update(requests_params)
+
+        if (not params[:accept].blank?) and params[:accept].to_s == "true"
+            #TODO create project and usertories
+        end
+        
         head :no_content
     end
 
