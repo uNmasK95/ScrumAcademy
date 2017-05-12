@@ -4,22 +4,18 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { HttpUtilService } from './http-util.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginGuardService {
 
-  constructor(private http: Http, private httpUtil: HttpUtilService) { }
+  constructor(private http: Http, private httpUtil: HttpUtilService, private router: Router) { }
 
-  getAll() {
-    console.log("Entrei getAll do service");
-   
-    return this.http.get('http://localhost:3000/types', this.httpUtil.headers())
-                .map(this.httpUtil.extrairDados)
-                .catch(this.httpUtil.processarErros);
-   /* return new Observable(() => {
-        let xhr = new XMLHttpRequest()
-        xhr.open("GET", 'http://localhost:3000/types', true)
-        //xhr.send()
-    })*/
+  // Depois do utilizador estar logado não pode ir para o login nem register
+  canActivate(){
+    if(!localStorage['currentUser']){
+      return true;
+    }
+    this.router.navigate(['/']);
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IsAuthenticatedService } from './services/is-authenticated.service';
 import { LoginGuardService } from './services/login-guard.service';
+import { UserService } from "./services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
   constructor(
     private isAuthenticatedService: IsAuthenticatedService,
     private router: Router,
-    private loginGuardService: LoginGuardService) { }
+    private loginGuardService: LoginGuardService,
+    private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -21,15 +23,7 @@ export class AppComponent {
   //LOGIN and LOGOUT
   login(username: string, pass: string){
     this.isAuthenticatedService.login(username,pass);
-    
-    localStorage['token'] = 77;
-    localStorage['type'] = 2; //1-PO,2-SM ou Dev
-    console.log("aqui ctl");
-        this.loginGuardService.getAll()
-        .subscribe(
-            resultado => console.log(resultado)
-        );
-
+    this.userService.informcacoesUser(username);
     //console.log(localStorage['token']);
   }
 

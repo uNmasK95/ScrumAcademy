@@ -45,6 +45,7 @@ import { SprintsUserStoriesTasksListComponent } from './sprints/sprints-user-sto
 import { SprintsUserStoriesTasksItemComponent } from './sprints/sprints-user-stories-tasks/sprints-user-stories-tasks-item/sprints-user-stories-tasks-item.component';
 import { AlertService } from "app/services/alert.service";
 import { AlertComponent } from "app/directives/alert.component";
+import { UserService } from "app/services/user.service";
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { AlertComponent } from "app/directives/alert.component";
     IsAuthenticatedService,
     LoginGuardService,
     HttpUtilService,
+    UserService,
     AlertService],
   bootstrap: [AppComponent]
 })
