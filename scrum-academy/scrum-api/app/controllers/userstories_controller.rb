@@ -33,7 +33,7 @@ class UserstoriesController < ApplicationController
     private
 
     def userstorie_params
-        params.permit(:description, :priority, :project_id)
+        params.permit(:description, :priority, :score)
     end
     
     def set_project

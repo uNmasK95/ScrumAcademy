@@ -1,30 +1,79 @@
 class RequestsController < ApplicationController
-    before_action :set_statement
     before_action :set_request, only: [ :show, :update, :destroy]
 
-    # GET /statements/:statement_id/requests
+    # GET /requests ? user=1&accept=false
     def index
-        json_response(@statement.request)
+        if not params[:user].blank?
+            if params[:accept].blank?
+                @requests = Request.where(statement_id: Statement.where(user: params[:user]) )
+            else
+                @requests = Request.where(
+                    statement_id: Statement.where(user: params[:user]),
+                    accept: params[:accept]
+                )
+            end
+        else
+            @requests = Request.all
+        end
+        
+        json_response(@requests)
     end
 
-    # GET /statements/:statement_id/requests/:id
+    # GET /requests/:id
     def show
         json_response(@request)
     end
 
-    # POST /statements/:statement_id/requests
+    # POST /requests
     def create
-        @request = @statement.request.create!(requests_params)
+        @request = Request.create!(requests_params)
         json_response(@request, :created)
     end
     
-    # PUT /statements/:statement_id/requests/:id
+    # PUT /requests/:id
     def update 
         @request.update(requests_params)
+
+        if (not params[:accept].blank?) and params[:accept].to_s == "true"
+            #TODO create project and usertories
+            puts "vou fazer o create do project"
+            puts  @request.statement.name
+            puts @request.statement.description
+            puts Time.now.strftime("%d/%m/%Y")
+            puts @request.statement.endDate
+            puts @request.statement.id
+            puts @request.team.id
+            begin
+                @project = Project.create!( {
+                    name: @request.statement.name, 
+                    description: @request.statement.description, 
+                    startDate: Time.now.strftime("%d/%m/%Y"),
+                    endDate: @request.statement.endDate,
+                    statement_id: @request.statement.id,
+                    team_id: @request.team.id
+                } )
+
+                puts @project
+
+                @request.statement.feature.map{ |feature| 
+                    @project.userstorie.create!({
+                        description: feature.description,
+                        priority: feature.priority,
+                        score: feature.score
+                    })
+                }
+            rescue RecordInvalid
+                puts "teste"
+                @project.userstorie.delete()
+                @project.delete()
+                raise(ExceptionHandler::ProjectCreationError, Message.project_creation_error)
+            end
+        end
+
         head :no_content
     end
 
-    # DELETE /statements/:statement_id/requests/:id
+    # DELETE /requests/:id
     def destroy
         @request.destroy
         head :no_content
@@ -34,14 +83,10 @@ class RequestsController < ApplicationController
     private 
 
     def requests_params
-        params.permit( :team_id, :accept )
-    end
-
-    def set_statement
-        @statement = Statement.find( params[:statement_id])
+        params.permit( :team_id, :statement_id, :accept )
     end
 
     def set_request
-        @request = @statement.requests.find_by!( id: params[:id] ) if @statement
+        @request = Request.find( params[:id])
     end
 end

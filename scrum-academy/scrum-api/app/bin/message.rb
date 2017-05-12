@@ -31,4 +31,8 @@ class Message
   def self.expired_token
     'Sorry, your token has expired. Please login to continue.'
   end
+
+  def self.project_creation_error
+    'Error on creation of Project and UserStories'
+  end
 end

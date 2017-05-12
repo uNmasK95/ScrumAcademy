@@ -41,7 +41,7 @@ class DoubtsController < ApplicationController
     end
 
      def set_project_userstorie
-        @userstorie = @project.userstories.find_by!( id: params[:userstory_id]) if @project
+        @userstorie = @project.userstories.find_by!( id: params[:userstorie_id]) if @project
     end
 
     def set_project_userstorie_sprint

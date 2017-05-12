@@ -35,7 +35,7 @@ class SprintsController < ApplicationController
     private 
 
     def sprint_params
-        params.permit(:description, :startDate, :endData, :team_id, :userstory_id)
+        params.permit(:description, :startDate, :endData, :team_id, :userstorie_id)
     end
 
     def set_project

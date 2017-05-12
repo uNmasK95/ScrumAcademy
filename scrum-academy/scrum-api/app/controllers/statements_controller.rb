@@ -3,7 +3,13 @@ class StatementsController < ApplicationController
 
     # GET /statements
     def index
-        @statements = Statement.all
+        #TODO add filter by endDate
+        if not params[:user].blank?
+            @statements = Statement.where( user: params[:user] )
+        else
+            @statements = Statement.all
+        end
+    
         json_response(@statements)
     end
 
