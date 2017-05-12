@@ -1,0 +1,42 @@
+<div class="row" *ngIf="isLogged()">
+  <div class="col-md-12">
+    <div class="panel panel-dashboard">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-2 crl">
+            <b>Projects - Choosen</b>
+          </div>
+          <div class="col-md-2">
+            <button type="button" [routerLink]="['projects/new']" class="btn btn-primary" *ngIf="getType()==1">Create Project</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 crl">
+            <button type="button" [routerLink]="['/']" class="btn btn-primary" *ngIf="getType()==2">Create Team</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 crl">
+            <project></project>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="!isLogged()">
+  <div class="col-md-12">
+    <div class="panel panel-home">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-2 crl">
+            <b>HOME sem login</b>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

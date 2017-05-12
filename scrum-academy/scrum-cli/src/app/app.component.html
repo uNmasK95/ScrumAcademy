@@ -1,38 +1,42 @@
-<!-- main app container >
-<div class="examples">
-  <div class="container">
-    	<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="panel panel-login">
-					<div class="panel-heading">
-						<div class="row">
-							<!--div class="col-xs-6">
-								<a href="/app-login" id="login-form-link" >Login</a>
-							</div>
-							<div class="col-xs-6">
-								<a href="/app-register" id="register-form-link">Register</a>
-							</div>
-              <div class="col-xs-12">
-                  <ul class="nav nav-tabs nav-justified">
-                    <li ><a [routerLinkActive]="['active']" [routerLink]="['app-login']" id="login-form-link">Login</a></li>
-                    <li ><a [routerLinkActive]="['active']" [routerLink]="['app-register']" id="register-form-link">Register</a></li>
-                  </ul>
-              </div>
-						</div>
-					</div>
-          <router-outlet></router-outlet>
-				</div>
-			</div>
-    	</div>
-  </div>
-  <app-login></app-login>
-</div-->
 
 <!-- main app container -->
-<div class="examples">
-  <div class="container">
-			<div class="col-md-12">
-					<router-outlet></router-outlet>
-			</div>
-  </div>
+<div class="container ctn-nav">
+	<div class="col-md-12">
+		<nav class="navbar navbar-default navbar-fixed-top" >
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<!--a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">Scrum Academy</a-->
+					<a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">Scrum Academy</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a [routerLink]="['/teams']" *ngIf="isLogged() && getType()==1">Teams</a></li>
+						<!--li><a [routerLink]="['/userstories']" *ngIf="isLogged()">User Stories</a></li-->
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a [routerLink]="['/questions']" *ngIf="isLogged() && getType()==1">Questions</a></li>
+						<li class="dropdown" *ngIf="isLogged()">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+							<ul class="dropdown-menu" >
+								<li><a [routerLink]="['/profile', 1]" ><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+								<li><a [routerLink]="['/']" (click)="logout()" ><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+							</ul>
+						</li>
+						<li><a [routerLink]="['/login']"  *ngIf="!isLogged()"><span class="glyphicon glyphicon-log-in"></span> Login/Register</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+	</div>
+</div>
+
+<div class="container bd">
+	<div class="row">
+	<div class="col-md-12">
+		<router-outlet></router-outlet>
+	</div>
+	</div>
 </div>

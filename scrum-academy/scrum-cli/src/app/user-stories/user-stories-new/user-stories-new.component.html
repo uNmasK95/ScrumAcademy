@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-6 col-md-offset-2">
+    <h1>Create User Stories:</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-6 col-md-offset-2">
+    <div class="form-group">
+      <div> <!--ter aqui if-->
+        <label for="prj">Project:</label>
+        <select class="form-control" name="size" >
+            <option value="" disabled selected>Choose a project</option>
+            <option *ngFor="let p of projects; let i=index">{{p.name}}</option>
+        </select>
+      </div>
+
+      <label for="des">Description:</label>
+      <input type="text" class="form-control" id="des">
+
+      <label for="pr">Priority:</label>
+      <input type="number" class="form-control" id="pr">
+
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Submit
+      </button>
+    </div>
+  </div>
+</div>

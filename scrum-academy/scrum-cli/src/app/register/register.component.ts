@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AlertService } from "app/services/alert.service";
+import { IsAuthenticatedService } from "app/services/is-authenticated.service";
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -8,23 +11,40 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   loading = false;
+  model : any = {};
+  entries = [{
+        id: 1,
+        description: 'entry 1'
+    },
+    {
+        id: 2,
+        description: 'entry 2'
+    }];
 
-  constructor(private router: Router) { }
+  selectedEntry;
+  onSelectionChange(entry) {
+        this.selectedEntry = entry;
+  }
+
+  constructor(private router: Router, private isauthenticationService: IsAuthenticatedService,  private alertService: AlertService) { }
 
   register() {
         this.loading = true;
-        /*this.userService.create(this.model)
-            .subscribe(
-                data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });*/
-                console.log("aqui2");
-          this.router.navigate(['/app-login']);       
+        if(this.model.password == this.model.confirmpassword){
+            this.isauthenticationService.register(this.model.username,this.model.email,this.model.password,this.model.type)
+                .subscribe(
+                    data => {
+                        this.router.navigate(['']);
+                    },
+                    error => {
+                        this.alertService.error(error);
+                        this.loading = false;
+                    });
+        }
+        else{
+            this.loading = false;
+            this.alertService.error("Password e Confirm Password Diferentes");
+        }   
     }
 
 }
