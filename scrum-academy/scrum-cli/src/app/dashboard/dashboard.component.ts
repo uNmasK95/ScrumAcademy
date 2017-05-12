@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from "app/services/user.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -21,6 +22,12 @@ export class DashboardComponent implements OnInit {
   }
 
   getType(){ //estas funcoes se calhar vao pra um service que faça sempre isto que for preciso
+    /*this.userService.getType().subscribe(
+                resultado => {
+                   console.log(resultado)
+                });*/
+    /*console.log(this.userService.getType());
+    console.log("crl fodasse");*/
     return localStorage['type'];
   }
 }

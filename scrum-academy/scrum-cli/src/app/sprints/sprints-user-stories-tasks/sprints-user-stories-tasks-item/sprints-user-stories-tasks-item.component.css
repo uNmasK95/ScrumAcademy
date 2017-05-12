@@ -1,6 +1,31 @@
-.add{
+.addU{
     padding: 0 5px;
     margin-right: 10px;
     background-color: rgba(0, 0, 0, 0.4);
     cursor: pointer;
 }
+
+.addU:active{
+    padding: 0 5px;
+    margin-right: 10px;
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+.glyphicon-user-has{
+    cursor: pointer;
+    color: green;
+    background-color: white;
+}
+
+.glyphicon-user-donthas{
+    cursor: pointer;
+    color: red;
+    background-color: white;
+}
+/*.panel-login>.panel-heading a.active{
+	color: #029f5b;
+	font-size: 18px;
+}*/
+
+

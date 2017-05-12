@@ -1,27 +1,77 @@
 
-<div class="col-md-12">
-  <div class="col-md-5">
-    <div class="pull-left">
-      <h2 class="list-group-item-text">{{userstorie}}</h2>
+<div class="row">
+    <!--div class="col-md-12"-->
+    <div class="col-md-3">
+      <div class="pull-left">
+        <h2 class="list-group-item-text">{{userstorie}}<span class='addU' (click)="addtask()">+</span></h2>
+      </div>
     </div>
-  </div>
 
-  <!--Dashboard tasks -->
-  <div class="col-md-7">
-    <body>
-      <div class='container' [dragula]='"second-bag"' [dragulaModel]='tasks'>
-          <!--div>User Storie 1</div>
-          <div>User Storie 2</div>
-          <div><span class='handle'>+</span>User Storie 1</div-->
-          <div *ngFor='let t of tasks'><span class='add' (click)="addTask()">+</span>{{t}}</div>
-      </div>
+     <!--Dashboard tasks -->
+    <div class="col-md-5">
+      <body>
+        <div class='container' [dragula]='"second-bag"' [dragulaModel]='tasks'>
+            <!--div>User Storie 1</div>
+            <div>User Storie 2</div>
+            <div><span class='handle'>+</span>User Storie 1</div-->
+            <div *ngFor='let t of tasks'>
+              <span *ngIf="hasUserAss(t)" class='glyphicon glyphicon-user glyphicon-user-has' (click)="addUser(t)"></span>
+              <span *ngIf="!hasUserAss(t)" class='glyphicon glyphicon-user glyphicon-user-donthas' (click)="addUser(t)"></span>
+              <span class='addU' (click)="addUser(t)">+</span>{{t}}
+            </div>
+        </div>
 
-      <div class='wrapper'>
-          <div class='container'>
-              <pre>{{tasks | json}}</pre><br>
+        <div class='wrapper'>
+            <div class='container'>
+                <pre>{{tasks | json}}</pre><br>
+            </div>
+        </div>
+      </body>
+    </div>
+
+    <!--Do lado para adicionar tarefas ou associar users-->
+    <div class="col-md-4">
+      <div *ngIf="addD">
+        <form id="productForm" method="post" class="form-horizontal">
+          <div class="form-group">
+            <h2>Task: {{taskSelected}}</h2>
+            <label class="col-xs-4 control-label">Developer</label>
+            <div class="col-xs-7 col-xs-offset-1 selectContainer">
+                <select class="form-control" name="color">
+                    <!--option value="">Choose a developer</option-->
+                    <option *ngFor='let u of users' value="u">{{u.username}}</option>
+                    <!--option value="green">Green</option>
+                    <option value="red">Red</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="white">White</option-->
+                </select>
+            </div>
           </div>
+  
+          <div class="form-group">
+              <div class="col-xs-4">
+                  <button type="submit" class="btn btn-default" (click)="addU()">Add User</button>
+                  <!--button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button-->
+              </div>
+          </div>
+        </form>
       </div>
-    </body>
-  </div>
-
+      <div *ngIf="addT">
+        <form id="taskForm" (ngSubmit)="addTask()" class="form-horizontal">
+          <div class="form-group">
+            <h2>New Task:</h2>
+            <label class="col-xs-4 control-label">Task:</label>
+            <input class="col-xs-8 " name="newtask" type="text" class="form-control" id="taskN" [(ngModel)]="modelNewTask.newtask">
+          </div>
+          
+          <div class="form-group">
+              <div class="col-xs-4">
+                  <button type="submit" class="btn btn-default">Add Task</button>
+                  <!--button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button-->
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!--/div-->
 </div>

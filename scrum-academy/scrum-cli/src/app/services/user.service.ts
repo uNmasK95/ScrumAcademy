@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { User } from '../models/user';
 import { HttpUtilService } from "app/services/http-util.service";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class UserService {
@@ -24,6 +25,12 @@ export class UserService {
        // this.user.id = da.id;
        // this.user.type = da.type.id;
        // this.user.name = da.name;
+    }
+
+    getType(): Observable<String[]>{
+        return this.http.get(this.httpUtil.url('/types'))
+               .map(this.httpUtil.extrairDados)
+               .catch(this.httpUtil.processarErros);
     }
 
     /*create(user: User) {
