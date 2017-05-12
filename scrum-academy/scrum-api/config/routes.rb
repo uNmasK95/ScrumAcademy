@@ -15,13 +15,13 @@ Rails.application.routes.draw do
   
 
   resources :projects do
-  #   resources :sprints
-  #   resources :userstories do 
+    #resources :sprints
+    resources :userstories do 
   #     resources :task do 
   #       resources :comments
   #       resources :doubts
   #     end
-  #   end
+    end
   end
 
   post 'auth/login', to: 'authentication#authenticate'

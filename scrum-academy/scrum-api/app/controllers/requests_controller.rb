@@ -56,9 +56,11 @@ class RequestsController < ApplicationController
                 puts @project
 
                 @request.statement.feature.map{ |feature| 
-            
-                    puts "ola"
-                
+                    @project.userstorie.create!({
+                        description: feature.description,
+                        priority: feature.priority,
+                        score: feature.score
+                    })
                 }
             rescue RecordInvalid
                 puts "teste"
