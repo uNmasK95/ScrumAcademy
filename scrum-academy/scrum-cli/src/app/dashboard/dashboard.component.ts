@@ -8,7 +8,15 @@ import { UserService } from "app/services/user.service";
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) { 
+      this.userService.getById(+localStorage.getItem('id')).subscribe(
+        resultado => {
+          console.log(resultado);
+        },
+        error => {
+          console.log(error);
+        });
+  }
 
   ngOnInit() {
   }

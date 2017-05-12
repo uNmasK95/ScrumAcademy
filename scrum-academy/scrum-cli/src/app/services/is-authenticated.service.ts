@@ -34,7 +34,7 @@ export class IsAuthenticatedService {
                       console.log(data);
                       if(data && data.auth_token){
                         localStorage.setItem('currentUser',data.auth_token);
-                        localStorage.setItem('id',data.user_id)
+                        localStorage.setItem('id',data.user_id);
                       }
                   }
                 )
@@ -44,7 +44,6 @@ export class IsAuthenticatedService {
     //this.changeLoginStatus(false);
     this.userLogged = null;
     localStorage.removeItem('currentUser');
-    localStorage.removeItem('id');
   }
 
   register(username: string,email: string, password:string, type : string){
@@ -55,7 +54,7 @@ export class IsAuthenticatedService {
                    console.log("RegisterService"+data);
                    if(data && data.auth_token){
                       localStorage.setItem('currentUser',data.auth_token);
-                      localStorage.setItem('id',data.user_id)
+                      localStorage.setItem('id',data.user_id);
                    }
                  }
                )

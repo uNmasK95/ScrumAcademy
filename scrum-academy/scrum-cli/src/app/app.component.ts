@@ -15,21 +15,16 @@ export class AppComponent {
     private isAuthenticatedService: IsAuthenticatedService,
     private router: Router,
     private loginGuardService: LoginGuardService,
-    private userService: UserService) { }
+    private userService: UserService) { 
+    }
 
   ngOnInit() {
-  }
-
-  //LOGIN and LOGOUT
-  login(username: string, pass: string){
-    this.isAuthenticatedService.login(username,pass);
-    this.userService.informcacoesUser(username);
-    //console.log(localStorage['token']);
   }
 
   logout(){
     this.isAuthenticatedService.logout();
     delete localStorage['token'];
+    delete localStorage['user'];
   }
 
   isLogged(){
