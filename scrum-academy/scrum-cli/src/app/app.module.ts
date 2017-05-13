@@ -46,6 +46,7 @@ import { SprintsUserStoriesTasksItemComponent } from './sprints/sprints-user-sto
 import { AlertService } from "app/services/alert.service";
 import { AlertComponent } from "app/directives/alert.component";
 import { UserService } from "app/services/user.service";
+import { ProjectService } from "app/services/project.service";
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { UserService } from "app/services/user.service";
     LoginGuardService,
     HttpUtilService,
     UserService,
+    ProjectService,
     AlertService],
   bootstrap: [AppComponent]
 })
