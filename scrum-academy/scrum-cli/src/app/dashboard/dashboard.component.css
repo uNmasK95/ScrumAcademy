@@ -1,9 +1,8 @@
-.container{
-    border: 1px solid black;
+#tituloprojects{
+    color: black;
 }
-.row{
-    border: 1px solid red;
-}
-.crl{
-    border: 1px solid blue;
+
+#criarTP{
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
 }

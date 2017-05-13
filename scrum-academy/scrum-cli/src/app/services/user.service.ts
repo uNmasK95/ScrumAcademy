@@ -16,7 +16,6 @@ export class UserService {
 
     getById(id: number) {
        return this.http.get(this.httpUtil.url('/users/' + id), this.httpUtil.headers()).map(this.httpUtil.extrairDados);
-        //console.log(this.http.get('https://evening-anchorage-49793.herokuapp.com/types'));
     }
 
    // informcacoesUser(mail: string){

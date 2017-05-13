@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { IsAuthenticatedService } from '../services/is-authenticated.service'
 import { AlertService } from "app/services/alert.service";
+import { UserService } from 'app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
      private route: ActivatedRoute,
      private router: Router,
      private isauthenticationService: IsAuthenticatedService,
-     private alertService: AlertService) { }
+     private alertService: AlertService,
+     private userService: UserService) { }
 
   ngOnInit() {
       // reset login status
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
       this.isauthenticationService.login(this.model.email, this.model.password)
           .subscribe(
                 resultado => {
+                    this.utilizadorOn();
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
@@ -42,6 +45,19 @@ export class LoginComponent implements OnInit {
             );
     }
 
+    utilizadorOn(){
+        this.userService.getById(+localStorage.getItem('id')).subscribe(
+             resultado => {
+                    // crio um utilizador deixando apenas o id, email, username e type.
+                    let userOn = resultado;
+                    delete userOn.team;
+                    userOn.type = userOn.type.id;
+                    localStorage.setItem('userOn',JSON.stringify(userOn));
+            },
+            error => {
+                    console.log(error);
+            });
+    }
     /*
     this.loading = true;
     //this.router.navigate([this.returnUrl]);

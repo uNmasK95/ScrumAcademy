@@ -5,7 +5,8 @@ import { Router } from "@angular/router";
 
 @Component({
   selector: 'project-item',
-  templateUrl: './project-item.component.html'
+  templateUrl: './project-item.component.html',
+  styleUrls: ['./project-item.component.css']
 })
 export class ProjectItemComponent {
   @Input() project: Project;
