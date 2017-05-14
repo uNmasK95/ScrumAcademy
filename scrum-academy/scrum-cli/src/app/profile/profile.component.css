@@ -1,86 +1,15 @@
-.src-image {
-  display: none;
+
+.nav.navbar-nav li a.home{
+    color: blue;
 }
 
-.card {
-  overflow: hidden;
-  position: relative;
-  border: 1px solid #CCC;
-  border-radius: 8px;
-  text-align: center;
-  padding: 0;
-  background-color: #284c79;
-  color: rgb(136, 172, 217);
+#imagemProfile{
+	width: 100%;
 }
 
 
-.card .edit {
-  text-align: rigth;
-}
-
-.card .header-bg {
-  /* This stretches the canvas across the entire hero unit */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70px;
-  border-bottom: 1px #FFF solid;
-  /* This positions the canvas under the text */
-  z-index: 1;
-  
-  /* All the background image supports */
-  transform: translate(0px, 0px, 0px);
-  background-image: -webkit-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
-  background-image: -moz-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
-  background-image: -o-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
-  background-image: linear-gradient(to top right, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  
-  /* blur filters */
-  -webkit-filter: blur(20px);
-  -o-filter: blur(20px);
-  filter: blur(20px);
-  
-  /* positioning and removing edges */
-  top: -70px;
-  right: -70px;
-  left: -70px;
-  padding: 70px;
-}
-.card .avatar {
-  position: relative;
-  margin-top: 15px;
-  z-index: 100;
-}
-
-.card .avatar img {
-  width: 100px;
-  height: 100px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  border: 5px solid rgba(0,0,30,0.8);
-}
-
-
-.card .header-bg:after {
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: 1001;
-
-  /* Setting the gradient. Adds depth, and glass like effect. */
-  background-image: -webkit-linear-gradient(289deg, rgba(43,40,50,0.8) 0%, rgba(43,40,50,0.4) 46%, rgba(0,0,0,0.05) 50%);
-  background-image: -moz-linear-gradient(289deg, rgba(43,40,50,0.8) 0%, rgba(43,40,50,0.4) 46%, rgba(0,0,0,0.05) 50%);
-  background-image: -o-linear-gradient(289deg, rgba(43,40,50,0.8) 0%, rgba(43,40,50,0.4) 46%, rgba(0,0,0,0.05) 50%);
-  background-image: linear-gradient(-19deg, rgba(43,40,50,0.8) 0%, rgba(43,40,50,0.4) 46%, rgba(0,0,0,0.05) 50%);
-
-  /* Blur to add depth. High to create smooth transition */
-  -webkit-filter: blur(70px);
-  -o-filter: blur(70px);
-  filter: blur(70px);
+.navbar-nav li:hover a span {
+    top: 0em;
+    opacity:1;
+    filter: alpha(opacity=100);
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IsAuthenticatedService } from './services/is-authenticated.service';
 import { LoginGuardService } from './services/login-guard.service';
 import { UserService } from "./services/user.service";
+import { User } from "app/models/user";
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,13 @@ import { UserService } from "./services/user.service";
 })
 export class AppComponent {
   type: string;
+  user: User;
   constructor(
     private isAuthenticatedService: IsAuthenticatedService,
     private router: Router,
     private loginGuardService: LoginGuardService,
     private userService: UserService) { 
+       this.user = JSON.parse(localStorage.getItem('userOn'));
     }
 
   ngOnInit() {
@@ -33,7 +36,7 @@ export class AppComponent {
   }
 
   getType(){
-    return localStorage['type'];
+    return this.user.type;
   }
 
  /* home(){

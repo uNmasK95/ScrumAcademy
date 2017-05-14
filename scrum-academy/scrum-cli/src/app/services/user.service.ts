@@ -15,7 +15,16 @@ export class UserService {
     }*/
 
     getById(id: number) {
-       return this.http.get(this.httpUtil.url('/users/' + id), this.httpUtil.headers()).map(this.httpUtil.extrairDados);
+        return this.http.get(this.httpUtil.url('/users/' + id), this.httpUtil.headers()).map(this.httpUtil.extrairDados);
+    }
+
+    //É preciso ver qual o caminho
+    updateName(name: string){
+        return this.http.post(this.httpUtil.url('/'),JSON.stringify({ name: name}),this.httpUtil.headers()).map(this.httpUtil.extrairDados);
+    }
+
+    update(name: string, password: string){
+        return this.http.post(this.httpUtil.url('/'),JSON.stringify({name: name, password: password}),this.httpUtil.headers()).map(this.httpUtil.extrairDados);
     }
 
    // informcacoesUser(mail: string){
