@@ -1,30 +1,30 @@
 class CommentsController < ApplicationController
-    before_action :set_project, :set_project_userstorie, :set_project_userstorie_sprint, :set_project_userstorie_sprint, :set_project_userstorie_sprint_task
-    before_action :set_project_userstorie_sprint_task_comment, only: [ :show, :update, :destroy ]
+    before_action :set_project_userstorie_task
+    before_action :set_project_userstorie_task_comment, only: [ :show, :update, :destroy ]
 
-    # GET /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments
+    # GET /projects/:project_id/userstories/:userstory_id/tasks/:task_id/comments
     def index
-        json_response(@task.comments)
+        json_response(@task.comment)
     end
 
-    # GET /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments/:id
+    # GET /projects/:project_id/userstories/:userstory_id/tasks/:task_id/comments/:id
     def show
         json_response(@comment)
     end
 
-    # POST /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments
+    # POST /projects/:project_id/userstories/:userstory_id/tasks/:task_id/comments
     def create
-        @task.comments.create!(comment_params)
-        json_response(@task, :created)
+        @comment = @task.comment.create!(comment_params)
+        json_response(@comment, :created)
     end
 
-    # PUT /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments/:id
+    # PUT /projects/:project_id/userstories/:userstory_id/tasks/:task_id/comments/:id
     def update 
         @comment.update(comment_params)
         head :no_content
     end
 
-    # DELETE /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments/:id
+    # DELETE /projects/:project_id/userstories/:userstory_id/tasks/:task_id/comments/:id
     def destroy
         @comment.destroy
         head :no_content
@@ -33,26 +33,16 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
-        params.permit(:description, :task_id)
+        params.permit(:description)
     end
 
-    def set_project
+    def set_project_userstorie_task
         @project = Project.find( params[:project_id] )
+        @userstorie = @project.userstorie.find( params[:userstory_id]) if @project
+        @task = @userstorie.task.find( params[:task_id] )
     end
 
-     def set_project_userstorie
-        @userstorie = @project.userstories.find_by!( id: params[:userstorie_id]) if @project
-    end
-
-    def set_project_userstorie_sprint
-        @sprint = @userstorie.sprints.find_by!( id: params[:sprint_id] )
-    end
-
-    def set_project_userstorie_sprint_task
-        @task = @sprint.tasks.find_by!( id: params[:task_id] )
-    end
-
-    def set_project_userstorie_sprint_task_comment
-        @comment = @task.comments.find_by!( id: params[:id] )
+    def set_project_userstorie_task_comment
+        @comment = @task.comment.find( params[:id] )
     end
 end
