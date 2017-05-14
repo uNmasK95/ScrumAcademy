@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     skip_before_action :authorize_request, only: :create
 
-    before_action :set_user , only: [:show]
+    before_action :set_user , only: [:show, :update, :destroy]
 
     # POST /signup
     # return authenticated token upon signup
@@ -30,6 +30,17 @@ class UsersController < ApplicationController
         json_response(@user)
     end
 
+    # PUT /projects/:id
+    def update
+        @user.update(user_params)
+        head :no_content
+    end
+
+    # DELETE /projects/:id
+    def destroy
+        @user.destroy
+        head :no_content
+    end
 
     private
 
