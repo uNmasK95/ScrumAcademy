@@ -13,21 +13,24 @@ import { User } from "app/models/user";
 export class AppComponent {
   type: string;
   user: User;
+
   constructor(
     private isAuthenticatedService: IsAuthenticatedService,
     private router: Router,
     private loginGuardService: LoginGuardService,
     private userService: UserService) { 
-       this.user = JSON.parse(localStorage.getItem('userOn'));
     }
 
   ngOnInit() {
+     this.user = JSON.parse(localStorage.getItem('userOn'));
+      console.log(this.user);
   }
 
   logout(){
     this.isAuthenticatedService.logout();
     delete localStorage['token'];
-    delete localStorage['user'];
+    delete localStorage['userOn'];
+    location.reload();
   }
 
   isLogged(){
@@ -35,9 +38,27 @@ export class AppComponent {
     return this.isAuthenticatedService.getLoginStatus();
   }
 
-  getType(){
-    return this.user.type;
+  getId(){
+     if(localStorage.getItem('userOn')){
+    let p =JSON.parse(localStorage.getItem('userOn')).type
+    if(p>0){
+      return p;
+    }
+     }
+    return 0;
   }
+
+  getType(){
+    if(localStorage.getItem('userOn')){
+      let p =JSON.parse(localStorage.getItem('userOn')).type
+      if(p==1 || p==2){
+        console.log(localStorage.getItem('userOn'));
+        return p;
+    }
+    }
+    return false;
+  }
+
 
  /* home(){
     if(this.isAuthenticatedService.getLoginStatus()){
