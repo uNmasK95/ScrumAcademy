@@ -14,7 +14,7 @@ class UsersController < ApplicationController
         response = { 
             message: Message.account_created, 
             auth_token: auth_token,
-            user: user.id
+            user_id: user.id
         }
         json_response(response, :created)
     end
