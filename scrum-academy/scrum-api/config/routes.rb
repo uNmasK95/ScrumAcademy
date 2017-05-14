@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   
 
   resources :projects do
-    #resources :sprints
+    resources :sprints do 
+        post 'userstories', to: 'sprints#add'
+    end
     resources :userstories do 
   #     resources :task do 
   #       resources :comments

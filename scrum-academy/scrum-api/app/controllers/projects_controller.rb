@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
         @project.destroy
         head :no_content
     end
-
+    
     private
 
     def project_params

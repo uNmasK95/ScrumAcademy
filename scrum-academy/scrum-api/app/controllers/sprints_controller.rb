@@ -1,32 +1,40 @@
+require 'date'
+
 class SprintsController < ApplicationController
-    before_action :set_project, :set_project_userstorie
-    before_action :set_project_userstorie_sprint, only: [ :show, :update, :destroy]
+    before_action :set_project
+    before_action :set_project_sprint, only: [ :show, :update, :destroy, :add]
 
     # fazer filtro das sprints por equipas
 
-    # GET /projects/:project_id/userstories/:userstory_id/sprints
+    # GET /projects/:project_id/sprints
     def index
-        json_response(@userstorie.sprints)
+        json_response(@project.sprint)
     end
 
-    # GET /projects/:project_id/userstories/:userstory_id/sprints/:id
+    # GET /projects/:project_id/sprints/:id
     def show
         json_response(@sprint)
     end
 
-    # POST /projects/:project_id/userstories/:userstory_id/sprints
+    # POST /projects/:project_id/sprints
     def create
-        @userstorie.sprints.create!(sprint_params)
-        json_response(@userstorie, :created)
+        @sprint = @project.sprint.create!( sprint_params )
+        json_response(@sprint, :created)
     end
 
-    # PUT /projects/:project_id/userstories/:userstory_id/sprints/:id
+    # POST /projects/:project_id/sprints/:sprint_id/userstories
+    def add
+        @userstorie_sprint = @sprint.userstorie_sprints.create!( sprint_add_userstorie_params )
+        json_response(@userstorie_sprint, :created)
+    end
+
+    # PUT /projects/:project_id/sprints/:id
     def update 
         @sprint.update(sprint_params)
         head :no_content
     end
 
-    # DELETE /projects/:project_id/userstories/:userstory_id/sprints/:id
+    # DELETE /projects/:project_id/sprints/:id
     def destroy
         @sprint.destroy
         head :no_content
@@ -35,18 +43,18 @@ class SprintsController < ApplicationController
     private 
 
     def sprint_params
-        params.permit(:description, :startDate, :endData, :team_id, :userstorie_id)
+        params.permit(:description, :startDate, :endDate, :project_id)
     end
 
+    def sprint_add_userstorie_params
+        params.permit(:sprint_id, :userstorie_id, :deferred)
+    end
+    
     def set_project
         @project = Project.find( params[:project_id] )
     end
 
-    def set_project_userstorie
-        @userstorie = @project.userstories.find_by!( id: params[:id]) if @project
-    end
-
-    def set_project_userstorie_sprint
-        @sprint = @userstorie.sprints.find_by!( id:params[:id]) if @userstorie
+    def set_project_sprint
+        @sprint = @project.sprint.find( params[:sprint_id] ) if @project
     end
 end
