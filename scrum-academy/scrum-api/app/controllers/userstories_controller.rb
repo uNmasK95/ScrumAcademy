@@ -4,7 +4,8 @@ class UserstoriesController < ApplicationController
 
     # GET /projects/:project_id/userstories
     def index
-        json_response(@project.userstories)
+        puts @project
+        json_response(@project.userstorie)
     end
 
     # GET /projects/:project_id/userstories/:id
@@ -14,7 +15,7 @@ class UserstoriesController < ApplicationController
 
     # POST /projects/:project_id/userstories
     def create
-        @project.userstories.create!(userstorie_params)
+        @project.userstorie.create!(userstorie_params)
         json_response(@project, :created)
     end
     
@@ -41,6 +42,6 @@ class UserstoriesController < ApplicationController
     end
 
     def set_project_userstorie
-        @userstorie = @project.userstories.find_by!( id: params[:id]) if @project
+        @userstorie = @project.userstorie.find_by!( id: params[:id]) if @project
     end
 end
