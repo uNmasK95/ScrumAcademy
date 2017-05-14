@@ -16,7 +16,7 @@ export class ProjectItemComponent {
 
   selectRoute(){
     //ver consoante id utilizador ver que tipo é neste projeto
-    let op = 2;
+    let op = 3;
     if(op==1){//Prod Owner
       this.router.navigate(['projects',this.projectId, 'userstories']);
     }else if(op==2){ //SMaster

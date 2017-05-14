@@ -46,6 +46,11 @@ import { SprintsUserStoriesTasksItemComponent } from './sprints/sprints-user-sto
 import { AlertService } from "app/services/alert.service";
 import { AlertComponent } from "app/directives/alert.component";
 import { UserService } from "app/services/user.service";
+import { TeamsCreateComponent } from './teams/teams-create/teams-create.component';
+import { FilterPipe } from './teams/teams-create/FilterPipe';
+import { UserStoriesDashboardComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard.component';
+import { UserStoriesDashboardListComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard-list/user-stories-dashboard-list.component';
+import { UserStoriesDashboardItemComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard-item/user-stories-dashboard-item.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +86,12 @@ import { UserService } from "app/services/user.service";
     SprintsUserStoriesTasksComponent,
     SprintsUserStoriesTasksListComponent,
     SprintsUserStoriesTasksItemComponent,
-    AlertComponent
+    AlertComponent,
+    TeamsCreateComponent,
+    FilterPipe,
+    UserStoriesDashboardComponent,
+    UserStoriesDashboardListComponent,
+    UserStoriesDashboardItemComponent
   ],
   imports: [
     BrowserModule,

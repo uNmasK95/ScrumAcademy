@@ -23,6 +23,7 @@ export class SprintsUserStoriesTasksItemComponent {
   users: User[] = [this.u1, this.u2, this.u3];
 
   public tasks:Array<string> = ["task1","task2"]; //Get com UID, PROjID, SprinID, USId
+  tasksatrib:Array<string>; //para apagar
 
   taskSelected: string;
 
@@ -65,10 +66,13 @@ export class SprintsUserStoriesTasksItemComponent {
     return this.addT;
   }
 
+  //Submit User
   addU(){
-    //this.tasks.push("Task NEw");
+
+    console.log(this.modelNewTask.newUser);
   }
 
+  //Submit Task
   addTask(){ //Aqui fazer um new Task etc 
     this.tasks.push(this.modelNewTask.newtask);
   }

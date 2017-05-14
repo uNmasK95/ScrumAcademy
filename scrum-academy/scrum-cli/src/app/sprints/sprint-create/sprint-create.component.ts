@@ -16,6 +16,10 @@ export class SprintCreateComponent implements OnInit {
         endDate: '09/02/2017',
         format: 'DD/MM/YYYY'
     }
+
+  model: any = {};
+
+
   constructor(
     private route: ActivatedRoute,
     private router: Router) { }
@@ -36,8 +40,10 @@ export class SprintCreateComponent implements OnInit {
     this.router.navigate(['/projects',this.projectId,'sprints']);
   }
 
-  rangeSelected($event){
-
+  addSprint(){
+    console.log(this.model.Iday);
+    console.log(this.model.duration);
+    this.voltar();
   }
   
 
