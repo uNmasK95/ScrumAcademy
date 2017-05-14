@@ -3,22 +3,22 @@
     <div class="panel panel-dashboard">
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-6 col-md-offset-2 crl">
-            <b>Projects - Choosen</b>
+          <div class="col-md-6 col-md-offset-2 col-sm-9" id="tituloprojects">
+            <h3>Projects - Choosen</h3>
           </div>
-          <div class="col-md-2">
-            <button type="button" [routerLink]="['projects/new']" class="btn btn-primary" *ngIf="getType()==1">Create Project</button>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2 crl">
-            <button type="button" [routerLink]="['/teams/new']" class="btn btn-primary" *ngIf="getType()==2">Create Team</button>
+          <div class="col-md-2 col-sm-3 col-xs-9">
+            <button type="button" [routerLink]="['projects/new']" class="btn btn-primary pull-right" id="criarTP" *ngIf="getType()==1">Create Project</button>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-md-8 col-md-offset-2 crl">
+          <div class="col-md-6 col-sm-3 col-xs-9">
+            <button type="button" [routerLink]="['/']" class="btn btn-primary pull-right" id="criarTP" *ngIf="getType()==2">Create Team</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
             <project></project>
           </div>
         </div>
@@ -33,7 +33,7 @@
     <div class="panel panel-home">
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-6 col-md-offset-2 crl">
+          <div class="col-md-6 col-md-offset-2">
             <b>HOME sem login</b>
           </div>
       </div>

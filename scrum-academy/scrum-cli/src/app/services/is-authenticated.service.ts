@@ -51,7 +51,6 @@ export class IsAuthenticatedService {
                .map(
                  (response : Response) => {
                    let data = response.json();
-                   console.log("RegisterService"+data);
                    if(data && data.auth_token){
                       localStorage.setItem('currentUser',data.auth_token);
                       localStorage.setItem('id',data.user_id);

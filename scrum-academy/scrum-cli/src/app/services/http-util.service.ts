@@ -14,11 +14,12 @@ export class HttpUtilService {
   headers() {
     let headersParams = { 'Content-Type': 'application/json' };
     if (localStorage['currentUser']) {
+      console.log("estou na autorizacao");
       headersParams['Authorization'] = localStorage['currentUser'];
     }
     let headers = new Headers(headersParams);
     let options = new RequestOptions({ headers: headers });
-    //console.log(options);
+    console.log(options);
     return options;
   }
  

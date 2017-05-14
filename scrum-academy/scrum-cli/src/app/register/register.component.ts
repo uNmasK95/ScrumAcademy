@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { AlertService } from "app/services/alert.service";
 import { IsAuthenticatedService } from "app/services/is-authenticated.service";
+import { UserService } from "app/services/user.service";
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,8 @@ export class RegisterComponent {
         this.selectedEntry = entry;
   }
 
-  constructor(private router: Router, private isauthenticationService: IsAuthenticatedService,  private alertService: AlertService) { }
+  constructor(private router: Router, private isauthenticationService: IsAuthenticatedService,  private alertService: AlertService,
+            private userService : UserService) { }
 
   register() {
         this.loading = true;
@@ -35,6 +37,7 @@ export class RegisterComponent {
                 this.isauthenticationService.register(this.model.username,this.model.email,this.model.password,this.model.type)
                     .subscribe(
                         data => {
+                            this.utilizadorOn();
                             this.router.navigate(['']);
                         },
                         error => {
@@ -51,6 +54,19 @@ export class RegisterComponent {
             this.loading = false;
             this.alertService.error("Type não selecionado");
         }   
+    }
+    utilizadorOn(){
+        this.userService.getById(+localStorage.getItem('id')).subscribe(
+             resultado => {
+                    // crio um utilizador deixando apenas o id, email, username e type.
+                    let userOn = resultado;
+                    delete userOn.team;
+                    userOn.type = userOn.type.id;
+                    localStorage.setItem('userOn',JSON.stringify(userOn));
+            },
+            error => {
+                    console.log(error);
+            });
     }
 
 }

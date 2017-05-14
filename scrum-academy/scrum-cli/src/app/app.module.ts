@@ -51,6 +51,7 @@ import { FilterPipe } from './teams/teams-create/FilterPipe';
 import { UserStoriesDashboardComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard.component';
 import { UserStoriesDashboardListComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard-list/user-stories-dashboard-list.component';
 import { UserStoriesDashboardItemComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard-item/user-stories-dashboard-item.component';
+import { ProjectService } from "app/services/project.service";
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { UserStoriesDashboardItemComponent } from './user-stories/user-stories-d
     LoginGuardService,
     HttpUtilService,
     UserService,
+    ProjectService,
     AlertService],
   bootstrap: [AppComponent]
 })

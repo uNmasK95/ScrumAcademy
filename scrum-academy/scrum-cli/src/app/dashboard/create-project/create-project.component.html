@@ -5,23 +5,25 @@
 				<div class="panel-body">
             <div class="row">
               <div class="col-md-8 col-md-offset-2 crl">
-                <b>Create Project</b>
+                <h3>Create Project</h3>
               </div>
             </div>
             
             <div class="row">
               <div class="col-md-6 col-md-offset-3">
-                <form class="form-horizontal">
-                  <div class="form-group nameProj">
+                <form class="form-horizontal" (ngSubmit)="f.form.valid && createProject()" #f="ngForm" novalidate>
+                  <div class="form-group nameProj" [ngClass]="{ 'has-error': f.submitted && !nameP.valid }">
                     <label class="control-label col-sm-2" for="nameP">Name:</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="nameP" id="idProject" tabindex="1" placeholder="Ex: Project GPS - Scrum Academy">
+                    <div class="col-sm-9 col-sm-offset-1">
+                      <input type="text" class="form-control" name="nameP" [(ngModel)]="model.nameP" id="idProject" tabindex="1" placeholder="Ex: Project GPS - Scrum Academy" #nameP="ngModel" required>
+                      <div *ngIf="f.submitted && !nameP.valid" class="help-block">Name Project is required</div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="description">Password:</label>
-                    <div class="col-sm-10"> 
-                      <input type="text" class="form-control" name="description" id="description" tabindex="2" placeholder="Ex: A web application that ...">
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !desriptionP.valid }">
+                    <label class="control-label col-sm-2" for="desriptionP">Description:</label>
+                    <div class="col-sm-9 col-sm-offset-1">
+                      <input type="text" class="form-control" name="desriptionP" [(ngModel)]="model.desriptionP" id="iddescription" tabindex="2" placeholder="Ex: A web application that ..." #desriptionP="ngModel" required>
+                      <div *ngIf="f.submitted && !desriptionP.valid" class="help-block">Description is required</div>
                     </div>
                   </div>
                   <div class="form-group">
@@ -38,8 +40,8 @@
                   </div>
 
                   <div class="form-group"> 
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-default" (click)="onSelect()">Submit</button>
+                    <div class="col-sm-offset-5 col-sm-7 col-xs-offset-4 col-xs-8">
+                      <button [disabled]="loading" type="submit" class="btn btn-default">Submit</button>
                     </div>
                   </div>
                 </form>
