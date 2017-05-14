@@ -19,12 +19,14 @@ Rails.application.routes.draw do
         post 'userstories', to: 'sprints#add'
     end
     resources :userstories do 
-  #     resources :task do 
+      resources :tasks do 
   #       resources :comments
-  #       resources :doubts
-  #     end
+      end
     end
   end
+
+# resources :doubts
+
 
   post 'auth/login', to: 'authentication#authenticate'
   post 'signup', to: 'users#create'
