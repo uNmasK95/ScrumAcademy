@@ -31,9 +31,10 @@ export class IsAuthenticatedService {
                 .map(
                   (response: Response) => {
                       let data = response.json();
-                      console.log("LoginService:"+data);
+                      console.log(data);
                       if(data && data.auth_token){
-                        localStorage.setItem('currentUser',JSON.stringify(data));
+                        localStorage.setItem('currentUser',data.auth_token);
+                        localStorage.setItem('id',data.user_id);
                       }
                   }
                 )
@@ -52,7 +53,8 @@ export class IsAuthenticatedService {
                    let data = response.json();
                    console.log("RegisterService"+data);
                    if(data && data.auth_token){
-                      localStorage.setItem('currentUser',JSON.stringify(data));
+                      localStorage.setItem('currentUser',data.auth_token);
+                      localStorage.setItem('id',data.user_id);
                    }
                  }
                )

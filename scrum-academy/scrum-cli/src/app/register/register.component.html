@@ -23,22 +23,24 @@
 								</div>
 								<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !confirmpassword.valid }">
 									<input type="password" name="confirmpassword" id="confirmpassword" tabindex="2" class="form-control" placeholder="Confirm Password"  [(ngModel)]="model.confirmpassword" #confirmpassword="ngModel" required >
-									<div *ngIf="f.submitted && !password.valid" class="help-block">Confirma password is required</div>
+									<div *ngIf="f.submitted && !confirmpassword.valid" class="help-block">Confirma password is required</div>
 								</div>
 								<div class="form-group">
-									<label class="col-lg-3 control-label">Type User:</label>
-									<div class="col-lg-8">
+									<label class="col-lg-12 col-md-4 control-label">Type User:</label>
+									<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" id="ProductOwner">
 										<input type="radio" value="1" name="type" [(ngModel)]="model.type"> Product Owner
-     									<input type="radio" value="2" name="type" [(ngModel)]="model.type"> Scrum Master/ Developer
+     								</div>
+									<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" id="ScrumMaster" >
+										<input type="radio" value="2" name="type" [(ngModel)]="model.type"> Scrum Master/ Developer
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="row">
-										<div class="col-sm-6">
+										<div class="col-sm-6 col-xs-12" id="registardiv">
 											<!--input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now"-->
 											<button [disabled]="loading" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register">Register</button>
 										</div>
-										<div class="col-sm-6">
+										<div class="col-sm-6 col-xs-12" id="canceldiv">
 											<button [disabled]="loading" type="button" name="cancel" [routerLink]="['/login']" class="form-control btn btn-cancel">Cancel</button>
 										</div>
 									</div>

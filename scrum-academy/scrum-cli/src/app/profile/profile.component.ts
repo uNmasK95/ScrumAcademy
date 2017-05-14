@@ -8,7 +8,7 @@ import { User } from './user';
 })
 export class ProfileComponent implements OnInit {
   
-  userLogged: User = new User('Rafael','motarafa@hotmail.com','pass');
+  userLogged: User = new User('Rafael','motarafa@hotmail.com');
   editSelected: boolean = false;
 
   constructor() { }

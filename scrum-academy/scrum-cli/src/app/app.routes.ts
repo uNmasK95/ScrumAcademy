@@ -17,11 +17,12 @@ import { IsAuthenticatedService } from './services/is-authenticated.service';
 import { SprintsComponent } from "app/sprints/sprints.component";
 import { SprintCreateComponent } from "app/sprints/sprint-create/sprint-create.component";
 import { SprintsUserStoriesTasksComponent } from "app/sprints/sprints-user-stories-tasks/sprints-user-stories-tasks.component";
+import { LoginGuardService } from './services/login-guard.service';
 
 export const routes: Routes = [
    // { path: '', component: LoginComponent/*, canActivate: [AuthGuard]*/ },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent, canActivate: [LoginGuardService] },
+    { path: 'register', component: RegisterComponent, canActivate: [LoginGuardService] },
 
     //Novas
     { path: 'projects', component: DashboardComponent },
