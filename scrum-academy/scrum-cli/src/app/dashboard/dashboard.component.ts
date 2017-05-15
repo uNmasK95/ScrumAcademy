@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
       if(localStorage.getItem('userOn')){
       let p =JSON.parse(localStorage.getItem('userOn')).type
       if(p==1 || p==2){
-        console.log(localStorage.getItem('userOn'));
+        //console.log(localStorage.getItem('userOn'));
         return p;
       }
       }
