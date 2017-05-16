@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+    Type.create :description => "Product Owner"
+    Type.create :description => "Scrum Master/ Developer"
+
+    Function.create :description => "Scrum Master"
+    Function.create :description => "Developer"

@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
-        params.permit(:description)
+        params.permit(:description, :user_id)
     end
 
     def set_project_userstorie_task

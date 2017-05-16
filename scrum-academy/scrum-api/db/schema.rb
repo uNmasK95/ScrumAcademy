@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(version: 20170509174244) do
   create_table "comments", force: :cascade do |t|
     t.string "description", null: false
     t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_comments_on_task_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "doubts", force: :cascade do |t|
@@ -95,6 +97,7 @@ ActiveRecord::Schema.define(version: 20170509174244) do
     t.string "description", null: false
     t.bigint "userstorie_id", null: false
     t.bigint "user_id"
+    t.integer "state", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_tasks_on_user_id"
@@ -155,6 +158,7 @@ ActiveRecord::Schema.define(version: 20170509174244) do
   end
 
   add_foreign_key "comments", "tasks"
+  add_foreign_key "comments", "users"
   add_foreign_key "doubts", "tasks"
   add_foreign_key "features", "statements"
   add_foreign_key "projects", "statements"

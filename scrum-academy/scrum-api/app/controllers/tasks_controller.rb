@@ -12,6 +12,13 @@ class TasksController < ApplicationController
         else
             @tasks = @userstorie.task
         end
+
+        #filter by state 
+        # em teste
+         if not params[:state].blank?
+            @tasks = @tasks.where( state: params[:state])
+        end
+        
         json_response(@tasks)
     end
 
@@ -41,7 +48,7 @@ class TasksController < ApplicationController
     private
 
     def task_params
-        params.permit(:description, :user_id)
+        params.permit(:description, :user_id, :state)
     end
 
     def set_project_userstorie

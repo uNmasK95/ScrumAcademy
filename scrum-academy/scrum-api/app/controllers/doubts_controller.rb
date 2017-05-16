@@ -1,5 +1,5 @@
 class DoubtsController < ApplicationController
-    before_action :set_project, :set_project_userstorie, :set_project_userstorie_sprint, :set_project_userstorie_sprint, :set_project_userstorie_sprint_task
+    before_action :set_project_userstorie_sprint_task
     before_action :set_project_userstorie_sprint_task_doubt, only: [ :show, :update, :destroy ]
 
     # GET /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments

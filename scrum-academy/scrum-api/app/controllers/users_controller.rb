@@ -21,7 +21,12 @@ class UsersController < ApplicationController
 
     # GET /users
     def index
-        @users = User.all
+        # filter by type
+        if not params[:type].blank?
+            @users = User.where( type: params[:type] )
+        else
+            @users = User.all
+        end
         json_response(@users)
     end
 
@@ -50,7 +55,7 @@ class UsersController < ApplicationController
 
     def user_params
         # whitelist params
-        params.permit(:name, :email, :password, :password_confirmation, :type)
+        params.permit(:name, :email, :password, :type)
     end
 
 

@@ -5,8 +5,5 @@ class CreateFunctions < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-
-    Function.create :description => "Scrum Master"
-    Function.create :description => "Developer"
   end
 end
