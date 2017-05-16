@@ -1,30 +1,46 @@
 class DoubtsController < ApplicationController
-    before_action :set_project_userstorie_sprint_task
-    before_action :set_project_userstorie_sprint_task_doubt, only: [ :show, :update, :destroy ]
+    before_action :set_doubt, only: [ :show, :update, :destroy ]
 
-    # GET /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments
+    # GET doubts
     def index
-        json_response(@task.doubts)
+        if not params[:user].blank?
+            @doubts = Doubt.where( 
+                task_id: Task.where( 
+                    userstorie_id: Userstorie.where( 
+                        project_id: Project.where( 
+                            statement_id: Statement.where(
+                                user: params[:user]
+                            )
+                        )
+                    )
+                )
+            )
+        elsif not params[:task].blank?
+            @doubts = Doubt.where( task_id: params[:task] )
+        else
+            @doubts = Doubt.all
+        end
+        json_response(@doubts)
     end
 
-    # GET /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments/:id
+    # GET doubts/:id
     def show
         json_response(@doubt)
     end
 
-    # POST /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments
+    # POST doubts
     def create
-        @task.doubts.create!(doubt_params)
-        json_response(@task, :created)
+        @doubt =Doubt.create!(doubt_params)
+        json_response(@doubt, :created)
     end
 
-    # PUT /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments/:id
-    def update 
+    # PUT doubts/:id
+    def update
         @doubt.update(doubt_params)
         head :no_content
     end
 
-    # DELETE /projects/:project_id/userstories/:userstory_id/sprints/:sprint_id/tasks/:task_id/comments/:id
+    # DELETE doubts/:id
     def destroy
         @doubt.destroy
         head :no_content
@@ -36,23 +52,7 @@ class DoubtsController < ApplicationController
         params.permit(:description, :task_id)
     end
 
-    def set_project
-        @project = Project.find( params[:project_id] )
-    end
-
-     def set_project_userstorie
-        @userstorie = @project.userstories.find_by!( id: params[:userstorie_id]) if @project
-    end
-
-    def set_project_userstorie_sprint
-        @sprint = @userstorie.sprints.find_by!( id: params[:sprint_id] )
-    end
-
-    def set_project_userstorie_sprint_task
-        @task = @sprint.tasks.find_by!( id: params[:task_id] )
-    end
-
-    def set_project_userstorie_sprint_task_doubt
-        @doubt = @task.doubts.find_by!( id: params[:id] )
+    def set_doubt
+        @doubt = Doubt.find( params[:id] )
     end
 end

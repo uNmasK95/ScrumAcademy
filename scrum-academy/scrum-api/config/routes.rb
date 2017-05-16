@@ -21,11 +21,12 @@ Rails.application.routes.draw do
     resources :userstories do 
       resources :tasks do
         resources :comments
+        resources :doubts, only: [ :index ]
       end
     end
   end
 
-# resources :doubts
+  resources :doubts , [ :index, :show ]
 
 
   post 'auth/login', to: 'authentication#authenticate'
