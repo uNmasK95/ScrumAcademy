@@ -10,6 +10,6 @@ class User < ApplicationRecord
     has_many :statement
 
     # validation
-    validates_presence_of :email, :password, :name, :type
+    #validates_presence_of :email, :password, :name, :type
     validates_uniqueness_of :email
 end
