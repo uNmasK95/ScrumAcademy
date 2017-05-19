@@ -29,10 +29,10 @@ export class DashboardComponent implements OnInit {
 
   getType(){ 
       if(localStorage.getItem('userOn')){
-      let p =JSON.parse(localStorage.getItem('userOn')).type
-      if(p==1 || p==2){
+      let type =JSON.parse(localStorage.getItem('userOn')).type
+      if(type==1 || type==2){
         //console.log(localStorage.getItem('userOn'));
-        return p;
+        return type;
       }
       }
       return 0;

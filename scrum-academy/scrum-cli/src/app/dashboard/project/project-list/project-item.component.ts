@@ -17,13 +17,18 @@ export class ProjectItemComponent {
 
   selectRoute(){
     //ver consoante id utilizador ver que tipo é neste projeto
-    let op = 1;
-    if(op==1){//Prod Owner
-      this.router.navigate(['projects',this.projectId, 'userstories']);
-    }else if(op==2){ //SMaster
-      this.router.navigate(['projects',this.projectId,'sprints']);
-    }else{ //dev
-      this.router.navigate(['projects',this.projectId]);
+
+    if(localStorage.getItem('userOn')){
+      let type = JSON.parse(localStorage.getItem('userOn')).type
+      if(type==1){
+        this.router.navigate(['projects',this.projectId,'userstories']);
+      }
+      if(type==2){
+        this.router.navigate(['projects',this.projectId,'sprints']);
+      }
+      else{
+        this.router.navigate(['projects',this.projectId]);
+      }
     }
   }
 }

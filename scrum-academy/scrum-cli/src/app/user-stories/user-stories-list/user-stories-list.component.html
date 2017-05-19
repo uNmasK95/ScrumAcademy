@@ -11,7 +11,10 @@
     </ul>
   </div>
 </div>
-
-<div *ngIf="userStorieSelected">
-  <user-stories-detail [userStorie]="userStorieSelected" [userStorieId]="userStorieIdSelected"></user-stories-detail>
+<div class="row"> 
+  <div class="col-md-12">
+    <div *ngIf="userStorieSelected">
+      <user-stories-detail [userStorie]="userStorieSelected" [userStorieId]="userStorieIdSelected"></user-stories-detail>
+    </div>
+  </div>
 </div>
