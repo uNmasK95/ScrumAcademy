@@ -3,5 +3,5 @@ class Type < ApplicationRecord
     has_many :user, dependent: :destroy
 
     # validations
-    validates_presence_of :description
+    validates_presence_of :description, :on => :create
 end

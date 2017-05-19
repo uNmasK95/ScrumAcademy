@@ -4,4 +4,7 @@ class Task < ApplicationRecord
 
   has_many :comment
   has_many :doubt
+
+  validates_presence_of :description, :on => :create
+
 end

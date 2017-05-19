@@ -5,5 +5,5 @@ class Project < ApplicationRecord
     has_many :userstorie, :dependent => :destroy
     has_many :sprint, :dependent => :destroy
 
-    validates_presence_of :name, :description, :startDate, :endDate
+    validates_presence_of :name, :description, :startDate, :endDate, :on => :create
 end

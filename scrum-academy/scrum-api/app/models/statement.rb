@@ -5,7 +5,8 @@ class Statement < ApplicationRecord
   has_many :project
   has_many :feature
 
-  validates_presence_of :name, :description, :startDate, :endDate, :user
+  validates_presence_of :name, :description, :startDate, :endDate, :user, :on => :create
+
 
 
 end
