@@ -19,23 +19,27 @@
                       <div *ngIf="f.submitted && !nameP.valid" class="help-block">Name Project is required</div>
                     </div>
                   </div>
-                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !desriptionP.valid }">
-                    <label class="control-label col-sm-2" for="desriptionP">Description:</label>
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !descriptionP.valid }">
+                    <label class="control-label col-sm-2" for="descriptionP">Description:</label>
                     <div class="col-sm-9 col-sm-offset-1">
-                      <input type="text" class="form-control" name="desriptionP" [(ngModel)]="model.desriptionP" id="iddescription" tabindex="2" placeholder="Ex: A web application that ..." #desriptionP="ngModel" required>
-                      <div *ngIf="f.submitted && !desriptionP.valid" class="help-block">Description is required</div>
+                      <input type="text" class="form-control" name="descriptionP" [(ngModel)]="model.descriptionP" id="iddescription" tabindex="2" placeholder="Ex: A web application that ..." #descriptionP="ngModel" required>
+                      <div *ngIf="f.submitted && !descriptionP.valid" class="help-block">Description is required</div>
                     </div>
                   </div>
-                  <div class="form-group">
+
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !initialD.valid }">
                     <label class="control-label col-sm-2" for="initialD">Initial Date:</label>
-                    <div class="col-sm-10"> 
-                      
+                    <div class="col-sm-9 col-sm-offset-1">
+                      <input type="date" name="initialD" id="idinitialD"[(ngModel)]="model.initialD" #initialD="ngModel" required>
+                      <div *ngIf="f.submitted && !initialD.valid" class="help-block">Initial Date is required</div>
                     </div>
                   </div>
-                  <div class="form-group">
+
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !endD.valid }">
                     <label class="control-label col-sm-2" for="endD">End Date:</label>
-                    <div class="col-sm-10"> 
-                      
+                    <div class="col-sm-9 col-sm-offset-1">
+                      <input type="date" name="endD" id="idendD"[(ngModel)]="model.endD" #endD="ngModel" required>
+                      <div *ngIf="f.submitted && !endD.valid" class="help-block">End Date is required</div>
                     </div>
                   </div>
 
@@ -49,7 +53,7 @@
             </div>
 
             <div *ngIf="projCreated">
-              <user-stories ></user-stories>
+              <user-stories></user-stories>
             </div>
 				</div>
 			</div>

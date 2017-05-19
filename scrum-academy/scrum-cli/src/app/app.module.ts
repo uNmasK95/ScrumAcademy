@@ -52,6 +52,8 @@ import { UserStoriesDashboardComponent } from './user-stories/user-stories-dashb
 import { UserStoriesDashboardListComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard-list/user-stories-dashboard-list.component';
 import { UserStoriesDashboardItemComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard-item/user-stories-dashboard-item.component';
 import { ProjectService } from "app/services/project.service";
+import { TeamsService } from "app/services/teams.service";
+import { UserStorieService } from "app/services/userstorie.service";
 
 @NgModule({
   declarations: [
@@ -110,6 +112,8 @@ import { ProjectService } from "app/services/project.service";
     HttpUtilService,
     UserService,
     ProjectService,
+    UserStorieService,
+    TeamsService,
     AlertService],
   bootstrap: [AppComponent]
 })

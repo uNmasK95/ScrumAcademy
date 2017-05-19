@@ -15,17 +15,20 @@ export class UserService {
     }*/
 
     getById(id: number) {
-        return this.http.get(this.httpUtil.url('/users/' + id), this.httpUtil.headers()).map(this.httpUtil.extrairDados);
+        return this.http.get(this.httpUtil.url('/users/' + id), this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
     }
 
     //É preciso ver qual o caminho, faz update do nome do user
     updateName(name: string){
-        return this.http.post(this.httpUtil.url('/'),JSON.stringify({ name: name}),this.httpUtil.headers()).map(this.httpUtil.extrairDados);
+        return this.http.post(this.httpUtil.url('/'),JSON.stringify({ name: name}),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
     }
 
     //é preciso ver o caminho, faz update do nome e da passe do user
     update(name: string, password: string){
-        return this.http.post(this.httpUtil.url('/'),JSON.stringify({name: name, password: password}),this.httpUtil.headers()).map(this.httpUtil.extrairDados);
+        return this.http.post(this.httpUtil.url('/'),JSON.stringify({name: name, password: password}),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
     }
 
     userconfirm(email: string, password: string){

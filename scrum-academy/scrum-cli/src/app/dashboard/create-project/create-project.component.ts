@@ -16,6 +16,7 @@ export class CreateProjectComponent implements OnInit {
 
   ngOnInit() {
   }
+ 
 
   createProject(){
    // this.loading = true;
@@ -23,7 +24,8 @@ export class CreateProjectComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem('userOn'));
     this.projectService.create(user.id,this.project).subscribe(
       resultado => {
-        let res = resultado;
+        let statement = resultado;
+        localStorage.setItem('projectId',statement.id);
         this.projCreated=true;
       },
       error => {
@@ -31,6 +33,6 @@ export class CreateProjectComponent implements OnInit {
         this.loading = false;
       }
     )*/
-    this.projCreated=true; // isto é para elminar depois apenas é para nao estar sempre a criar projectos cada vez que carregas no submit
+     this.projCreated=true; // isto é para elminar depois apenas é para nao estar sempre a criar projectos cada vez que carregas no submit
   }
 }

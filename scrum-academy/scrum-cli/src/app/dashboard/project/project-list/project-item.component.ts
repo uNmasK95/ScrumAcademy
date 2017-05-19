@@ -20,15 +20,15 @@ export class ProjectItemComponent {
 
     if(localStorage.getItem('userOn')){
       let type = JSON.parse(localStorage.getItem('userOn')).type
+      console.log("sou o type :  "+type);
       if(type==1){
-        this.router.navigate(['projects',this.projectId,'userstories']);
+        this.router.navigate(['projects',this.projectId, 'userstories']);
+      }else if(type==2){
+          this.router.navigate(['projects',this.projectId,'sprints']);
+        }
+        else{
+          this.router.navigate(['projects',this.projectId]);
+        }
       }
-      if(type==2){
-        this.router.navigate(['projects',this.projectId,'sprints']);
-      }
-      else{
-        this.router.navigate(['projects',this.projectId]);
-      }
-    }
   }
 }
