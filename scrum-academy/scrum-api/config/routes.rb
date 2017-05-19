@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :doubts , [ :index, :show ]
+  resources :doubts
 
 
   post 'auth/login', to: 'authentication#authenticate'

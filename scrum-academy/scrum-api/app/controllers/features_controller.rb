@@ -42,6 +42,6 @@ class FeaturesController < ApplicationController
     end
 
     def set_feature
-        @feature = @statement.features.find_by!( id: params[:id] ) if @statement
+        @feature = @statement.feature.find( params[:id] ) if @statement
     end
 end
