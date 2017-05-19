@@ -9,7 +9,7 @@ export class TeamsService {
 
   constructor(private http: Http, private httpUtil: HttpUtilService) { }
 
-  get(){
+  get() {
     return this.http.get(this.httpUtil.url('/teams'), this.httpUtil.headers())
     .map(this.httpUtil.extrairDados);
   }

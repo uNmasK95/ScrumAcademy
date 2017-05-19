@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from "app/dashboard/project/project";
 import { Subject } from "rxjs/Subject";
-import {FilterPipe} from './FilterPipe'
+import { FilterPipe } from './FilterPipe'
+import { AlertService } from "app/services/alert.service";
+import { TeamsService } from "app/services/teams.service";
+import { UserService } from "app/services/user.service";
 
 @Component({
   selector: 'teams-create',
@@ -19,10 +22,25 @@ export class TeamsCreateComponent implements OnInit {
   projects: Project[] =  [this.p1,this.p2,this.p3,this.p4,this.p5,this.p6];
   
   model: any = {};
+  users:any;
+  usersSelected: string[] = [];
 
-  names:any;
-  constructor(){
-      this.names = ['Prashobh','Abraham','Anil','Sam','Natasha','Marry','Zian','karan']
+  constructor(
+    private alertService: AlertService,
+     private userService: UserService){
+      this.userService.get()
+        .subscribe(
+                resultado => {
+                  console.log("res");
+                  console.log(resultado);
+                  this.users = resultado;
+                  for(let i=0;i<this.users.length;i++){
+                    console.log("cc");
+                    //this.users[i] = resultado[i].name;~
+                    console.log(this.users[i]);
+                  }
+                }
+        );
   }
 
   ngOnInit() {
@@ -34,11 +52,12 @@ export class TeamsCreateComponent implements OnInit {
     console.log(this.model.projSelected);
   }
 
-  isEmpty(q){
-    //console.log(q);
-    if(q != undefined){
-      return false;
+  addUser(u){
+    console.log("ADD USER");
+    this.usersSelected.push(u);
+    for(let i=0; i<this.usersSelected.length;i++){
+      console.log(this.usersSelected[i]);
     }
-    return true;
   }
+
 }

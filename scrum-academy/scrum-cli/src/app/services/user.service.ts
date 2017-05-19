@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { User } from '../models/user';
 import { HttpUtilService } from "app/services/http-util.service";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class UserService {
@@ -13,6 +14,11 @@ export class UserService {
    /* getAll() {
         return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
     }*/
+
+    get(){
+        return this.http.get(this.httpUtil.url('/users'), this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
 
     getById(id: number) {
         return this.http.get(this.httpUtil.url('/users/' + id), this.httpUtil.headers())
