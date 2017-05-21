@@ -6,10 +6,14 @@ class StatementsController < ApplicationController
         #TODO add filter by endDate
         if not params[:user].blank?
             @statements = Statement.where( user: params[:user] )
+        elsif not params[:data].blank?
+            @statement = Statement.where( "endDate > ?", params[:data])
         else
             @statements = Statement.all
         end
-    
+
+        
+        
         json_response(@statements)
     end
 

@@ -29,9 +29,11 @@ ActiveRecord::Schema.define(version: 20170509174244) do
     t.string "description", null: false
     t.string "answer"
     t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_doubts_on_task_id"
+    t.index ["user_id"], name: "index_doubts_on_user_id"
   end
 
   create_table "features", force: :cascade do |t|
@@ -160,6 +162,7 @@ ActiveRecord::Schema.define(version: 20170509174244) do
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
   add_foreign_key "doubts", "tasks"
+  add_foreign_key "doubts", "users"
   add_foreign_key "features", "statements"
   add_foreign_key "projects", "statements"
   add_foreign_key "projects", "teams"
