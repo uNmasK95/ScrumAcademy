@@ -3,17 +3,24 @@
     <h3>Edit</h3>
   </div>
 </div>
-
+<alert></alert>
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-sm-offset-2">
     <div class="form-group">
-      <label for="usr">New description:</label>
-      <input type="text" class="form-control" id="usr">
+      <form class="form-horizontal" role="form" (ngSubmit)="f.form.valid && edit()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newdescroptionUS.valid }">       
+          <label for="usr">New description:</label>
+          <input type="text" class="form-control" name="newdescroptionUS" id="usr" [(ngModel)]="model.newdescroptionUS" #newdescroptionUS="ngModel">
+        </div>
 
-      <label for="usr">New priority:</label>
-      <input type="number" class="form-control" id="usr">
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newpriorityUS.valid }">            
+          <label for="usr">New priority:</label>
+          <input type="number" min="1" max="10" class="form-control" name="newpriorityUS" id="usr" [(ngModel)]="model.newpriorityUS" #newpriorityUS="ngModel">  
+        </div>
 
-      <button type="submit" id="buttonUserStory" class="btn btn-default">Submit</button>
+        <button type="submit" id="buttonUserStory" class="btn btn-default">Submit</button>
+
+      </form>
     </div>
   </div>
 </div>

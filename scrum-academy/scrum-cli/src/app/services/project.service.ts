@@ -13,9 +13,19 @@ export class ProjectService {
 	}
 
     create(id : number, projecto: Project) {
+        console.log(projecto);
        return this.http.post(this.httpUtil.url('/statements'),JSON.stringify({ name: projecto.name,description: projecto.description
                   , startDate: projecto.initialD, endDate:projecto.endD, user: id}) , this.httpUtil.headers())
                   .map(this.httpUtil.extrairDados);
+    }
+
+    getStatements(){
+        return this.http.get(this.httpUtil.url('/statements'),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
+    getProjects(){
+         return this.http.get(this.httpUtil.url('/projects'),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
     }
 
 

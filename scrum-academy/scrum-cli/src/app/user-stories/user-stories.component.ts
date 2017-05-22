@@ -10,7 +10,8 @@ export class UserStoriesComponent implements OnInit {
   
   @Input() projectID : Project;
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
   }

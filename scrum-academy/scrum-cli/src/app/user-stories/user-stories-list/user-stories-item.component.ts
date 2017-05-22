@@ -8,5 +8,4 @@ import { UserStorie } from '../userstorie';
 })
 export class UserStoriesItemComponent  {
   @Input() userStorie: UserStorie;
-  @Input() userStorieId: number;
 }

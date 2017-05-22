@@ -14,18 +14,18 @@ export class HttpUtilService {
   headers() {
     let headersParams = { 'Content-Type': 'application/json' };
     if (localStorage['currentUser']) {
-      console.log("estou na autorizacao");
+    //  console.log("estou na autorizacao");
       headersParams['Authorization'] = localStorage['currentUser'];
     }
     let headers = new Headers(headersParams);
     let options = new RequestOptions({ headers: headers });
-    console.log(options);
+    //console.log(options);
     return options;
   }
  
   extrairDados(response: Response) {
-    console.log("Tou no extrair dados, ver o que é o responde:");
-    console.log("Response:"+response);
+  //  console.log("Tou no extrair dados, ver o que é o responde:");
+  //  console.log("Response:"+response);
       let data = response.json();
     // console.log(data);
       return data || {};
