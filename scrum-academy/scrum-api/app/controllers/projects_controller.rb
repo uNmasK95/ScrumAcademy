@@ -8,8 +8,10 @@ class ProjectsController < ApplicationController
             @projects = Project.where( team_id: params[:team])
         elsif not params[:user].blank?
             @projects = Project.where( 
-                team_id: TeamUser.where(
-                    user_id: params[:user]
+                team_id: Team.find(
+                    TeamUser.where(
+                        user_id: params[:user]
+                    )
                 )
             )
         else
