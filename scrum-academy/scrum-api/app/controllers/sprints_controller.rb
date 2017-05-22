@@ -55,6 +55,6 @@ class SprintsController < ApplicationController
     end
 
     def set_project_sprint
-        @sprint = @project.sprint.find( params[:sprint_id] ) if @project
+        @sprint = @project.sprint.find( params[:id] ) if @project
     end
 end
