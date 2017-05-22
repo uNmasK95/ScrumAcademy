@@ -54,6 +54,7 @@ import { UserStoriesDashboardItemComponent } from './user-stories/user-stories-d
 import { ProjectService } from "app/services/project.service";
 import { TeamsService } from "app/services/teams.service";
 import { UserStorieService } from "app/services/userstorie.service";
+import { SprintService } from "app/services/sprint.service";
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { UserStorieService } from "app/services/userstorie.service";
     ProjectService,
     UserStorieService,
     TeamsService,
-    AlertService],
+    AlertService,
+    SprintService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

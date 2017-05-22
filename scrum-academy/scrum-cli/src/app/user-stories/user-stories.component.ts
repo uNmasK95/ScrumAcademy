@@ -14,6 +14,7 @@ export class UserStoriesComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("sou o projectID : "+this.projectID);
   }
 
 }

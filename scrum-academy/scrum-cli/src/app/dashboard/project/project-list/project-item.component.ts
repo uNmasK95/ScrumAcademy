@@ -24,8 +24,10 @@ export class ProjectItemComponent {
       let type = JSON.parse(localStorage.getItem('userOn')).type
       console.log("sou o type :  "+type);
       if(type==1){
+        localStorage.setItem('projectId',''+this.projectId);
         this.router.navigate(['projects',this.projectId, 'userstories']);
       }else if(type==2){
+          localStorage.setItem('projectOn',JSON.stringify(this.project));
           localStorage.setItem('teamUser',JSON.stringify(this.teamFunction));
           localStorage.setItem('projectId',''+this.projectId);
           this.router.navigate(['projects',this.projectId,'sprints']);

@@ -40,6 +40,22 @@ export class ProjectListComponent implements OnInit {
       console.log(this.projectsRetiradosBool);
       if(userOn.type==1){
           //get statements
+          
+          this.projectService.getStatementsById(userOn.id).subscribe(
+            resultado =>{
+              for (let project of resultado) {
+                let projectnovo: Project = new Project(project.id,project.name,project.description,project.startDate,project.endDate);
+                this.projects.push(projectnovo);
+              }
+              return true;
+            },
+            error =>{
+              console.log("error");
+              return false;
+            }
+          );
+          
+          /*
           this.projectService.getStatements().subscribe(
             resultado =>{
               for (let project of resultado) {
@@ -56,7 +72,7 @@ export class ProjectListComponent implements OnInit {
               console.log("error");
               return false;
             }
-          );
+          );*/
       }
       else{
         if(userOn.type==2){

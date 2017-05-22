@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from "app/services/user.service";
 import { AlertService } from "app/services/alert.service";
+import { IsAuthenticatedService } from "app/services/is-authenticated.service";
 
 @Component({
   selector: 'profile',
@@ -13,7 +14,7 @@ export class ProfileComponent implements OnInit {
   userLogged: User;
   editSelected: boolean = false;
 
-  constructor(private userService: UserService,private alertService: AlertService) { }
+  constructor(private userService: UserService,private alertService: AlertService, private isAuthenticatedService: IsAuthenticatedService) { }
 
   ngOnInit() {
     this.userLogged = JSON.parse(localStorage.getItem('userOn'));
@@ -92,4 +93,10 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  logout(){
+    this.isAuthenticatedService.logout();
+    delete localStorage['token'];
+    delete localStorage['userOn'];
+    location.reload();
+  }
 } 

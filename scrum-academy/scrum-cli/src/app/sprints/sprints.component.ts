@@ -11,6 +11,7 @@ export class SprintsComponent implements OnInit {
 
   ngOnInit() {
     console.log(localStorage.getItem('teamUser'));
+    console.log(localStorage.getItem('projectOn'));
   }
 
 }
