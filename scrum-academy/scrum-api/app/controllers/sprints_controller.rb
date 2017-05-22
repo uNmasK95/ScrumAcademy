@@ -8,7 +8,7 @@ class SprintsController < ApplicationController
 
     # GET /projects/:project_id/sprints
     def index
-        json_response(@project.sprint.order('startDate ASC'))
+        json_response(@project.sprint.order(:startDate))
     end
 
     # GET /projects/:project_id/sprints/:id
