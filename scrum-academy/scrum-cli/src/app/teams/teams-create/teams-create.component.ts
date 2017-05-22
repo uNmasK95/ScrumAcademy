@@ -23,6 +23,7 @@ export class TeamsCreateComponent implements OnInit {
   
   model: any = {};
   users:any;
+  usersNames: string[] = [];
   usersSelected: string[] = [];
 
   constructor(
@@ -35,9 +36,7 @@ export class TeamsCreateComponent implements OnInit {
                   console.log(resultado);
                   this.users = resultado;
                   for(let i=0;i<this.users.length;i++){
-                    console.log("cc");
-                    //this.users[i] = resultado[i].name;~
-                    console.log(this.users[i]);
+                    this.usersNames[i]=this.users[i].name;
                   }
                 }
         );
@@ -46,18 +45,29 @@ export class TeamsCreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  addTeam(){
-    console.log(this.model.name);
-    console.log(this.model.descrip);
-    console.log(this.model.projSelected);
-  }
-
   addUser(u){
     console.log("ADD USER");
+    let aux = this.users.find();//ver no outro
     this.usersSelected.push(u);
     for(let i=0; i<this.usersSelected.length;i++){
       console.log(this.usersSelected[i]);
     }
+  }
+
+  addTeam(){
+    console.log(this.model.name);
+    console.log(this.model.descrip);
+    console.log(this.model.projSelected);
+
+    //Post Teams
+
+
+    //Get Teams, se calhar se o post retornar o id nao preciso disto
+
+
+    //Post Team_user
+
+
   }
 
 }

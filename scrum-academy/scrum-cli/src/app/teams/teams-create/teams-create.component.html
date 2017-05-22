@@ -60,8 +60,8 @@
           <input type="text" name="queryString" id="queryString" [(ngModel)]="model.queryString" tabindex="1" class="form-control" placeholder="Search to type" value="" #queryString="ngModel" required>
           <div *ngIf="queryString.valid" class="users">
             <ul class="list-users">
-              <div *ngFor="let u of users | FilterPipe: model.queryString">
-                <a (click)="addUser(u.name)">{{u.name}}</a>
+              <div *ngFor="let u of usersNames | FilterPipe: model.queryString">
+                <a (click)="addUser(u)">{{u}}</a>
               </div>
             </ul>
           </div>
