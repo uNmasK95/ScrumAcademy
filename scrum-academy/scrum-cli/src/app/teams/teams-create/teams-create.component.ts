@@ -5,6 +5,7 @@ import { FilterPipe } from './FilterPipe'
 import { AlertService } from "app/services/alert.service";
 import { TeamsService } from "app/services/teams.service";
 import { UserService } from "app/services/user.service";
+import { User } from "app/models/user";
 
 @Component({
   selector: 'teams-create',
@@ -22,22 +23,27 @@ export class TeamsCreateComponent implements OnInit {
   projects: Project[] //=  [this.p1,this.p2,this.p3,this.p4,this.p5,this.p6];
   
   model: any = {};
-  users:any;
+  users: User[] = [];
   usersNames: string[] = [];
-  usersSelected: string[] = [];
+  usersSelected: User[] = [];
 
   constructor(
     private alertService: AlertService,
-     private userService: UserService){
+     private userService: UserService,
+     private teamsService: TeamsService){
       this.userService.get()
         .subscribe(
                 resultado => {
                   console.log("res");
                   console.log(resultado);
-                  this.users = resultado;
-                  for(let i=0;i<this.users.length;i++){
-                    this.usersNames[i]=this.users[i].name;
+                  for(let i=0;i<resultado.length;i++){
+                    this.users.push(new User(resultado[i].id,resultado[i].name,resultado[i].email,resultado[i].type.id));
+                    this.usersNames[i] = resultado[i].name;
                   }
+                  //this.users = resultado;
+                  /*for(let i=0;i<this.users.length;i++){
+                    this.usersNames[i]=this.users[i].name;
+                  }*/
                 }
         );
   }
@@ -47,11 +53,33 @@ export class TeamsCreateComponent implements OnInit {
 
   addUser(u){
     console.log("ADD USER");
-    let aux = this.users.find();//ver no outro
-    this.usersSelected.push(u);
-    for(let i=0; i<this.usersSelected.length;i++){
-      console.log(this.usersSelected[i]);
+    //Buscar object correspondente
+    let aux = this.users.find(x => x.name == u);
+    if(aux){
+      let aux2 = this.usersSelected.find(x => x.id == aux.id);
+      if(!aux2){ //Ver se já nao foi selecionado
+        this.usersSelected.push(aux); 
+      }
     }
+    
+    /*console.log("User selecionados:")
+    for(let i=0; i<this.usersSelected.length;i++){
+      console.log(this.usersSelected[i].name);
+    }*/
+  }
+
+  removeUser(user:User){
+    for(let i=0; i<this.usersSelected.length;i++){
+      if(this.usersSelected[i].id==user.id){
+        this.usersSelected.splice(i,1);
+      }
+    }
+  }
+
+  //Post teams_user
+  addUserTeam(teamId, userId, funct){
+    this.teamsService.postTeamUsers(teamId, userId,funct)
+      .subscribe();
   }
 
   addTeam(){
@@ -59,14 +87,25 @@ export class TeamsCreateComponent implements OnInit {
     console.log(this.model.descrip);
     console.log(this.model.projSelected);
 
+    let teamId: number = 0;
+
     //Post Teams
+    this.teamsService.post(this.model.name)
+      .subscribe(
+        resultado => {
+          teamId = resultado.id;
+          console.log("RESULTADO:"),
+          console.log(resultado)
+          console.log(localStorage['id']);
+          this.addUserTeam(teamId, localStorage['id'],1); //Post do user atual que vai ser SM neste projeto
+          //Post Team_user
+          for(let i=0;i<this.usersSelected.length;i++){
+            this.addUserTeam(teamId, this.usersSelected[i].id,2);
+          }
+        }
+    );
 
-
-    //Get Teams, se calhar se o post retornar o id nao preciso disto
-
-
-    //Post Team_user
-
+    
 
   }
 
