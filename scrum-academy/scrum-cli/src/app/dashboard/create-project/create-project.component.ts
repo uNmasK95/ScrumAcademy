@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from "app/services/project.service";
 import { Project } from "app/dashboard/project/project";
+import { AlertService } from "app/services/alert.service";
 
 @Component({
   selector: 'app-create-project',
@@ -12,27 +13,47 @@ export class CreateProjectComponent implements OnInit {
   model: any = {};
   projCreated: boolean = false;
   project : Project;
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private alertService: AlertService) { }
 
   ngOnInit() {
   }
- 
 
   createProject(){
-   // this.loading = true;
-   /* this.project = new Project(this.model.nameP,this.model.desriptionP, new Date(), new Date('2017/07/07'));
+    if(this.validaDatas()){
+    this.loading = true;
+    this.project = new Project(0,this.model.nameP,this.model.descriptionP, new Date(this.model.initialD), new Date(this.model.endD));
+    console.log(this.project);
+   // console.log("data");
+   // console.log( new Date(this.model.initialD));
     let user = JSON.parse(localStorage.getItem('userOn'));
     this.projectService.create(user.id,this.project).subscribe(
       resultado => {
         let statement = resultado;
         localStorage.setItem('projectId',statement.id);
+        console.log("Criado um Statement");
         this.projCreated=true;
       },
       error => {
         console.log(error);
         this.loading = false;
+        // mandar alerta
+        this.alertService.error("Net Down, sorry!");
       }
-    )*/
-     this.projCreated=true; // isto é para elminar depois apenas é para nao estar sempre a criar projectos cada vez que carregas no submit
+    )
+    }
+    else{
+      // mandar alerta
+      this.alertService.error("Invalid date!");
+    }
+   }
+
+  // Ve se as datas inseridas sao validas
+  validaDatas(){
+    if( (new Date(this.model.initialD)).getTime()> (new Date()).getTime()){
+      if( (new Date(this.model.initialD)).getTime() < (new Date(this.model.endD)).getTime()){
+        return true;
+      }
+    }
+    return false;
   }
 }

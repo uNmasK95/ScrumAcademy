@@ -4,19 +4,15 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-md-6 col-md-offset-2 col-sm-9" id="tituloprojects">
-            <h3>Projects - Choosen</h3>
+            <h3>Projects - Chosen</h3>
           </div>
           <div class="col-md-2 col-sm-3 col-xs-9">
             <button type="button" [routerLink]="['projects/new']" class="btn btn-primary pull-right" id="criarTP" *ngIf="getType()==1">Create Project</button>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 col-sm-3 col-xs-9">
+           <div class="col-md-2 col-sm-3 col-xs-9">
             <button type="button" [routerLink]="['/teams/new']" class="btn btn-primary pull-right" id="criarTP" *ngIf="getType()==2">Create Team</button>
           </div>
-        </div>
-
+     </div>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
             <project></project>

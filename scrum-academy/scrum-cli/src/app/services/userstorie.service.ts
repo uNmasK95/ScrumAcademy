@@ -16,4 +16,26 @@ export class UserStorieService {
                   description: userstorie.description, priority : userstorie.priority}), this.httpUtil.headers())
                   .map(this.httpUtil.extrairDados);
     }
+
+    getFeatures(id : number){
+        return this.http.get(this.httpUtil.url('/statements/'+id+'/features'),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
+    updateFeatureDescription(id: number, description: string, idfeature: number){
+        return this.http.put(this.httpUtil.url('/statements/'+id+'/features/'+idfeature),
+                    JSON.stringify({description: description}),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
+
+    updateFeaturePriority(id: number, priority: string, idfeature: number ){
+        return this.http.put(this.httpUtil.url('/statements/'+id+'/features/'+idfeature),
+                    JSON.stringify({priority: priority}),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
+
+    updateFeatures(id: number, priority: string, description: string, idfeature: number){
+        return this.http.put(this.httpUtil.url('/statements/'+id+'/features/'+idfeature),
+                    JSON.stringify({ description: description,priority: priority}),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
 }

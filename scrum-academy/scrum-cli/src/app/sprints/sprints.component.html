@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6 col-sm-6">
     <h1>Project X - Sprints</h1>
   </div>
-  <div class="col-md-6">
-    <button type="button" [routerLink]="['new']" class="btn btn-primary btn-lg">Create Sprint</button>
+  <div class="col-md-3 col-xs-3 col-sm-3 col-sm-offset-3 col-xs-offset-3 col-md-offset-3">
+    <button id="createSrintButton" type="button" [routerLink]="['new']" class="btn btn-primary btn-lg">Create Sprint</button>
   </div> 
 </div>
 
@@ -12,11 +12,11 @@
   <!--Lista sprints-->
   <div class="col-md-8">
     <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-5">
+      <div class="col-md-12 col-xs-12">
+        <div class="col-md-5 col-sm-5">
           <h2>Sprint:</h2>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 col-sm-7">
           <h2>User Stories:</h2>
         </div>
       </div>
@@ -25,7 +25,7 @@
   </div>
 
   <!--Lista User stories-->
-  <div class="col-md-4">
+  <div class="col-md-4 col-sm-4">
     <h2>User Stories to Associate:</h2>
     <sprints-user-stories-list></sprints-user-stories-list>
   </div>

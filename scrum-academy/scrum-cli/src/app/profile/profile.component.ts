@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from "app/services/user.service";
 import { AlertService } from "app/services/alert.service";
+import { IsAuthenticatedService } from "app/services/is-authenticated.service";
 
 @Component({
   selector: 'profile',
@@ -13,7 +14,7 @@ export class ProfileComponent implements OnInit {
   userLogged: User;
   editSelected: boolean = false;
 
-  constructor(private userService: UserService,private alertService: AlertService) { }
+  constructor(private userService: UserService,private alertService: AlertService, private isAuthenticatedService: IsAuthenticatedService) { }
 
   ngOnInit() {
     this.userLogged = JSON.parse(localStorage.getItem('userOn'));
@@ -21,10 +22,11 @@ export class ProfileComponent implements OnInit {
   }
 
   edit(){
+
     this.editSelected = true;
     if(this.userLogged.name != this.model.name){
       if(this.model.password && this.model.newpassword == this.model.newconfpassword){
-        /*
+        
         this.userService.userconfirm(this.model.email,this.model.password).subscribe(
           resultado => {
             this.userService.update(this.model.nome,this.model.newpassword).subscribe(
@@ -32,7 +34,7 @@ export class ProfileComponent implements OnInit {
                 this.userLogged.name = this.model.name;
                 localStorage.setItem('userOn',JSON.stringify(this.userLogged));
                 this.model = JSON.parse(localStorage.getItem('userOn'));
-                this.alertService.error("Campos Alerados com sucesso");
+                this.alertService.success("Campos Alerados com sucesso");
               },
               error => {
                 this.editSelected = false;
@@ -40,49 +42,61 @@ export class ProfileComponent implements OnInit {
               })
           },
           error => {
+            this.editSelected = false
             this.alertService.error("Password Errada!");
           }
-        )*/
+        )
         
       }
       else{
         //mandar pedido alterar apenas o nome
-        /*
+        
         this.userService.updateName(this.model.nome).subscribe(
           resultado =>{
             this.userLogged.name = this.model.name;
             localStorage.setItem('userOn',JSON.stringify(this.userLogged));
             this.model = JSON.parse(localStorage.getItem('userOn'));
-            this.alertService.error("Campos Alerados com sucesso");
+            this.alertService.success("Campos Alerados com sucesso");
           },
           error => {
-            this.editSelected = false;
+            this.editSelected = false; 
             console.log(error);
           }
-        );*/
+        );
       }
     }
-    /*
-    if(this.model.password && this.model.newpassword == this.model.newconfpassword){
-      this.userService.userconfirm(this.model.email,this.model.password).subscribe(
-          resultado => {
-            this.userService.update(this.model.nome,this.model.newpassword).subscribe(
-              resultado => {
-                this.userLogged.name = this.model.name;
-                localStorage.setItem('userOn',JSON.stringify(this.userLogged));
-                this.model = JSON.parse(localStorage.getItem('userOn'));
-                this.alertService.error("Campos Alerados com sucesso");
-              },
-              error => {
-                this.editSelected = false;
-                console.log(error);
-              })
-          },
-          error => {
-            this.alertService.error("Password Errada!");
-          }
-        )
-    }*/
+    else{console.log(this.model.newpassword);
+      if(this.model.password && this.model.newpassword == this.model.newconfpassword){
+        this.userService.userconfirm(this.model.email,this.model.password).subscribe(
+            resultado => {
+              this.userService.update(this.model.nome,this.model.newpassword).subscribe(
+                resultado => {
+                  this.userLogged.name = this.model.name;
+                  localStorage.setItem('userOn',JSON.stringify(this.userLogged));
+                  this.model = JSON.parse(localStorage.getItem('userOn'));
+                  this.alertService.success("Campos Alerados com sucesso");
+                },
+                error => {
+                  this.editSelected = false;
+                  console.log(error);
+                })
+            },
+            error => {
+              this.editSelected = false
+              this.alertService.error("Password Errada!");
+            }
+          )
+      }
+      else{
+        this.alertService.error("Precisa de colocar a password");
+      }
+    }
   }
 
+  logout(){
+    this.isAuthenticatedService.logout();
+    delete localStorage['token'];
+    delete localStorage['userOn'];
+    location.reload();
+  }
 } 

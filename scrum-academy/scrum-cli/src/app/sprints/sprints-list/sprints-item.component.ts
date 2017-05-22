@@ -24,4 +24,9 @@ export class SprintsItemComponent implements OnInit {
     });
   }
 
+  onSelect(){
+    localStorage.setItem('springOn',JSON.stringify(this.sprint));
+  }
+
+
 }

@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
-      <project-item *ngFor="let p of projects; let i = index" [project]="p" [projectId]="i"></project-item>
+      <div class="row" *ngIf="projectsRetirados() || statementOrProject();">
+        <project-item *ngFor="let p of projects; let i = index" [project]="p" [projectId]="p.id" [teamFunction]=getTeamFunction(p.id)></project-item>
+      </div> 
     </ul>
   </div>
 </div>

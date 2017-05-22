@@ -3,12 +3,13 @@
 		<div class="col-md-12">
 			<div class="panel panel-home">
 				<div class="panel-body">
+            <div  *ngIf="!projCreated">
             <div class="row">
               <div class="col-md-8 col-md-offset-2 crl">
                 <h3>Create Project</h3>
               </div>
             </div>
-            
+            <alert></alert>
             <div class="row">
               <div class="col-md-6 col-md-offset-3">
                 <form class="form-horizontal" (ngSubmit)="f.form.valid && createProject()" #f="ngForm" novalidate>
@@ -30,7 +31,7 @@
                   <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !initialD.valid }">
                     <label class="control-label col-sm-2" for="initialD">Initial Date:</label>
                     <div class="col-sm-9 col-sm-offset-1">
-                      <input type="date" name="initialD" id="idinitialD"[(ngModel)]="model.initialD" #initialD="ngModel" required>
+                      <input type="date" name="initialD" placeholder="yyyy/mm/dd" id="idinitialD"[(ngModel)]="model.initialD" #initialD="ngModel" required>
                       <div *ngIf="f.submitted && !initialD.valid" class="help-block">Initial Date is required</div>
                     </div>
                   </div>
@@ -38,7 +39,7 @@
                   <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !endD.valid }">
                     <label class="control-label col-sm-2" for="endD">End Date:</label>
                     <div class="col-sm-9 col-sm-offset-1">
-                      <input type="date" name="endD" id="idendD"[(ngModel)]="model.endD" #endD="ngModel" required>
+                      <input type="date" name="endD" placeholder="yyyy/mm/dd" id="idendD"[(ngModel)]="model.endD" #endD="ngModel" required>
                       <div *ngIf="f.submitted && !endD.valid" class="help-block">End Date is required</div>
                     </div>
                   </div>
@@ -50,6 +51,7 @@
                   </div>
                 </form>
               </div>
+            </div>
             </div>
 
             <div *ngIf="projCreated">

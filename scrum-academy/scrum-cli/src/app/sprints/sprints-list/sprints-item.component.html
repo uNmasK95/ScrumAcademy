@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <div class="col-md-5">
-    <a [routerLink]="['/projects',projectId,'sprints',sprintId]" class="list-group-item clearfix" routerLinkActive="active">
+    <a [routerLink]="['/projects',projectId,'sprints',sprintId]" class="list-group-item clearfix" (click)="onSelect()" routerLinkActive="active">
       <!--[routerLink]="['projects',projectId]" class="list-group-item clearfix" routerLinkActive="active"-->
       <div class="pull-left">
         <p class="list-group-item-text">{{sprint.description}}</p>
