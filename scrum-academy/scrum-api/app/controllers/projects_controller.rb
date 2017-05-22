@@ -6,6 +6,12 @@ class ProjectsController < ApplicationController
         # filter by team
         if not params[:team].blank?
             @projects = Project.where( team_id: params[:team])
+        elsif not params[:user].blank?
+            @project = Project.where( 
+                team_id: TeamUser.where(
+                    user_id: params[:user]
+                )
+            )
         else
             @projects = Project.all
         end

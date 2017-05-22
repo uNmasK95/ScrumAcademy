@@ -11,9 +11,7 @@ class StatementsController < ApplicationController
         else
             @statements = Statement.all
         end
-
-        
-        
+                
         json_response(@statements)
     end
 
