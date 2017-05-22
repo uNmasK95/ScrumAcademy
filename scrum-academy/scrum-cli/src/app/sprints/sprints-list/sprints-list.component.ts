@@ -24,13 +24,6 @@ export class SprintsListComponent implements OnInit {
     this.getSprints();
   }
 
-  onSelect(s: Sprint){
-    console.log(s)
-    delete localStorage['springOn'];
-    localStorage.setItem('springOn',JSON.stringify(s));
-    console.log("estou aqu2222i")
-  }
-
   //falta fazer a filtragem das sprints que nao interessam.
   getSprints(){
     this.sprintService.get(this.project.id).subscribe(

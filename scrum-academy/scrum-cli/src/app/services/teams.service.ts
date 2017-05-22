@@ -11,6 +11,10 @@ export class TeamsService {
 
   get(){
     return this.http.get(this.httpUtil.url('/teams'), this.httpUtil.headers())
-    .map(this.httpUtil.extrairDados);
+               .map(this.httpUtil.extrairDados);
+  }
+  getById(id : number){
+    return this.http.get(this.httpUtil.url('/teams/'+id), this.httpUtil.headers())
+               .map(this.httpUtil.extrairDados);
   }
 }

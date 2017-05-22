@@ -20,4 +20,8 @@ export class SprintService {
                 JSON.stringify({description: 'sprint',startDate: Iday , endDate: Dday }),this.httpUtil.headers())
                .map(this.httpUtil.extrairDados);
   }
+  update(id:number, description: string, sprintid: number){
+    return this.http.put(this.httpUtil.url('/projects/'+id+'/sprints/'+sprintid),JSON.stringify({description: description }),this.httpUtil.headers())
+               .map(this.httpUtil.extrairDados);
+  }
 }

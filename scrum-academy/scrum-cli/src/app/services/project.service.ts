@@ -42,5 +42,20 @@ export class ProjectService {
                    .map(this.httpUtil.extrairDados);
     }
 
+    getProjectsByUserId(id : string){
+         let headersParams = { 'Content-Type': 'application/json' };
+        if (localStorage['currentUser']) {
+            headersParams['Authorization'] = localStorage['currentUser'];
+        }
+        var search = new URLSearchParams()
+        search.set('user', id);
+        let headers = new Headers(headersParams);
+        let options = new RequestOptions({ headers: headers, search:search});
+        console.log(options);
+        console.log(this.http.get(this.httpUtil.url('/statements'),options ))
+        return this.http.get(this.httpUtil.url('/projects'),options)
+                   .map(this.httpUtil.extrairDados);
+    }
+
 
 }

@@ -44,6 +44,7 @@ export class ProjectListComponent implements OnInit {
           this.projectService.getStatementsById(userOn.id).subscribe(
             resultado =>{
               for (let project of resultado) {
+                
                 let projectnovo: Project = new Project(project.id,project.name,project.description,project.startDate,project.endDate);
                 this.projects.push(projectnovo);
               }
@@ -95,6 +96,38 @@ export class ProjectListComponent implements OnInit {
 
   getProjectsUser(userOn){
       let erro=false;
+      this.projectService.getProjectsByUserId(userOn.id).subscribe(
+            resultado=>{
+              let projetostodos = resultado;
+              for(let project of projetostodos){
+                this.teamService.getById(project.team.id).subscribe(
+                  resultado =>{
+                    for(let teamUser of resultado.team_users){
+                      if(teamUser.user_id == userOn.id){
+                        let userteam : UserTeam = new UserTeam(project.team.id,teamUser.function_id,project.id);
+                        let projectnovo: Project = new Project(project.id,project.name,project.description,project.startDate,project.endDate);
+                        this.userTeamProject.push(userteam);
+                        this.projects.push(projectnovo);
+                        erro=true;
+                        localStorage.setItem('UserTeamProject', JSON.stringify(this.userTeamProject))
+                      }
+                    }
+                  },
+                  error =>{
+                    console.log(error);
+                  }
+                );
+              }
+          },
+            error=>{
+              console.log(error);
+            }
+          )
+          return erro;
+  }
+  /*
+  getPojectUser1(userOn){
+    let erro=false;
       this.projectService.getProjects().subscribe(
             resultado=>{
               let projetostodos = resultado;
@@ -130,7 +163,7 @@ export class ProjectListComponent implements OnInit {
             }
           )
           return erro;
-  }
+  }*/
 
   
 
