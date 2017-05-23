@@ -2,7 +2,8 @@ require 'date'
 
 class SprintsController < ApplicationController
     before_action :set_project
-    before_action :set_project_sprint, only: [ :show, :update, :destroy, :add]
+    before_action :set_project_sprint, only: [ :show, :update, :destroy]
+    before_action :set_project_sprint_userstorie, only: [ :add, :delete ]
 
     # fazer filtro das sprints por equipas
 
@@ -26,6 +27,12 @@ class SprintsController < ApplicationController
     def add
         @userstorie_sprint = @sprint.userstorie_sprints.create!( sprint_add_userstorie_params )
         json_response(@userstorie_sprint, :created)
+    end
+
+    # DELETE /projects/:project_id/sprints/:sprint_id/userstories
+    def delete
+        @sprint.userstorie_sprints.find_by( :userstorie_id => params[:id] ).destroy
+        head :no_content
     end
 
     # PUT /projects/:project_id/sprints/:id
@@ -56,5 +63,9 @@ class SprintsController < ApplicationController
 
     def set_project_sprint
         @sprint = @project.sprint.find( params[:id] ) if @project
+    end
+
+    def set_project_sprint_userstorie
+        @sprint = @project.sprint.find( params[:sprint_id] ) if @project
     end
 end

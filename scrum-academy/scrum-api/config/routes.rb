@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :sprints do 
         post 'userstories', to: 'sprints#add'
+        delete 'userstories/:id', to: 'sprints#delete'
     end
     resources :userstories do 
       resources :tasks do
