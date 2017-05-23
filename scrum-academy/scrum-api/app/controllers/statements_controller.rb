@@ -7,7 +7,7 @@ class StatementsController < ApplicationController
         if not params[:user].blank?
             @statements = Statement.where( user: params[:user] )
         elsif not params[:data].blank?
-            @statement = Statement.where( "endDate > ?", params[:data].to_date )
+            @statements = Statement.where( "endDate > ?" )
         else
             @statements = Statement.all
         end
