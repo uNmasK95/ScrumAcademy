@@ -6,6 +6,8 @@ import { AlertService } from "app/services/alert.service";
 import { TeamsService } from "app/services/teams.service";
 import { UserService } from "app/services/user.service";
 import { User } from "app/models/user";
+import { ProjectService } from "app/services/project.service";
+import { RequestsService } from "app/services/requests.service";
 
 @Component({
   selector: 'teams-create',
@@ -20,7 +22,7 @@ export class TeamsCreateComponent implements OnInit {
   p4: Project = new Project("Project4","desc", new Date(), new Date());
   p5: Project = new Project("Project5","desc", new Date(), new Date());
   p6: Project = new Project("Project6","desc", new Date(), new Date());*/
-  projects: Project[] //=  [this.p1,this.p2,this.p3,this.p4,this.p5,this.p6];
+  projects: Project[] = [];//=  [this.p1,this.p2,this.p3,this.p4,this.p5,this.p6];
   
   model: any = {};
   users: User[] = [];
@@ -30,7 +32,9 @@ export class TeamsCreateComponent implements OnInit {
   constructor(
     private alertService: AlertService,
      private userService: UserService,
-     private teamsService: TeamsService){
+     private teamsService: TeamsService,
+     private projectService: ProjectService,
+     private requestsService: RequestsService){
       this.userService.get()
         .subscribe(
                 resultado => {
@@ -40,6 +44,7 @@ export class TeamsCreateComponent implements OnInit {
                     this.users.push(new User(resultado[i].id,resultado[i].name,resultado[i].email,resultado[i].type.id));
                     this.usersNames[i] = resultado[i].name;
                   }
+                  this.getStatementsAvailable();
                   //this.users = resultado;
                   /*for(let i=0;i<this.users.length;i++){
                     this.usersNames[i]=this.users[i].name;
@@ -49,6 +54,27 @@ export class TeamsCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  getStatementsAvailable(){
+    //MUDAR AQUI QD TIVER A DAR O GETSTATMENTPOSSIBLE
+    //this.projectService.getStatementsPossible()
+    this.projectService.getStatements()
+      .subscribe(
+        resultado => {
+          console.log("resultado dos projcts disponiveis"),
+          console.log(resultado)
+          for (let project of resultado) {
+            let projectnovo: Project = new Project(project.id,project.name,project.description,project.startDate,project.endDate);
+            this.projects.push(projectnovo);
+          }
+        },
+        error =>{
+          console.log("error");
+          return false;
+        }
+        
+      );
   }
 
   addUser(u){
@@ -82,9 +108,15 @@ export class TeamsCreateComponent implements OnInit {
       .subscribe();
   }
 
+  //Create Request
+  createRequest(teamId){
+    this.requestsService.create(teamId, this.model.projSelected, false )
+      .subscribe();
+  }
+
   addTeam(){
     console.log(this.model.name);
-    console.log(this.model.descrip);
+    //console.log(this.model.descrip);
     console.log(this.model.projSelected);
 
     let teamId: number = 0;
@@ -102,6 +134,8 @@ export class TeamsCreateComponent implements OnInit {
           for(let i=0;i<this.usersSelected.length;i++){
             this.addUserTeam(teamId, this.usersSelected[i].id,2);
           }
+          //Create Request
+          this.createRequest(teamId)
         }
     );
 

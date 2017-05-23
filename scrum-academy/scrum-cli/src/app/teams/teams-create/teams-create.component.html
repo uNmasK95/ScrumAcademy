@@ -11,7 +11,7 @@
           </div>
           <div class="col-md-5">
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !team.valid }">
-              <input type="text" name="team" id="team" [(ngModel)]="model.name" tabindex="1" class="form-control" placeholder="Ex: Team of GPS" value="" #team="ngModel" required>
+              <textarea rows='5' name="team" id="team" [(ngModel)]="model.name" tabindex="1" class="form-control" placeholder="Ex: Team of GPS" value="" #team="ngModel" required></textarea>
               <div *ngIf="f.submitted && !team.valid" class="help-block">Name for new team is required</div>
             </div>
           </div>
@@ -37,7 +37,7 @@
           </div>
           <div class="col-md-5 selectContainer">
               <select class="form-control" id="projSelected"  name="projSelected" [(ngModel)]="model.projSelected">
-                  <option *ngFor='let p of projects' [value]="p.name" >{{p.name}}</option>
+                  <option *ngFor='let p of projects' [value]="p.id" >{{p.name}}</option>
               </select>
           </div>
         </div>
