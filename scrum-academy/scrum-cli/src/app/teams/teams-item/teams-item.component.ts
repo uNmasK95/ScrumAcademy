@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Team } from '../team';
+import { Request } from "../request";
 
 @Component({
   selector: 'teams-item',
@@ -7,6 +7,6 @@ import { Team } from '../team';
   styleUrls: ['./teams-item.component.css']
 })
 export class TeamsItemComponent  {
-  @Input() team: Team;
-  @Input() teamId: number;
+  @Input() request: Request;
+  @Input() requestId: number;
 }

@@ -59,14 +59,17 @@ export class TeamsCreateComponent implements OnInit {
   getStatementsAvailable(){
     //MUDAR AQUI QD TIVER A DAR O GETSTATMENTPOSSIBLE
     //this.projectService.getStatementsPossible()
+    let dateNow: Date = new Date();
     this.projectService.getStatements()
       .subscribe(
         resultado => {
           console.log("resultado dos projcts disponiveis"),
           console.log(resultado)
           for (let project of resultado) {
-            let projectnovo: Project = new Project(project.id,project.name,project.description,project.startDate,project.endDate);
-            this.projects.push(projectnovo);
+            if(new Date(project.endDate)>dateNow){
+              let projectnovo: Project = new Project(project.id,project.name,project.description,project.startDate,project.endDate);
+              this.projects.push(projectnovo);
+            }
           }
         },
         error =>{

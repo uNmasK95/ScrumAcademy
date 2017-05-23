@@ -16,18 +16,6 @@
             </div>
           </div>
         </div>
-
-        <!--div class="row">
-          <div class="col-md-2 col-md-offset-2">
-            <label class="control-label " for="team">Description:</label>
-          </div>
-          <div class="col-md-5">
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !descTeam.valid }">
-              <input type="text" name="descTeam" id="descTeam" [(ngModel)]="model.descrip" tabindex="1" class="form-control" placeholder="Ex: This Project consists on ..." value="" #descTeam="ngModel" required>
-              <div *ngIf="f.submitted && !descTeam.valid" class="help-block">Name for new project is required</div>
-            </div>
-          </div>
-        </div-->
         <alert></alert>
 
 
@@ -36,40 +24,12 @@
             <label class="control-label " for="proj">Project:</label>
           </div>
           <div class="col-md-5 selectContainer">
-              <select class="form-control" id="projSelected"  name="projSelected" [(ngModel)]="model.projSelected">
+              <select class="form-control" id="projSelected"  name="projSelected" [(ngModel)]="model.projSelected" required>
                   <option *ngFor='let p of projects' [value]="p.id" >{{p.name}}</option>
               </select>
           </div>
         </div>
  
-        <!--div class="row">
-          <div class="col-md-2 col-xs-offset-2">
-            <label class="control-label " for="dev">Developers:</label>
-          </div>
-          <div class="col-xs-5" >
-            <div id="custom-search-input">
-                <!--div class="input-group col-md-12">
-                    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" type="search" class="form-control input-lg" placeholder="Search" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div>
-                <div class="input-group col-md-12">
-                  <input type="text" [(ngModel)]="queryString" id="search" name="queryString" placeholder="Search to type"/>
-                  <ul>
-                    <li *ngFor="let u of users | FilterPipe: queryString">
-                      <div >{{u}}</div>
-                    </li>
-                  </ul>
-                </div>
-            </div>
-          </div>
-          <div class="col-xs-2" >
-
-          </div><div class="panel panel-userSearch">
-        </div-->
         <br>
         <div class="row">
           <div class="col-md-2 col-md-offset-2">

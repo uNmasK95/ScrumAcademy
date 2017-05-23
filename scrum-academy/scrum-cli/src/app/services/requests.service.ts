@@ -17,4 +17,17 @@ export class RequestsService {
                   JSON.stringify({ team_id: teamId, statement_id: statementID, accept: accept}) , this.httpUtil.headers())
                 .map(this.httpUtil.extrairDados);
   }
+  getByUser(idUser : number, validate: boolean){
+        let headersParams = { 'Content-Type': 'application/json' };
+        if (localStorage['currentUser']) {
+            headersParams['Authorization'] = localStorage['currentUser'];
+        }
+        var search = new URLSearchParams();
+        search.set('user', ''+idUser);
+        search.set('accept', ''+validate)
+        let headers = new Headers(headersParams);
+        let options = new RequestOptions({ headers: headers, search:search});
+        return this.http.get(this.httpUtil.url('/requests'),options )
+                   .map(this.httpUtil.extrairDados);
+    }
 }
