@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
+import { UserStorieService } from "app/services/userstorie.service";
+import { UserStorieProject } from "app/user-stories/userstorieproject";
 
 @Component({
   selector: 'sprint-dashboard',
@@ -8,9 +10,9 @@ import { DragulaService } from 'ng2-dragula';
 })
 export class SprintDashboardComponent {
 
-  public userStoriesAss:Array<string> = [];
+  public userStoriesAss:Array<UserStorieProject> = [];
 
-  public constructor(private dragulaService:DragulaService) {
+  public constructor(private dragulaService:DragulaService,private userStorieService: UserStorieService) {
     dragulaService.dropModel.subscribe((value:any) => {
       this.onDropModel(value.slice(1));
     });
@@ -32,6 +34,11 @@ export class SprintDashboardComponent {
     console.log('onRemoveModel:');
     console.log(el);
     console.log(source);
+  }
+
+   apresentaUserStory(usp : UserStorieProject){
+     console.log("aquidadadadw2");
+    return 'Priority: '+usp.priority+' Description: ' + usp.description+'dadawdaw dadawdadaw dawDA DAWDAAWHVBDU YAVDYAVD YUADWVYVHAB JADVBJ WUG IFBG YESACJBASHZ JNJBH    \n ';
   }
   
 }

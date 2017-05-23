@@ -1,13 +1,13 @@
 <body>
-  <div class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesAss'>
+  <div id="iddragula2" class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesAss'>
       <!--div>User Storie 1</div>
       <div>User Storie 2</div>
       <div>User Storie 1</div-->
-      <div *ngFor='let us of userStoriesAss' [innerHtml]='us'></div>
+      <div *ngFor='let us of userStoriesAss' [innerHtml]=apresentaUserStory(us)></div>
   </div>
 
-  <div class='wrapper'>
-      <div class='container'>
+  <div id="iddragula" class='wrapper'>
+      <div id="iddragula" class='container'>
           <pre>{{userStoriesAss | json}}</pre><br>
       </div>
   </div>

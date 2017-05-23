@@ -38,4 +38,8 @@ export class UserStorieService {
                     JSON.stringify({ description: description,priority: priority}),this.httpUtil.headers())
                    .map(this.httpUtil.extrairDados);
     }
+    getUserStoriesByProjectId(id: number){
+        return this.http.get(this.httpUtil.url('/projects/'+id+'/userstories'),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
 }

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
+import { Project } from "app/dashboard/project/project";
+import { AlertService } from "app/services/alert.service";
+import { UserStorieService } from "app/services/userstorie.service";
+import { UserStorieProject } from "app/user-stories/userstorieproject";
 
 @Component({
   selector: 'sprints-user-stories-list',
@@ -8,18 +12,21 @@ import { DragulaService } from 'ng2-dragula';
 })
 export class SprintsUserStoriesListComponent {
 
-  public userStoriesToAss:Array<string> = ['UserS1', 'UserS2', 'UserS3', 'UserS4', 'UserS5', 'UserS6'];
+  public userStoriesToAss:Array<UserStorieProject> //= ['UserS1', 'UserS2', 'UserS3', 'UserS4', 'UserS5', 'UserS6'];
+  project : Project;
 
-  public constructor(private dragulaService:DragulaService) {
+  public constructor(private dragulaService:DragulaService,private userStorieService: UserStorieService, private alertService: AlertService) {
     dragulaService.dropModel.subscribe((value:any) => {
       this.onDropModel(value.slice(1));
     });
     dragulaService.removeModel.subscribe((value:any) => {
       this.onRemoveModel(value.slice(1));
     });
+    this.getUserStories();
   }
 
   private onDropModel(args:any):void {
+    console.log(args);
     let [el, target, source] = args;
     console.log('onDropModel:');
     console.log(el);
@@ -28,10 +35,27 @@ export class SprintsUserStoriesListComponent {
   }
 
   private onRemoveModel(args:any):void {
+    console.log(args);
     let [el, source] = args;
     console.log('onRemoveModel:');
     console.log(el);
     console.log(source);
+  }
+
+  getUserStories(){
+    this.project = JSON.parse(localStorage.getItem('projectOn'));
+    this.userStorieService.getUserStoriesByProjectId(this.project.id).subscribe(
+      resultado => {
+        this.userStoriesToAss = resultado;
+      },
+      error =>{
+        console.log(error);
+      }
+    );
+  }
+
+  apresentaUserStory(usp : UserStorieProject){
+    return 'Priority: '+usp.priority+' Description: ' + usp.description+'dadawdaw dadawdadaw dawDA DAWDAAWHVBDU YAVDYAVD YUADWVYVHAB JADVBJ WUG IFBG YESACJBASHZ JNJBH    \n ';
   }
 
 

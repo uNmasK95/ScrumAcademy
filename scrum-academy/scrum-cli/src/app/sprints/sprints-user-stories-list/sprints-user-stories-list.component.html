@@ -1,9 +1,9 @@
 <body>
-  <div class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesToAss'>
+  <div id="iddragula" class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesToAss'>
       <!--div>User Storie 1</div>
       <div>User Storie 2</div>
       <div>User Storie 1</div-->
-      <div *ngFor='let us of userStoriesToAss' [innerHtml]='us'></div>
+      <div *ngFor='let us of userStoriesToAss' [innerHtml]=apresentaUserStory(us)></div>
   </div>
 
   <div class='wrapper'>
