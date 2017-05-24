@@ -11,8 +11,8 @@
         <!--Dashboard tasks -->
         <div class="col-md-3">
         <body>
-            <div class='container' [dragula]='"third-bag"+[userstorieId]' [dragulaModel]='tasksToAss'>
-                <div *ngFor='let t1 of tasksToAss'>{{t1.description}}</div>
+            <div id="bag1" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='tasksToAss'>
+                <div *ngFor='let t1 of tasksToAss' [attr.bagnr]=1>{{t1.description}}</div>
             </div>
 
             <div class='wrapper'>
@@ -26,8 +26,8 @@
         <!--Dashboard tasks "In progress"-->
         <div class="col-md-3">
         <body>
-            <div class='container' [dragula]='"third-bag"+[userstorieId]' [dragulaModel]='tasksInProgress'>
-                <div *ngFor='let t2 of tasksInProgress'>{{t2.description}}</div>
+            <div id="bag2" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='tasksInProgress'>
+                <div *ngFor='let t2 of tasksInProgress' [attr.bagnr]=2>{{t2.description}}</div>
             </div>
 
             <div class='wrapper'>
@@ -41,8 +41,8 @@
         <!--Dashboard tasks "Done"-->
         <div class="col-md-3">
         <body>
-            <div class='container' [dragula]='"third-bag"+[userstorieId]' [dragulaModel]='tasksDone'>
-                <div *ngFor='let t3 of tasksDone'>{{t3.description}}</div>
+            <div id="bag3" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='tasksDone'>
+                <div *ngFor='let t3 of tasksDone' [attr.bagnr]=3>{{t3.description}}</div>
             </div>
 
             <div class='wrapper'>
@@ -55,5 +55,11 @@
 
         
     </div>
+
+    <!--PARA REMOVER-->
+    <!--div class='container'>
+        <div *ngFor='let at of allTasks'>{{at.description}}---State:{{at.state}}</div>
+    </div-->
+
   </div>
 </div>

@@ -56,6 +56,7 @@ import { TeamsService } from "app/services/teams.service";
 import { UserStorieService } from "app/services/userstorie.service";
 import { SprintService } from "app/services/sprint.service";
 import { RequestsService } from "app/services/requests.service";
+import { TasksService } from "app/services/tasks.service";
 
 @NgModule({
   declarations: [
@@ -118,7 +119,8 @@ import { RequestsService } from "app/services/requests.service";
     TeamsService,
     AlertService,
     SprintService,
-    RequestsService],
+    RequestsService,
+    TasksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
