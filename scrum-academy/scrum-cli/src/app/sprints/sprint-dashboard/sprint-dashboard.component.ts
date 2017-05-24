@@ -20,6 +20,7 @@ export class SprintDashboardComponent {
   positionuserstorieselect : number;
   public anterioruserStoriesAss :Array<UserStorieProject> = [];
   public userStoriesAss:Array<UserStorieProject> = [];
+  public controlasameSprint:Array<UserStorieProject> = [];
 
   public constructor(private dragulaService:DragulaService,
                      private userStorieService: UserStorieService,
@@ -52,6 +53,7 @@ export class SprintDashboardComponent {
           usAqui = true;
         }
     }
+     
     if(this.project.id == el.getAttribute('project-id') || (this.sprintId == el.getAttribute('sprint-id') && this.project.id == el.getAttribute('project-id'))){
         let posicaoparaeliminar = 0;
        for( let us of this.anterioruserStoriesAss){
@@ -63,19 +65,46 @@ export class SprintDashboardComponent {
       }
       if(usAqui){
         if(target.id == "iddragula2"){
-          console.log("COLOCA");
-          this.anterioruserStoriesAss.push(p);
-          this.sprinService.postSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id'),0).subscribe(
-          );
+          console.log(this.anterioruserStoriesAss);
+             console.log(this.userStoriesAss);
+          console.log("DAdada" + this.comparaarry() )
+          if(!this.comparaarry()){
+            console.log("COLOCA");
+            this.anterioruserStoriesAss.push(p);
+            this.sprinService.postSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id'),0).subscribe(
+            );
+          }
         }
         else{
-          console.log("ELIMINA");
-          this.anterioruserStoriesAss.splice(posicaoparaeliminar,1);
-          this.sprinService.deleteSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id')).subscribe(
-          );
+            console.log("ELIMINA");
+            this.anterioruserStoriesAss.splice(posicaoparaeliminar,1);
+            this.sprinService.deleteSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id')).subscribe(
+            );
         }
       }
     }
+  }
+
+  comparaarry(){
+    let p = false;
+    let iterator = 0;
+    for( let us of this.userStoriesAss){
+      for( let us1 of this.anterioruserStoriesAss){
+        if(us.id == us1.id){
+          p = true;
+          break;
+        }
+      }
+      if(p==false){
+        return false;
+      }
+      p=false;
+      iterator++;
+    }
+    if(iterator == this.anterioruserStoriesAss.length){
+      return true;
+    }
+    return false;
   }
 
   private onRemoveModel(args:any):void {
@@ -100,6 +129,7 @@ export class SprintDashboardComponent {
           this.userStoriesAss = resultado.userstorie;
           for(let user of resultado.userstorie){
             this.anterioruserStoriesAss.push(user);
+            this.controlasameSprint.push(user);
           }
         },
         error =>{
