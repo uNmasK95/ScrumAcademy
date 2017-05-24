@@ -61,7 +61,8 @@ export class SprintCreateComponent implements OnInit {
       Dday.setDate(Dday.getDate() + this.model.duration); 
       let numerosprints = diffDays/+this.model.duration;
       for(var i=0; i < numerosprints-1;){
-        this.sprintService.post(this.project.id,Iday,Dday).subscribe(
+        let descricao = 'Sprint '+(i+1);
+        this.sprintService.post(this.project.id,descricao,Iday,Dday).subscribe(
           resultado =>{
             console.log("sprints Criadas");
           },
@@ -79,7 +80,8 @@ export class SprintCreateComponent implements OnInit {
       if((diffDays - i*numerosprints)>0){
         let p = diffDays - (i*this.model.duration);
         Dday.setDate(Dday.getDate() + p); 
-        this.sprintService.post(this.project.id,Iday,Dday).subscribe(
+        let descricao = 'Sprint '+(i+1);
+        this.sprintService.post(this.project.id,descricao,Iday,Dday).subscribe(
           resultado =>{
             console.log("sprints Criadas");
           },

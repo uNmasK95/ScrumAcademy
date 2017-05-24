@@ -22,7 +22,6 @@ export class SprintsItemComponent implements OnInit {
         .subscribe(params => {
             this.projectId = params['id'];
     });
-     console.log(this.sprint);
   }
 
   onSelect(){
