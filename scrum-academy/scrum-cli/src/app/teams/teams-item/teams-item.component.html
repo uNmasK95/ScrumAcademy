@@ -1,10 +1,10 @@
-<div class="col-md-4">
+<div class="col-md-12">
   <a class="list-group-item clearfix" routerLinkActive="active">
     <div class="pull-left">
       <h4 class="list-group-item-heading">Team: {{request.teamDescription}}</h4>
       <p class="list-group-item-text">Project: {{request.nameProject}}</p>
-      <button class="btn btn-success" (click)='ex()'>Accept</button>
-      <button class="btn btn-danger" >Reject</button>
+      <button class="btn btn-success" (click)='decision(true)'>Accept</button>
+      <button class="btn btn-danger" (click)='decision(false)'>Reject</button>
     </div>
   </a>
 </div>

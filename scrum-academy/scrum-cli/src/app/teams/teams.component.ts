@@ -10,6 +10,7 @@ import { Request } from "./request";
 })
 export class TeamsComponent implements OnInit {
 
+  emptyRequests: boolean;// = true; //Inicio não tem request
   requests: Request[] = [];
   
   constructor(
@@ -23,9 +24,11 @@ export class TeamsComponent implements OnInit {
         resultado => {
           for(let r of resultado){
             console.log(r.team.description+"--"+r.statement.name);
-            let req : Request = new Request(r.id, r.team.description, r.statement.name);
+            let req : Request = new Request(r.id, r.team.id, r.team.description, r.statement.id, r.statement.name);
             this.requests.push(req);
           }
+          if(this.requests.length!=0) this.emptyRequests=false;
+          else this.emptyRequests=true;
         }
       );
   }

@@ -27,4 +27,11 @@ export class TeamsService {
       this.httpUtil.headers())
     .map(this.httpUtil.extrairDados);
   }
+
+  //remove team
+  remove(teamId: number) {
+    console.log("Vou remover team");
+    return this.http.delete(this.httpUtil.url('/teams/'+teamId), this.httpUtil.headers())
+              .map(this.httpUtil.extrairDados);
+  }
 }

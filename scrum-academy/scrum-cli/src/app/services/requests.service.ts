@@ -29,5 +29,21 @@ export class RequestsService {
         let options = new RequestOptions({ headers: headers, search:search});
         return this.http.get(this.httpUtil.url('/requests'),options )
                    .map(this.httpUtil.extrairDados);
+    }   
+
+    //Update state of request
+    update(requestId: number, teamId : number, statementID: number, accept: boolean ) {
+      console.log("Vou atualizar request");
+      return this.http.put(this.httpUtil.url('/requests/'+requestId),
+                  JSON.stringify({ team_id: teamId, statement_id: statementID, accept: accept}) , this.httpUtil.headers())
+                .map(this.httpUtil.extrairDados);
     }
+
+    //remove request
+    remove(requestId: number) {
+      console.log("Vou criar request");
+      return this.http.delete(this.httpUtil.url('/requests/'+requestId), this.httpUtil.headers())
+                .map(this.httpUtil.extrairDados);
+    }
+
 }
