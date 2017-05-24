@@ -24,6 +24,10 @@ export class SprintsUserStoriesListComponent {
                       private userStorieService: UserStorieService, 
                       private alertService: AlertService,
                       private sprintService: SprintService) {
+    dragulaService.removeModel;
+    if(dragulaService.find('second.bad')){
+      dragulaService.destroy('second-bag');
+    }
     dragulaService.dropModel.subscribe((value:any) => {
       this.onDropModel(value.slice(1));
     });
@@ -32,16 +36,23 @@ export class SprintsUserStoriesListComponent {
     });
     this.getUserStories();
   }
+
+  ngOnInit() {
+    console.log(this.dragulaService.find('second.bad'));
+    if(this.dragulaService.find('second.bad')){
+      this.dragulaService.destroy('second-bag');
+    }
+  }
   
 
   private onDropModel(args:any):void {
     let [el, target, source] = args;
-    console.log("vim para aqui")
-    console.log('onDropModel:');
+    //console.log("vim para aqui")
+    //console.log('onDropModel:');
     //console.log(el);
     //console.log(target);
     //console.log(source);
-     console.log(el.getAttribute('item-id'));
+    //console.log(el.getAttribute('item-id'));
   }
 
   private onRemoveModel(args:any):void {
@@ -86,9 +97,14 @@ export class SprintsUserStoriesListComponent {
     return ' Score: '+ usp.score+' Priority: '+usp.priority+' Description: ' + usp.description;
   }
   scoreEdit(us,id){
-    this.scoreeditok = true;
-    this.userstorieselect = us;
-    this.positionuserstorieselect = id;
+    if(this.scoreeditok){
+      this.scoreeditok = false;
+    }
+    else{
+      this.scoreeditok = true;
+      this.userstorieselect = us;
+      this.positionuserstorieselect = id;
+    }
   }
 
   saveScoreEdit(){

@@ -55,6 +55,7 @@ import { ProjectService } from "app/services/project.service";
 import { TeamsService } from "app/services/teams.service";
 import { UserStorieService } from "app/services/userstorie.service";
 import { SprintService } from "app/services/sprint.service";
+import { DragulaService } from "app/components/dragula.provider";
 
 @NgModule({
   declarations: [

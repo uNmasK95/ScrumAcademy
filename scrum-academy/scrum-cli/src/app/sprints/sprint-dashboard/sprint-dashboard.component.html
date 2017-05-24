@@ -1,15 +1,15 @@
   <div class="col-md-10">
 <body>
-    
+
   <div id="iddragula2" class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesAss'>
       <!--div>User Storie 1</div>
       <div>User Storie 2</div>
       <div>User Storie 1</div-->
-      
-      <div *ngFor='let us of userStoriesAss; let i = index' [attr.item-id]="us.id" >
-          <span id="getid(us)" class='addU' (click)="scoreEdit(us,i)">+</span>{{apresentaUserStory(us)}}
+      <div *ngFor='let us of userStoriesAss; let i = index' [attr.item-id]="us.id" [attr.sprint-id]="sprintId" [attr.project-id]="project.id">
+          <span class='addU' (click)="scoreEdit(us,i)">+</span>{{apresentaUserStory(us)}}
       </div>
   </div>
+
 
   <div class='wrapper'>
       <div class='container'>

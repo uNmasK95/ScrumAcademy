@@ -18,11 +18,13 @@ export class SprintDashboardComponent {
   scoreeditok : boolean = false;
   userstorieselect : UserStorieProject;
   positionuserstorieselect : number;
+  public anterioruserStoriesAss :Array<UserStorieProject> = [];
   public userStoriesAss:Array<UserStorieProject> = [];
 
   public constructor(private dragulaService:DragulaService,
                      private userStorieService: UserStorieService,
                      private sprinService: SprintService) {
+    dragulaService.removeModel;
     dragulaService.dropModel.subscribe((value:any) => {
       this.onDropModel(value.slice(1));
     });
@@ -31,23 +33,49 @@ export class SprintDashboardComponent {
     });
     this.project = JSON.parse(localStorage.getItem('projectOn'));
   }
+
   ngOnInit() {
+    if(this.dragulaService.find('second.bad')){
+      this.dragulaService.destroy('second-bag');
+    }
     this.getUserStoriesSpring();
   }
 
+
   private onDropModel(args:any):void {
-    console.log("Estou aqui");
     let [el, target, source] = args;
-    if(target.id == "iddragula2"){
-      this.sprinService.postSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id'),0).subscribe(
-      );
+    let usAqui : boolean =false;
+     let p :UserStorieProject;
+    for( let us of this.userStoriesAss){
+        if(us.id == el.getAttribute('item-id')){
+          p=us;
+          usAqui = true;
+        }
     }
-    else{
-      this.sprinService.deleteSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id')).subscribe(
-      );
+    if(this.project.id == el.getAttribute('project-id') || (this.sprintId == el.getAttribute('sprint-id') && this.project.id == el.getAttribute('project-id'))){
+        let posicaoparaeliminar = 0;
+       for( let us of this.anterioruserStoriesAss){
+          if(us.id == el.getAttribute('item-id')){
+            usAqui = true;
+            break;
+          }
+          posicaoparaeliminar++;
+      }
+      if(usAqui){
+        if(target.id == "iddragula2"){
+          console.log("COLOCA");
+          this.anterioruserStoriesAss.push(p);
+          this.sprinService.postSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id'),0).subscribe(
+          );
+        }
+        else{
+          console.log("ELIMINA");
+          this.anterioruserStoriesAss.splice(posicaoparaeliminar,1);
+          this.sprinService.deleteSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id')).subscribe(
+          );
+        }
+      }
     }
-    console.log(el.getAttribute('item-id'));
-    console.log('onDropModel:');
   }
 
   private onRemoveModel(args:any):void {
@@ -59,13 +87,20 @@ export class SprintDashboardComponent {
 
    apresentaUserStory(usp : UserStorieProject){
       return ' Score: '+ usp.score+' Priority: '+usp.priority+' Description: ' + usp.description;
-    }
+   }
+
+   getUSandSprint(id:number){
+      return id+'-'+this.sprintId;
+   }
   
   getUserStoriesSpring(){
     if(this.sprintId){
       this.sprinService.getById(this.project.id,this.sprintId).subscribe(
         resultado => {
           this.userStoriesAss = resultado.userstorie;
+          for(let user of resultado.userstorie){
+            this.anterioruserStoriesAss.push(user);
+          }
         },
         error =>{
           console.log(error);
@@ -75,9 +110,14 @@ export class SprintDashboardComponent {
   }
 
   scoreEdit(us,id){
-    this.scoreeditok = true;
-    this.userstorieselect = us;
-    this.positionuserstorieselect = id;
+    if(this.scoreeditok){
+      this.scoreeditok = false;
+    }
+    else{
+      this.scoreeditok = true;
+      this.userstorieselect = us;
+      this.positionuserstorieselect = id;
+    }
   }
 
   saveScoreEdit(){

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from "app/dashboard/project/project";
 import { UserStorieService } from "app/services/userstorie.service";
+import { SprintService } from "app/services/sprint.service";
 
 @Component({
   selector: 'sprints',
@@ -11,7 +12,7 @@ export class SprintsComponent implements OnInit {
 
   project: Project;
   typeofpage: number = 5;
-  constructor(private userStorieService: UserStorieService) { }
+  constructor(private userStorieService: UserStorieService, private sprintService: SprintService) { }
 
   ngOnInit() {
     console.log(JSON.parse(localStorage.getItem('teamUser')).job);
@@ -22,13 +23,15 @@ export class SprintsComponent implements OnInit {
   haveSprints(){
     let timenow = new Date();
     let projectdate = new Date(this.project.endD);
+    console.log(this.project);
     if(this.project){
+      console.log(this.project);
       if((projectdate.getTime())> (timenow.getTime())){
-         this.getUserStories();
+         this.getSprints();
       }
       else{
         if(projectdate.getDay()==timenow.getDay() && projectdate.getMonth() == timenow.getMonth() && projectdate.getFullYear() == timenow.getFullYear()){
-           this.getUserStories();
+           this.getSprints();
         }
         else if((new Date(this.project.initialD).getTime()) > timenow.getTime()){
           this.typeofpage = 2;
@@ -37,8 +40,8 @@ export class SprintsComponent implements OnInit {
     }
   }
 
-  getUserStories(){
-      this.userStorieService.getUserStoriesByProjectId(this.project.id).subscribe(
+  getSprints(){
+      this.sprintService.get(this.project.id).subscribe(
         resultado => {
           if(resultado.length == 0){
             this.typeofpage=0;

@@ -30,6 +30,10 @@ export class SprintsUserStoriesTasksItemComponent {
   modelNewTask: any = {};
 
   public constructor(private dragulaService:DragulaService) {
+    if(dragulaService.find('second.bad')){
+      console.log("encontrei a segunda-bad");
+      dragulaService.destroy('second-bag');
+    }
     dragulaService.dropModel.subscribe((value:any) => {
       this.onDropModel(value.slice(1));
     });
@@ -43,6 +47,7 @@ export class SprintsUserStoriesTasksItemComponent {
     console.log('onDropModel:');
     console.log(el);
     console.log(target);
+    console.log("vim parar aos items task")
     console.log(source);
   }
 
