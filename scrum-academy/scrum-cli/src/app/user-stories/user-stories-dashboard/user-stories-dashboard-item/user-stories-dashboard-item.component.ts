@@ -41,6 +41,19 @@ export class UserStoriesDashboardItemComponent implements OnInit {
       (params: any) => {
         this.projectId = params['id'];
       });
+    let userId =JSON.parse(localStorage.getItem('userOn')).id;
+    this.tasksService.getByUser(this.projectId,this.userstorie.id,userId)
+      .subscribe(
+        resultado => {
+          console.log("RESULTADO DO GETBYUSER"),
+          console.log(resultado)
+          for(let r of resultado){
+            //console.log(r.team.description+"--"+r.statement.name);
+            //let req : Request = new Request(r.id, r.team.id, r.team.description, r.statement.id, r.statement.name);
+            //this.requests.push(req);
+          }
+        }
+      )
   }
 
   private onDropModel(args:any):void {
@@ -50,15 +63,19 @@ export class UserStoriesDashboardItemComponent implements OnInit {
     console.log(target);
     console.log(source);
 
-    console.log("Teste Attr:"+target.getAttribute('bagnr'));
-    console.log(target.id);
-
     var textNode = el.childNodes[0];
     var textInput = textNode.nodeValue;
     console.log(textNode);
     console.log(textInput);
 
-    let newState = 0;
+    //Ver target 
+    let newState = 0; // 0->"No state"
+    if(target.id=="bag2"){ //Mudou para "In progress"
+      newState=1;
+    }else if(target.id=="bag3"){
+      newState=2;
+    }
+    console.log("TARGET:"+newState);
     this.changeState(textInput, newState);
   }
 
@@ -78,8 +95,8 @@ export class UserStoriesDashboardItemComponent implements OnInit {
     let taskToChange = new Task(taskToChangeAux.id,taskToChangeAux.description,taskToChangeAux.userId,newState);
     console.log("TOU CHANGESTATE");
     console.log(taskToChange.id,taskToChange.description);
-   /*this.tasksService.update(this.projectId,this.userstorie.id, taskToChange)
-      .subscribe();*/
+    this.tasksService.update(this.projectId,this.userstorie.id, taskToChange)
+      .subscribe();
 
 
   }
