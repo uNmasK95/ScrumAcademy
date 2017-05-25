@@ -1,40 +1,29 @@
-<div class="row">
-  <div class="row">
-  <!--Lista sprints-->
-   <div class="col-md-12">
+<div class="row panel">
     <div class="row">
-      <div id="sprintdescription" class="col-md-12">
-        <h4 (click)="sprintDescription()">{{sprint.description}}</h4>
-      </div>
-       <div *ngIf="descriptiontext">
-        <div class="col-md-6">
-          <label class="col-md-6 col-md-offset-1" for="desriptionUS">Description:</label>
-          <!--input type="text" class="form-control" id="des"-->
-          <textarea class="form-control col-md-offset-1" rows="5" name="descriptionS" [(ngModel)]="model.descriptionS" id="iddescriptionS" #descriptionS="ngModel"></textarea>
-          <div class="col-sm-3 col-sm-offset-5">
-            <button type="submit" class="btn btn-default btn-primary" (click)="sprintDescriptionSave()">Save Changes</button>
-          </div>
+    <!--Lista sprints-->
+    <div class="col-md-12">
+      <div class="row">
+        <div id="sprintdescription" class="col-md-12">
+          <h2>{{sprint.description}}</h2>
         </div>
-       </div>
-  </div>
-   </div>
- 
-  </div>  
-  <div class="col-md-12">
-    <div class="row">
-      <!--div class="col-md-12"-->
-      <div class="col-md-3">
-        <h2>User Storie:</h2>
-      </div>
-      <div class="col-md-5">
-        <h2>Task:</h2>
-      </div>
-      <!--div class="col-md-3">
-        <h2>Task:</h2>
-      </div-->
-      <!--/div-->
     </div>
-    <sprints-user-stories-tasks-list></sprints-user-stories-tasks-list>
-  </div>
-
+    </div>
+  
+    </div>  
+    <div class="col-md-12 ">
+      <div class="row">
+        <!--div class="col-md-12"-->
+        <div class="col-md-3">
+          <h2>User Storie:</h2>
+        </div>
+        <div class="col-md-5">
+          <h2>Task:</h2>
+        </div>
+        <!--div class="col-md-3">
+          <h2>Task:</h2>
+        </div-->
+        <!--/div-->
+      </div>
+      <sprints-user-stories-tasks-list></sprints-user-stories-tasks-list>
+    </div>
 </div>

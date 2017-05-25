@@ -1,36 +1,32 @@
 
-<div class="row">
+<div id="breakUS" class="row">
     <!--div class="col-md-12"-->
     <div class="col-md-3">
       <div class="pull-left">
-        <h2 class="list-group-item-text">{{userstorie}}<span class='addU' (click)="addtask()">+</span></h2>
+        <h2 class="list-group-item-text">{{userstorie.description}}<span class='addU' (click)="addtask()">+</span></h2>
       </div>
     </div>
 
      <!--Dashboard tasks -->
     <div class="col-md-5">
-      <body>
-        <div id="iddragula3" class='container' [dragula]='"second-bag"' [dragulaModel]='tasks'>
+        <div id=colorTasks class='container' style="background:#C0C0C0;">
             <!--div>User Storie 1</div>
             <div>User Storie 2</div>
             <div><span class='handle'>+</span>User Storie 1</div-->
-            <div *ngFor='let t of tasks'>
-              <span *ngIf="hasUserAss(t)" class='glyphicon glyphicon-user glyphicon-user-has'></span>
+            <div id="forTask" style="background:white;"   *ngFor='let t of tasks'>   
+              <h4 id="taskDescription">{{t}} adadadadaaduudabwduabudba udbawu dbua bduw kn dkand ka ndkan dwka wndkwa</h4>
               <span *ngIf="!hasUserAss(t)" class='glyphicon glyphicon-user glyphicon-user-donthas'></span>
-              <span class='addU' (click)="addUser(t)">+</span>{{t}}
+              <div  style="background:white;" calss="col-md-offset-2">
+                <button style="background: white"id="removeUser"type="submit" class="btn btn-default pull-right">X</button>
+                <button id="addUser" (click)="addUser(t)" type="submit" class="btn btn-default pull-right">Add User</button>
+              </div>
             </div>
         </div>
 
-        <div class='wrapper'>
-            <div class='container'>
-                <pre>{{tasks | json}}</pre><br>
-            </div>
-        </div>
-      </body>
     </div>
 
     <!--Do lado para adicionar tarefas ou associar users-->
-    <div class="col-md-4">
+    <div class="col-md-3 newtaskaddUser">
       <div *ngIf="addD">
         <form id="taskForm" (ngSubmit)="addU()" class="form-horizontal">
           <div class="form-group">
@@ -50,23 +46,24 @@
   
           <div class="form-group">
               <div class="col-xs-4">
-                  <button type="submit" class="btn btn-default">Add User</button>
+                  <button id="submitTask" type="submit" class="btn btn-primary">Add User</button>
                   <!--button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button-->
               </div>
           </div>
         </form>
       </div>
       <div *ngIf="addT">
-        <form id="taskForm" (ngSubmit)="addTask()" class="form-horizontal">
-          <div class="form-group">
+        <form id="taskForm" class="form-horizontal" (ngSubmit)="f.form.valid && addTask()" #f="ngForm" novalidate>
+           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newtask.valid }">
             <h2>New Task:</h2>
-            <label class="col-xs-4 control-label">Task:</label>
-            <input class="col-xs-8 " name="newtask" type="text" class="form-control" id="taskN" [(ngModel)]="modelNewTask.newtask">
+            <label class="col-xs-4 control-label" for="newtask"></label>
+            <input type="text" class="form-control" id="taskN" name="newtask" [(ngModel)]="modelNewTask.newtask" tabindex="1" placeholder="Description: Ex: Print Hello" #newtask="ngModel" required>
+            <div *ngIf="f.submitted && !newtask.valid" class="help-block">New Task is required</div>
           </div>
           
           <div class="form-group">
               <div class="col-xs-4">
-                  <button type="submit" class="btn btn-default">Add Task</button>
+                  <button id="submitTask" type="submit" class="btn btn-primary">Add Task</button>
                   <!--button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button-->
               </div>
           </div>

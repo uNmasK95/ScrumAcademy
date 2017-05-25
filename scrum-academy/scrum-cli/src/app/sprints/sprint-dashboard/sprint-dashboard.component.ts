@@ -46,6 +46,8 @@ export class SprintDashboardComponent {
   private onDropModel(args:any):void {
     let [el, target, source] = args;
     let usAqui : boolean =false;
+    console.log(target);
+    console.log(source);
      let p :UserStorieProject;
     for( let us of this.userStoriesAss){
         if(us.id == el.getAttribute('item-id')){

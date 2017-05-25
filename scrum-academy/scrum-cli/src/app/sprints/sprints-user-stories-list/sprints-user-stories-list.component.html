@@ -1,5 +1,4 @@
 <div class="col-md-10">
-<body>
   <div id="iddragula" class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesToAss'>
       <!--div>User Storie 1</div>
       <div>User Storie 2</div>
@@ -8,13 +7,6 @@
           <span class='addU' (click)="scoreEdit(us,i)">+</span>{{apresentaUserStory(us)}}
       </div>
   </div>
-
-  <div class='wrapper'>
-      <div class='container'>
-          <pre>{{userStoriesToAss | json}}</pre><br>
-      </div>
-  </div>
-</body>
 </div>
  <div class="col-md-2">
      <div *ngIf="scoreeditok">
