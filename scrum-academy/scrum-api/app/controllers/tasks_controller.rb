@@ -15,7 +15,7 @@ class TasksController < ApplicationController
 
         #filter by state 
         # em teste
-         if not params[:state].blank?
+        if not params[:state].blank?
             @tasks = @tasks.where( state: params[:state])
         end
         
