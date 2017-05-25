@@ -56,6 +56,8 @@ import { TeamsService } from "app/services/teams.service";
 import { UserStorieService } from "app/services/userstorie.service";
 import { SprintService } from "app/services/sprint.service";
 import { DragulaService } from "app/components/dragula.provider";
+import { RequestsService } from "app/services/requests.service";
+import { TasksService } from "app/services/tasks.service";
 
 @NgModule({
   declarations: [
@@ -117,7 +119,9 @@ import { DragulaService } from "app/components/dragula.provider";
     UserStorieService,
     TeamsService,
     AlertService,
-    SprintService],
+    SprintService,
+    RequestsService,
+    TasksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

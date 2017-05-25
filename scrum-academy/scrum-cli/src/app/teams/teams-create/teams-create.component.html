@@ -2,72 +2,89 @@
 <h1>Create Team</h1>
 <div class="row">
   <div class="col-md-12">
-    <form class="form-horizontal" (ngSubmit)="addTeam()">
-      <div class="form-group ">
+
+    <form name="form" (ngSubmit)="f.form.valid && addTeam()" #f="ngForm" novalidate>
+      <div>
         <div class="row">
-          <div class="col-md-2 col-xs-offset-2">
-            <label class="control-label " for="nameP">Name:</label>
+          <div class="col-md-2 col-md-offset-2">
+            <label class="control-label " for="team">Description:</label>
           </div>
           <div class="col-md-5">
-            <input type="text" name="nameProject" [(ngModel)]="model.name">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !team.valid }">
+              <textarea rows='5' name="team" id="team" [(ngModel)]="model.name" tabindex="1" class="form-control" placeholder="Ex: Team of GPS" value="" #team="ngModel" required></textarea>
+              <div *ngIf="f.submitted && !team.valid" class="help-block">Name for new team is required</div>
+            </div>
           </div>
         </div>
+        <alert></alert>
+
 
         <div class="row">
-          <div class="col-md-2 col-xs-offset-2">
-            <label class="control-label " for="descTeam">Description:</label>
-          </div>
-          <div class="col-md-5">
-            <input type="text" name="descript" [(ngModel)]="model.descrip">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-2 col-xs-offset-2">
+          <div class="col-md-2 col-md-offset-2">
             <label class="control-label " for="proj">Project:</label>
           </div>
-          <div class="col-xs-5 selectContainer">
-              <select class="form-control" id="projSelected"  name="projSelected" [(ngModel)]="model.projSelected">
-                  <option *ngFor='let p of projects' [value]="p.name" >{{p.name}}</option>
+          <div class="col-md-5 selectContainer">
+              <select class="form-control" id="projSelected"  name="projSelected" [(ngModel)]="model.projSelected" required>
+                  <option *ngFor='let p of projects' [value]="p.id" >{{p.name}}</option>
               </select>
           </div>
         </div>
  
+        <br>
         <div class="row">
-          <div class="col-md-2 col-xs-offset-2">
-            <label class="control-label " for="dev">Developers:</label>
+          <div class="col-md-2 col-md-offset-2">
+            <label class="control-label " for="searchDev">Search:</label>
           </div>
-          <div class="col-xs-5" >
-            <div id="custom-search-input">
-                <!--div class="input-group col-md-12">
-                    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" type="search" class="form-control input-lg" placeholder="Search" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-                </div-->
-                <div class="input-group col-md-12">
-                  <input type="text" [(ngModel)]="queryString" id="search" name="queryString" placeholder="Search to type"/>
-                  <ul>
-                    <li *ngFor="let n of names | FilterPipe: queryString">
-                      <div *ngIf="!isEmpty(queryString)">{{n}}</div>
-                    </li>
-                  </ul>
-                </div>
+          <div class="col-md-3">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !queryString.valid }">
+              <input type="text" name="queryString" id="queryString" [(ngModel)]="model.queryString" tabindex="1" class="form-control" placeholder="Search to type" value="" #queryString="ngModel" required >
             </div>
           </div>
-          <div class="col-xs-2" >
+          <div class="col-md-2">
+            <label class="control-label " for="devs">Developers:</label>
+            <div *ngIf="queryString.valid" class="panel panel-userSearch">
+                <ul class="list-users">
+                  <div *ngFor="let u of usersNames | FilterPipe: model.queryString">
+                    <a (click)="addUser(u)"><span class="glyphicon glyphicon-arrow-right"></span>{{u}}</a>
+                  </div>
+                </ul>
+              </div>
+          </div>
 
+        </div>
+
+        <div class="row">
+          <div class="col-md-7 col-md-offset-2">
+            <h2>Developers of team</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th width="50%">Name</th>
+                    <th>Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let uSelec of usersSelected" >
+                        <td><strong> {{ uSelec.name }}</strong></td>
+                        <td nowrap>
+                            <button type="button" class="btn btn-danger btn-xs" (click)="removeUser(uSelec)">
+                                <span class="glyphicon glyphicon glyphicon-remove"></span> 
+                                Remove 
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-sm-3 col-md-offset-4">
-            <button type="submit" class="btn btn-default">Submit</button>
+          <div class="col-sm-3 col-md-offset-2">
+            <button type="submit" class="btn btn-success">Submit</button>
           </div>
         </div>
       </div>
     </form>
+
   </div>
 </div>

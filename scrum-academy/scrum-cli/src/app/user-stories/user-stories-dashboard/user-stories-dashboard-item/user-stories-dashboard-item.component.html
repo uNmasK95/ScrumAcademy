@@ -1,56 +1,65 @@
-
-<div class="row">
-    <!--div class="col-md-12"-->
-    <div class="col-md-3">
-      <div class="pull-left">
-        <h2 class="list-group-item-text">{{userstorie}}</h2>
-      </div>
-    </div>
-
-     <!--Dashboard tasks -->
-    <div class="col-md-3">
-      <body>
-        <div class='container' [dragula]='"third-bag"+[userstorieId]' [dragulaModel]='tasksToAss'>
-            <div *ngFor='let t1 of tasksToAss'>{{t1}}</div>
-        </div>
-
-        <div class='wrapper'>
-            <div class='container'>
-                <pre>{{tasksToAss | json}}</pre><br>
+<div class="panel panel-default">
+  <div class="panel-body">
+        <div class="row">
+        <!--div class="col-md-12"-->
+        <div class="col-md-3">
+            <div class="pull-left">
+                <h2 class="list-group-item-text">{{userstorie.description}}</h2>
             </div>
         </div>
-      </body>
-    </div>
 
-    <!--Dashboard tasks "In progress"-->
-    <div class="col-md-3">
-      <body>
-        <div class='container' [dragula]='"third-bag"+[userstorieId]' [dragulaModel]='tasksInProgress'>
-            <div *ngFor='let t2 of tasksInProgress'>{{t2}}</div>
-        </div>
-
-        <div class='wrapper'>
-            <div class='container'>
-                <pre>{{tasksInProgress | json}}</pre><br>
+        <!--Dashboard tasks -->
+        <div class="col-md-3">
+        <body>
+            <div id="bag1" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='tasksToAss'>
+                <div *ngFor='let t1 of tasksToAss'>{{t1.description}}</div>
             </div>
-        </div>
-      </body>
-    </div>
 
-    <!--Dashboard tasks "Done"-->
-    <div class="col-md-3">
-      <body>
-        <div class='container' [dragula]='"third-bag"+[userstorieId]' [dragulaModel]='tasksDone'>
-            <div *ngFor='let t3 of tasksDone'>{{t3}}</div>
-        </div>
-
-        <div class='wrapper'>
-            <div class='container'>
-                <pre>{{tasksDone | json}}</pre><br>
+            <div class='wrapper'>
+                <div class='container'>
+                    <pre>{{tasksToAss | json}}</pre><br>
+                </div>
             </div>
+        </body>
         </div>
-      </body>
+
+        <!--Dashboard tasks "In progress"-->
+        <div class="col-md-3">
+        <body>
+            <div id="bag2" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='tasksInProgress'>
+                <div *ngFor='let t2 of tasksInProgress'>{{t2.description}}</div>
+            </div>
+
+            <div class='wrapper'>
+                <div class='container'>
+                    <pre>{{tasksInProgress | json}}</pre><br>
+                </div>
+            </div>
+        </body>
+        </div>
+
+        <!--Dashboard tasks "Done"-->
+        <div class="col-md-3">
+        <body>
+            <div id="bag3" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='tasksDone'>
+                <div *ngFor='let t3 of tasksDone' >{{t3.description}}</div>
+            </div>
+
+            <div class='wrapper'>
+                <div class='container'>
+                    <pre>{{tasksDone | json}}</pre><br>
+                </div>
+            </div>
+        </body>
+        </div>
+
+        
     </div>
 
-    
+    <!--PARA REMOVER-->
+    <!--div class='container'>
+        <div *ngFor='let at of allTasks'>{{at.description}}---State:{{at.state}}</div>
+    </div-->
+
+  </div>
 </div>
