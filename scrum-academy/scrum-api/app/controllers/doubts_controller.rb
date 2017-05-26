@@ -49,7 +49,7 @@ class DoubtsController < ApplicationController
     private
 
     def doubt_params
-        params.permit(:description, :task_id)
+        params.permit(:description, :task_id, :user_id)
     end
 
     def set_doubt
