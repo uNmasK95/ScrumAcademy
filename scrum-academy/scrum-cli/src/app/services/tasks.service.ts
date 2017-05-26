@@ -10,6 +10,14 @@ export class TasksService {
 
   constructor(private http: Http, private httpUtil: HttpUtilService) { }
 
+  //Get all task
+  get(projectId: number, userStorieId: number) {
+    console.log("GEt all task");
+    return this.http.get(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks/'),
+            this.httpUtil.headers())
+              .map(this.httpUtil.extrairDados);
+  }
+
   //Get by User
   getByUser(projectId: number, userStorieId: number, userId: number){
     let headersParams = { 'Content-Type': 'application/json' };

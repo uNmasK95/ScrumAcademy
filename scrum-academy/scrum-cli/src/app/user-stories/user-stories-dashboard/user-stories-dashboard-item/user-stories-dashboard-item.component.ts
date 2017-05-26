@@ -5,6 +5,7 @@ import { TasksService } from "app/services/tasks.service";
 import { UserStorieUser } from "app/models/userStorieUser";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Rx";
+import { UserService } from "app/services/user.service";
 
 @Component({
   selector: 'user-stories-dashboard-item',
@@ -17,15 +18,21 @@ export class UserStoriesDashboardItemComponent implements OnInit {
 
   private subscription: Subscription;
   private projectId: number = 0;
-  public tasksToAss: Task[] = [new Task(1,"TaskToAss1",3,0),new Task(2,"TaskToAss2",3,0)]; //Get com UID, PROjID, SprinID, USId
-  public tasksInProgress: Task[] = [new Task(3,"TaskIn3",3,1),new Task(4,"TaskIn4",3,1)];
-  public tasksDone: Task[] = [new Task(5,"TaskD5",3,2),new Task(6,"TaskD6",3,2)];
-  public allTasks: Task[] = this.tasksToAss.concat(this.tasksInProgress.concat(this.tasksDone));  //Todas tasks
+  private myTasksToAss: Task[] = []; //[new Task(1,"TaskToAss1",3,0),new Task(2,"TaskToAss2",3,0)]; 
+  private othersTasksToAss: Task[] = [];
+  private myTasksInProgress: Task[] = []; //[new Task(3,"TaskIn3",3,1),new Task(4,"TaskIn4",3,1)];
+  private othersTasksInProgress: Task[] = [];
+  private myTasksDone: Task[] = []; //[new Task(5,"TaskD5",3,2),new Task(6,"TaskD6",3,2)];
+  private othersTasksDone: Task[] = [];
+  private allTasks: Task[] = [];//this.tasksToAss.concat(this.tasksInProgress.concat(this.tasksDone));  //Todas tasks
+  
+  private userOnName = JSON.parse(localStorage.getItem('userOn')).name;
 
   public constructor(
     private dragulaService:DragulaService, 
     private tasksService: TasksService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private userService: UserService) {
       dragulaService.dropModel.subscribe((value:any) => {
         console.log("TOU DO DROP:");
         console.log(value);
@@ -41,17 +48,47 @@ export class UserStoriesDashboardItemComponent implements OnInit {
       (params: any) => {
         this.projectId = params['id'];
       });
+    console.log(localStorage.getItem('userOn'));
     let userId =JSON.parse(localStorage.getItem('userOn')).id;
-    this.tasksService.getByUser(this.projectId,this.userstorie.id,userId)
+    this.tasksService.get(this.projectId,this.userstorie.id)
       .subscribe(
         resultado => {
-          console.log("RESULTADO DO GETBYUSER"),
+          console.log("RESULTADO DO GETAll"),
           console.log(resultado)
           for(let r of resultado){
+            let t : Task = new Task(r.id,r.description,r.user.id,r.user.name,r.state);
+            this.allTasks.push(t);
+            if(t.state==0){ //ToDo
+              if(t.userId==userId){//Minha task
+                this.myTasksToAss.push(t);
+              }else{//Task de outro
+                this.othersTasksToAss.push(t);
+              }
+            }else if(t.state==1){ //In Progress
+              if(t.userId==userId){//Minha task
+                this.myTasksInProgress.push(t);
+              }else{//Task de outro
+                this.othersTasksInProgress.push(t);
+              }
+            }else{ //Done
+              if(t.userId==userId){//Minha task
+                this.myTasksDone.push(t);
+              }else{//Task de outro
+                this.othersTasksDone.push(t);
+              }
+            }
+            console.log("Atribui");
             //console.log(r.team.description+"--"+r.statement.name);
             //let req : Request = new Request(r.id, r.team.id, r.team.description, r.statement.id, r.statement.name);
             //this.requests.push(req);
           }
+          console.log(this.allTasks);
+          console.log(this.myTasksToAss);
+          console.log(this.myTasksInProgress);
+          console.log(this.myTasksDone);
+          console.log(this.othersTasksToAss);
+          console.log(this.othersTasksInProgress);
+          console.log(this.othersTasksDone);
         }
       )
   }
@@ -63,11 +100,6 @@ export class UserStoriesDashboardItemComponent implements OnInit {
     console.log(target);
     console.log(source);
 
-    var textNode = el.childNodes[0];
-    var textInput = textNode.nodeValue;
-    console.log(textNode);
-    console.log(textInput);
-
     //Ver target 
     let newState = 0; // 0->"No state"
     if(target.id=="bag2"){ //Mudou para "In progress"
@@ -75,8 +107,8 @@ export class UserStoriesDashboardItemComponent implements OnInit {
     }else if(target.id=="bag3"){
       newState=2;
     }
-    console.log("TARGET:"+newState);
-    this.changeState(textInput, newState);
+    console.log("TARGET: newState:"+newState+" -- TaskId:"+el.getAttribute('taskId'));
+    this.changeState(el.getAttribute('taskId'), newState);
   }
 
   private onRemoveModel(args:any):void {
@@ -90,15 +122,19 @@ export class UserStoriesDashboardItemComponent implements OnInit {
     return "third-bag";
   }
 
-  changeState(taskName, newState){
-    let taskToChangeAux = this.allTasks.find(x => x.description == taskName);
-    let taskToChange = new Task(taskToChangeAux.id,taskToChangeAux.description,taskToChangeAux.userId,newState);
-    console.log("TOU CHANGESTATE");
-    console.log(taskToChange.id,taskToChange.description);
-    this.tasksService.update(this.projectId,this.userstorie.id, taskToChange)
-      .subscribe();
-
-
+  changeState(taskId, newState){
+    console.log(this.allTasks);
+    if(this.allTasks.length!=0){
+      let taskToChangeAux = this.allTasks.find(x => x.id == taskId);
+      console.log(taskToChangeAux);
+      let taskToChange = new Task(taskToChangeAux.id,taskToChangeAux.description,taskToChangeAux.userId,taskToChangeAux.userName,newState);
+      console.log("TOU CHANGESTATE");
+      console.log(taskToChange);
+      //console.log(taskToChange.id,taskToChange.description);
+      this.tasksService.update(this.projectId,this.userstorie.id, taskToChange)
+        .subscribe();
+    }
   }
+
 
 }

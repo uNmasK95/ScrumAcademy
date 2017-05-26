@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserStoriesDashboardComponent implements OnInit {
 
+  sprint:string = "Sprint1";
   constructor() { }
 
   ngOnInit() {

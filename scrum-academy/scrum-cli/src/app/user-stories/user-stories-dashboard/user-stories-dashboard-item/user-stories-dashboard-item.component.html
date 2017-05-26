@@ -1,65 +1,88 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-        <div class="row">
-        <!--div class="col-md-12"-->
-        <div class="col-md-3">
-            <div class="pull-left">
-                <h2 class="list-group-item-text">{{userstorie.description}}</h2>
-            </div>
-        </div>
 
-        <!--Dashboard tasks -->
-        <div class="col-md-3">
-        <body>
-            <div id="bag1" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='tasksToAss'>
-                <div *ngFor='let t1 of tasksToAss'>{{t1.description}}</div>
-            </div>
-
-            <div class='wrapper'>
-                <div class='container'>
-                    <pre>{{tasksToAss | json}}</pre><br>
+<div class="row">
+        <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>User Storie</th>
+            <th>ToDo</th>
+            <th>Work In Progress</th>
+            <th>Done</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <h2 class="list-group-item-text">
+                    {{userstorie.description}}<br>
+                    <small>Priority: 12</small><br>
+                    <small>Score: 21</small>
+                </h2>
+            </td>
+            <td class="active">
+                <div id="bag1" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksToAss'>
+                    <div *ngFor='let t1 of myTasksToAss' [attr.taskId]="t1.id">
+                        <img src="../assets/img/mytodo.png" alt="iconPerson" >
+                        <h5>{{userOnName}}
+                        <span class="glyphicon glyphicon glyphicon-pencil">Comment/Doubt</span></h5>
+                        {{t1.description}}
+                    </div>
                 </div>
-            </div>
-        </body>
-        </div>
-
-        <!--Dashboard tasks "In progress"-->
-        <div class="col-md-3">
-        <body>
-            <div id="bag2" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='tasksInProgress'>
-                <div *ngFor='let t2 of tasksInProgress'>{{t2.description}}</div>
-            </div>
-
-            <div class='wrapper'>
-                <div class='container'>
-                    <pre>{{tasksInProgress | json}}</pre><br>
+            </td>
+            <td class="active">
+                <div id="bag2" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksInProgress'>
+                    <div *ngFor='let t2 of myTasksInProgress' [attr.taskId]="t2.id">
+                        <img src="../assets/img/myprogress.png" alt="iconPerson">
+                        <h5>{{userOnName}}
+                        <span class="glyphicon glyphicon glyphicon-pencil">Comment/Doubt</span></h5>
+                        {{t2.description}}
+                    </div>
                 </div>
-            </div>
-        </body>
-        </div>
-
-        <!--Dashboard tasks "Done"-->
-        <div class="col-md-3">
-        <body>
-            <div id="bag3" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='tasksDone'>
-                <div *ngFor='let t3 of tasksDone' >{{t3.description}}</div>
-            </div>
-
-            <div class='wrapper'>
-                <div class='container'>
-                    <pre>{{tasksDone | json}}</pre><br>
+            </td>
+            <td class="active">
+                <div id="bag3" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksDone'>
+                    <div *ngFor='let t3 of myTasksDone' [attr.taskId]="t3.id">
+                        <img src="../assets/img/mydone.png" alt="iconPerson">
+                        <h5>{{userOnName}}
+                        <span class="glyphicon glyphicon glyphicon-pencil">Comment/Doubt</span></h5>
+                        {{t3.description}}
+                    </div>
                 </div>
-            </div>
-        </body>
-        </div>
-
-        
-    </div>
-
-    <!--PARA REMOVER-->
-    <!--div class='container'>
-        <div *ngFor='let at of allTasks'>{{at.description}}---State:{{at.state}}</div>
-    </div-->
-
-  </div>
+            </td>
+        </tr>
+        <tr>
+            <td >
+            </td>
+            <td class="active">
+                <div class='container'>
+                    <div *ngFor='let ot1 of othersTasksToAss'>
+                        <img src="../assets/img/otherstodo.png" alt="iconPerson">
+                        <h5>{{ot1.userName}}
+                        <span class="glyphicon glyphicon glyphicon-eye-open">Comment/Doubt</span></h5>
+                        {{ot1.description}}
+                    </div>
+                </div>
+            </td>
+            <td class="active">
+                <div class='container' >
+                    <div *ngFor='let ot2 of othersTasksInProgress'>
+                        <img src="../assets/img/othersprogress.png" alt="iconPerson">
+                        <h5>{{ot2.userName}}
+                        <span class="glyphicon glyphicon glyphicon-eye-open">Comment/Doubt</span></h5>
+                        {{ot2.description}}
+                    </div>
+                </div>
+            </td>
+            <td class="active">
+                <div class='container'>
+                    <div *ngFor='let ot3 of othersTasksDone'>
+                        <img src="../assets/img/othersdone.png" alt="iconPerson">
+                        <h5>{{ot2.userName}}
+                        <span class="glyphicon glyphicon glyphicon-eye-open">Comment/Doubt</span></h5>
+                        {{ot3.description}}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
