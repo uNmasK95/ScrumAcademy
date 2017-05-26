@@ -57,6 +57,8 @@ import { UserStorieService } from "app/services/userstorie.service";
 import { SprintService } from "app/services/sprint.service";
 import { RequestsService } from "app/services/requests.service";
 import { TasksService } from "app/services/tasks.service";
+import { DoubtsService } from "app/services/doubts.service";
+import { CommentsService } from "app/services/comments.service";
 
 @NgModule({
   declarations: [
@@ -120,7 +122,9 @@ import { TasksService } from "app/services/tasks.service";
     AlertService,
     SprintService,
     RequestsService,
-    TasksService],
+    TasksService,
+    CommentsService,
+    DoubtsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

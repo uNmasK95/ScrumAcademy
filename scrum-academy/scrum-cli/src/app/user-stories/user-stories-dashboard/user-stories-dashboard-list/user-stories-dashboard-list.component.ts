@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStorieUser } from "app/models/userStorieUser";
+import { SprintService } from "app/services/sprint.service";
 
 @Component({
   selector: 'user-stories-dashboard-list',
