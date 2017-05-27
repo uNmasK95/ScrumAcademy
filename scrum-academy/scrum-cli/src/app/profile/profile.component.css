@@ -1,15 +1,9 @@
 
-.nav.navbar-nav li a.home{
-    color: blue;
-}
+
 
 #imagemProfile{
+    padding-top: 25%;
 	width: 100%;
+    height: 100%;
 }
 
-
-.navbar-nav li:hover a span {
-    top: 0em;
-    opacity:1;
-    filter: alpha(opacity=100);
-}

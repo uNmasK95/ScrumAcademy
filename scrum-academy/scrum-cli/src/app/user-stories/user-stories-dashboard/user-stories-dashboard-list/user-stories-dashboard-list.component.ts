@@ -14,7 +14,7 @@ export class UserStoriesDashboardListComponent implements OnInit {
   
   public userstories: UserStorieUser[] = []; 
   public sprintNow: Sprint = new Sprint(0,"",new Date(),new Date());
-
+  public empty: boolean = false;
   constructor(private sprintService: SprintService) { }
 
   ngOnInit() {
@@ -34,7 +34,9 @@ export class UserStoriesDashboardListComponent implements OnInit {
                 console.log(userStorie);
               }
             }
-        }
+          }
+          if(this.userstories.length!=0)this.empty=false;
+          else this.empty = true;
         });
   }
 

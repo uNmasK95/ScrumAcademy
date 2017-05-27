@@ -29,7 +29,6 @@ import { UserStoriesListComponent } from './user-stories/user-stories-list/user-
 import { UserStoriesItemComponent } from './user-stories/user-stories-list/user-stories-item.component';
 import { UserStoriesEditComponent } from './user-stories/user-stories-edit/user-stories-edit.component';
 import { UserStoriesNewComponent } from './user-stories/user-stories-new/user-stories-new.component';
-import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { IsAuthenticatedService } from './services/is-authenticated.service';
 import { HttpUtilService } from './services/http-util.service';
 import { LoginGuardService } from "./services/login-guard.service";
@@ -84,7 +83,6 @@ import { CommentsService } from "app/services/comments.service";
     UserStoriesItemComponent,
     UserStoriesEditComponent,
     UserStoriesNewComponent,
-    ProfileEditComponent,
     SprintsComponent,
     SprintsListComponent,
     SprintsItemComponent,

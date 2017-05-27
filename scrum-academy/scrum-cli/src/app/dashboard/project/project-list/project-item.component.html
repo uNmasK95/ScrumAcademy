@@ -1,9 +1,14 @@
 <div class="col-md-4 col-sm-6 col-xs-12" id="projectosdiv">
-  <a (click)="selectRoute()" class="list-group-item clearfix">
+  <a title="View Dashboard" data-toggle="popover" data-trigger="hover" (click)="selectRoute()" class="list-group-item clearfix">
     <!--[routerLink]="['projects',projectId]" class="list-group-item clearfix" routerLinkActive="active"-->
-    <div class="pull-left">
-      <h4 class="list-group-item-heading">{{project.name}}</h4>
-      <p class="list-group-item-text">{{project.description}}</p>
-    </div>
+    <img src="../../../../assets/img/dashboard.png" alt="iconPerson">
+    <!--div class="pull-left"-->
+      
+    <h4 class="list-group-item-heading">{{project.name}}</h4>
+    <p class="list-group-item-text">{{project.description}}</p>
+    <!--/div-->
+
+    <b class="list-group-item-text">Initial Date:{{project.initialD}}</b><br>
+    <b class="list-group-item-text">End Date:{{project.endD}}</b>
   </a>
 </div>

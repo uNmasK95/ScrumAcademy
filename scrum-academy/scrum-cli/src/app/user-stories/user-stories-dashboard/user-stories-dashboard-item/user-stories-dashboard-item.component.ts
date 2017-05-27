@@ -137,18 +137,32 @@ export class UserStoriesDashboardItemComponent implements OnInit {
   }
 
   changeState(taskId, newState){
-    console.log("Tou changeStatw");
+    console.log("Tou changeStat11");
     console.log(this.allTasks);
-    if(this.allTasks.length!=0){
-      let taskToChangeAux = this.allTasks.find(x => x.id == taskId);
-      console.log(taskToChangeAux);
-      let taskToChange = new Task(taskToChangeAux.id,taskToChangeAux.description,taskToChangeAux.userId,taskToChangeAux.userName,newState);
-      console.log("TOU CHANGESTATE");
-      console.log(taskToChange);
-      //console.log(taskToChange.id,taskToChange.description);
-      this.tasksService.update(this.projectId,this.userstorie.id, taskToChange)
-        .subscribe();
-    }
+    let allTasksAux: Task[] = [];
+    this.tasksService.get(this.projectId,this.userstorie.id)
+      .subscribe(
+        resultado => {
+          console.log("RESULTADO DO GETAll2:"+taskId+"---"+newState),
+          console.log(resultado)
+          for(let r of resultado){
+            let t : Task = new Task(r.id,r.description,r.user.id,r.user.name,r.state);
+            allTasksAux.push(t);
+          }
+
+          //Atualizar task
+          let taskToChangeAux = allTasksAux.find(x => x.id == taskId);
+          console.log(taskToChangeAux);
+          if(taskToChangeAux){
+            let taskToChange = new Task(taskToChangeAux.id,taskToChangeAux.description,taskToChangeAux.userId,taskToChangeAux.userName,newState);
+            console.log("TOU CHANGESTATE");
+            console.log(taskToChange);
+            //console.log(taskToChange.id,taskToChange.description);
+            this.tasksService.update(this.projectId,this.userstorie.id, taskToChange)
+              .subscribe();
+            }
+        }
+      );
   }
 
   changeTask(task: Task){

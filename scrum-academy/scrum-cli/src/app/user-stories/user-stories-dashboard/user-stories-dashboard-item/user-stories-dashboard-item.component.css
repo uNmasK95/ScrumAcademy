@@ -72,3 +72,10 @@ span {
     background-color: lightgreen;
     color: #ecf0f1;;
 }
+th{
+    text-align: center;
+}
+.r1{
+    padding-left: 10px;
+    padding-right: 10px;
+}

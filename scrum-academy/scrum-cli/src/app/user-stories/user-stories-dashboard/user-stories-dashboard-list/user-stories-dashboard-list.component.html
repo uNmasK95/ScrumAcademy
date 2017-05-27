@@ -4,6 +4,7 @@
     <ul class="list-group">
       <user-stories-dashboard-item *ngFor="let us of userstories; let i = index" [userstorie]="us">
       </user-stories-dashboard-item>
+      <div *ngIf="empty" class="alert alert-info" role="alert">User Stories not associated yet</div>
     </ul>
   </div>
 </div>

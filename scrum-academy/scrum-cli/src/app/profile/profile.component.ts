@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
                 this.userLogged.name = this.model.name;
                 localStorage.setItem('userOn',JSON.stringify(this.userLogged));
                 this.model = JSON.parse(localStorage.getItem('userOn'));
-                this.alertService.success("Campos Alerados com sucesso");
+                this.alertService.success("Data change with success!!");
               },
               error => {
                 this.editSelected = false;
@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
           },
           error => {
             this.editSelected = false
-            this.alertService.error("Password Errada!");
+            this.alertService.error("Wrong Password!");
           }
         )
         
@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
             this.userLogged.name = this.model.name;
             localStorage.setItem('userOn',JSON.stringify(this.userLogged));
             this.model = JSON.parse(localStorage.getItem('userOn'));
-            this.alertService.success("Campos Alerados com sucesso");
+            this.alertService.success("Data change with success!!");
           },
           error => {
             this.editSelected = false; 
@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit {
                   this.userLogged.name = this.model.name;
                   localStorage.setItem('userOn',JSON.stringify(this.userLogged));
                   this.model = JSON.parse(localStorage.getItem('userOn'));
-                  this.alertService.success("Campos Alerados com sucesso");
+                  this.alertService.success("Data change with success!!");
                 },
                 error => {
                   this.editSelected = false;
@@ -83,12 +83,12 @@ export class ProfileComponent implements OnInit {
             },
             error => {
               this.editSelected = false
-              this.alertService.error("Password Errada!");
+              this.alertService.error("Wrong Password!");
             }
           )
       }
       else{
-        this.alertService.error("Precisa de colocar a password");
+        this.alertService.error("You need to put the Password!!");
       }
     }
   }

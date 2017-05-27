@@ -1,8 +1,8 @@
 
-<div class="row">
+<div class="row r1">
         <table class="table table-bordered">
         <thead>
-        <tr>
+        <tr id="titT">
             <th>User Storie</th>
             <th>ToDo</th>
             <th>Work In Progress</th>
@@ -14,11 +14,11 @@
             <td>
                 <h2 class="list-group-item-text">
                     {{userstorie.description}}<br>
-                    <small>Priority: {{userstorie.priority}}</small><br>
-                    <small>Score: {{userstorie.score}}</small>
+                    <small>Priority:{{userstorie.priority}}</small><br>
+                    <small>Score:{{userstorie.score}}</small>
                 </h2>
             </td>
-            <td class="active">
+            <td class="success">
                 <div id="bag1" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksToAss'>
                     <div *ngFor='let t1 of myTasksToAss' [attr.taskId]="t1.id">
                         <img src="../assets/img/mytodo.png" alt="iconPerson" >
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </td>
-            <td class="active">
+            <td class="success">
                 <div id="bag2" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksInProgress'>
                     <div *ngFor='let t2 of myTasksInProgress' [attr.taskId]="t2.id">
                         <img src="../assets/img/myprogress.png" alt="iconPerson">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </td>
-            <td class="active">
+            <td class="success">
                 <div id="bag3" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksDone'>
                     <div *ngFor='let t3 of myTasksDone' [attr.taskId]="t3.id">
                         <img src="../assets/img/mydone.png" alt="iconPerson">
@@ -55,7 +55,7 @@
         <tr>
             <td >
             </td>
-            <td class="active">
+            <td class="danger">
                 <div class='container'>
                     <div *ngFor='let ot1 of othersTasksToAss'>
                         <img src="../assets/img/otherstodo.png" alt="iconPerson">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </td>
-            <td class="active">
+            <td class="danger">
                 <div class='container' >
                     <div *ngFor='let ot2 of othersTasksInProgress'>
                         <img src="../assets/img/othersprogress.png" alt="iconPerson">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </td>
-            <td class="active">
+            <td class="danger">
                 <div class='container'>
                     <div *ngFor='let ot3 of othersTasksDone'>
                         <img src="../assets/img/othersdone.png" alt="iconPerson">

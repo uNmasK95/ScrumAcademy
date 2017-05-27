@@ -17,3 +17,40 @@ b{
 .nameProj{
     padding-top: 20px;
 }
+/*
+#imgLogo{
+   /* padding-bottom: 5px; 
+   padding-left: 10px;
+}
+
+.navbar-header{
+   /* padding-top: 5px;
+    padding-bottom: 5px;
+}*/
+
+.navbar-right{
+    padding-right: 60px;
+}
+
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px;
+  padding-left: 60px;
+  width: auto;
+}
+
+.navbar-brand {
+  height: 80px;
+}
+
+.nav >li >a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
