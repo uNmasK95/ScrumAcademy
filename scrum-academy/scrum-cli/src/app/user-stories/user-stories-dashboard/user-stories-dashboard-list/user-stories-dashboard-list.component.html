@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-md-12">
+    <h1>Scrum Academy {{sprintNow.description}} {{sprintNow.initialD.getDate()}}/{{sprintNow.initialD.getMonth()+1}}/{{sprintNow.initialD.getFullYear()}} - {{sprintNow.endD.getDate()}}/{{sprintNow.endD.getMonth()+1}}/{{sprintNow.endD.getFullYear()}}</h1>
     <ul class="list-group">
       <user-stories-dashboard-item *ngFor="let us of userstories; let i = index" [userstorie]="us">
       </user-stories-dashboard-item>

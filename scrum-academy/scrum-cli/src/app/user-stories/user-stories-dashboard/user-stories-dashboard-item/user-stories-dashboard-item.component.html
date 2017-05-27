@@ -14,15 +14,15 @@
             <td>
                 <h2 class="list-group-item-text">
                     {{userstorie.description}}<br>
-                    <small>Priority: 12</small><br>
-                    <small>Score: 21</small>
+                    <small>Priority: {{userstorie.priority}}</small><br>
+                    <small>Score: {{userstorie.score}}</small>
                 </h2>
             </td>
             <td class="active">
                 <div id="bag1" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksToAss'>
                     <div *ngFor='let t1 of myTasksToAss' [attr.taskId]="t1.id">
                         <img src="../assets/img/mytodo.png" alt="iconPerson" >
-                        <h5>{{userOnName}}
+                        <h5>{{userOnName}}<br>
                         <span class="glyphicon glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal" 
                             (click)="changeTask(t1)">Comment/Doubt</span></h5>
                         {{t1.description}}
@@ -33,7 +33,7 @@
                 <div id="bag2" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksInProgress'>
                     <div *ngFor='let t2 of myTasksInProgress' [attr.taskId]="t2.id">
                         <img src="../assets/img/myprogress.png" alt="iconPerson">
-                        <h5>{{userOnName}}
+                        <h5>{{userOnName}}<br>
                         <span class="glyphicon glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal"
                             (click)="changeTask(t2)">Comment/Doubt</span></h5>
                         {{t2.description}}
@@ -44,7 +44,7 @@
                 <div id="bag3" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksDone'>
                     <div *ngFor='let t3 of myTasksDone' [attr.taskId]="t3.id">
                         <img src="../assets/img/mydone.png" alt="iconPerson">
-                        <h5>{{userOnName}}
+                        <h5>{{userOnName}}<br>
                         <span class="glyphicon glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal"
                             (click)="changeTask(t3)">Comment/Doubt</span></h5>
                         {{t3.description}}
@@ -59,7 +59,7 @@
                 <div class='container'>
                     <div *ngFor='let ot1 of othersTasksToAss'>
                         <img src="../assets/img/otherstodo.png" alt="iconPerson">
-                        <h5>{{ot1.userName}}
+                        <h5>{{ot1.userName}}<br>
                         <span class="glyphicon glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#myModal2"
                             (click)="changeTask(ot1)">Comment/Doubt</span></h5>
                         {{ot1.description}}
@@ -70,7 +70,7 @@
                 <div class='container' >
                     <div *ngFor='let ot2 of othersTasksInProgress'>
                         <img src="../assets/img/othersprogress.png" alt="iconPerson">
-                        <h5>{{ot2.userName}}
+                        <h5>{{ot2.userName}}<br>
                         <span class="glyphicon glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#myModal2"
                             (click)="changeTask(ot2)">Comment/Doubt</span></h5>
                         {{ot2.description}}
@@ -81,7 +81,7 @@
                 <div class='container'>
                     <div *ngFor='let ot3 of othersTasksDone'>
                         <img src="../assets/img/othersdone.png" alt="iconPerson">
-                        <h5>{{ot2.userName}}
+                        <h5>{{ot2.userName}}<br>
                         <span class="glyphicon glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#myModal2"
                             (click)="changeTask(ot3)">Comment/Doubt</span></h5>
                         {{ot3.description}}

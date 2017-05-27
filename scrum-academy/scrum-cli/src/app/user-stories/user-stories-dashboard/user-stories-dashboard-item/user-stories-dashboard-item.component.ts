@@ -137,6 +137,7 @@ export class UserStoriesDashboardItemComponent implements OnInit {
   }
 
   changeState(taskId, newState){
+    console.log("Tou changeStatw");
     console.log(this.allTasks);
     if(this.allTasks.length!=0){
       let taskToChangeAux = this.allTasks.find(x => x.id == taskId);
