@@ -120,18 +120,19 @@ input {
   width: 100%;
 }
 
+/*
 button {
   background-color: #ecf0f1;
   color: #942A57;
   border: 0;
   cursor: pointer;
   outline: none;
-}
+}*/
 
-button:hover {
+/*button:hover {
   background-color: #e74c3c;
   color: #ecf0f1;
-}
+}*/
 
 .gh-fork {
   position: fixed;

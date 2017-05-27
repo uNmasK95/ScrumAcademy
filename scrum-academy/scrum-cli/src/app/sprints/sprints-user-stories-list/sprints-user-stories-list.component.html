@@ -1,14 +1,18 @@
-<body>
-  <div class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesToAss'>
+<div class="col-md-10">
+  <div id="iddragula" class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesToAss'>
       <!--div>User Storie 1</div>
       <div>User Storie 2</div>
       <div>User Storie 1</div-->
-      <div *ngFor='let us of userStoriesToAss' [innerHtml]='us'></div>
-  </div>
-
-  <div class='wrapper'>
-      <div class='container'>
-          <pre>{{userStoriesToAss | json}}</pre><br>
+      <div *ngFor='let us of userStoriesToAss; let i = index' [attr.item-id]="us.id" [attr.project-id]="project.id">
+          <span class='addU' (click)="scoreEdit(us,i)">+</span>{{apresentaUserStory(us)}}
       </div>
   </div>
-</body>
+</div>
+ <div class="col-md-2">
+     <div *ngIf="scoreeditok">
+            <div class="row">
+            <input type="number" class="form-control" placeholder="score" id="idscore" name="score" [(ngModel)]="model.score" #score="ngModel">
+            <button type="submit" (click)="saveScoreEdit()" class="btn btn-default btn-primary">Save</button>
+          </div>
+     </div>
+  </div>

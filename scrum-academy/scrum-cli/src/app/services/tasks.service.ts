@@ -41,4 +41,25 @@ export class TasksService {
               .map(this.httpUtil.extrairDados);
   }
 
+  create(projectId: number, userStorieId: number, description: string, user:number){
+    console.log("criar task");
+    console.log(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks'));
+    console.log(JSON.stringify({description: description, user_id:user}));
+    return this.http.post(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks'),
+               JSON.stringify({description: description, user_id:user}), this.httpUtil.headers())
+               .map(this.httpUtil.extrairDados);
+  }
+
+  getByUserStory(projectId: number, userStorieId: number){
+    return this.http.get(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks'),this.httpUtil.headers())
+                .map(this.httpUtil.extrairDados);
+    
+  }
+
+  delete(projectId: number, userStorieId: number, taskid: number) {
+    console.log("remove task");
+    return this.http.delete(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks/'+taskid),this.httpUtil.headers())
+               .map(this.httpUtil.extrairDados);
+  }
+
 }

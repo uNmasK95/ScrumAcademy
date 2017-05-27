@@ -26,14 +26,33 @@ export class UserService {
     }
 
     //É preciso ver qual o caminho, faz update do nome do user
-    updateName(name: string){
-        return this.http.post(this.httpUtil.url('/'),JSON.stringify({ name: name}),this.httpUtil.headers())
+    updateName(id:number,name: string){
+        let headersParams = { 'Content-Type': 'application/json' };
+        if (localStorage['currentUser']) {
+            console.log("token")
+            headersParams['Authorization'] = localStorage['currentUser'];
+        }
+        var search = new URLSearchParams();
+        search.set('name', ''+name);
+        let headers = new Headers(headersParams);
+        let options = new RequestOptions({ headers: headers, search:search});
+        return this.http.put(this.httpUtil.url('/users/'+id),options)
                    .map(this.httpUtil.extrairDados);
     }
 
     //é preciso ver o caminho, faz update do nome e da passe do user
-    update(name: string, password: string){
-        return this.http.post(this.httpUtil.url('/'),JSON.stringify({name: name, password: password}),this.httpUtil.headers())
+    update(id:number,name: string, password: string){
+        let headersParams = { 'Content-Type': 'application/json' };
+        if (localStorage['currentUser']) {
+            console.log("token")
+            headersParams['Authorization'] = localStorage['currentUser'];
+        }
+        var search = new URLSearchParams();
+        search.set('name', ''+name);
+        search.set('password', ''+password);
+        let headers = new Headers(headersParams);
+        let options = new RequestOptions({ headers: headers, search:search});
+        return this.http.put(this.httpUtil.url('/users/' + id),JSON.stringify({name: name, password: password}),this.httpUtil.headers())
                    .map(this.httpUtil.extrairDados);
     }
 

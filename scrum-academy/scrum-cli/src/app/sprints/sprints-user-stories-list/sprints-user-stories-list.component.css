@@ -1,0 +1,16 @@
+#iddragula{
+ touch-action: none;
+}
+.addU{
+    padding: 0 5px;
+    margin-right: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.addU:active{
+    padding: 0 5px;
+    margin-right: 10px;
+    background-color: lightgreen;
+    cursor: pointer;
+}

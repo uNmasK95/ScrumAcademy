@@ -23,7 +23,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { TeamsItemComponent } from './teams/teams-item/teams-item.component';
 import { QuestionsListComponent } from './questions/questions-list/questions-list.component';
 import { QuestionsItemComponent } from './questions/questions-list/questions-item.component';
-import { QuestionsDetailComponent } from './questions/questions-detail/questions-detail.component';
+import { QuestionsDetailComponent } from './questions/questions-list/questions-detail.component';
 import { UserStoriesDetailComponent } from './user-stories/user-stories-detail/user-stories-detail.component';
 import { UserStoriesListComponent } from './user-stories/user-stories-list/user-stories-list.component';
 import { UserStoriesItemComponent } from './user-stories/user-stories-list/user-stories-item.component';
@@ -54,10 +54,12 @@ import { ProjectService } from "app/services/project.service";
 import { TeamsService } from "app/services/teams.service";
 import { UserStorieService } from "app/services/userstorie.service";
 import { SprintService } from "app/services/sprint.service";
+import { DragulaService } from "app/components/dragula.provider";
 import { RequestsService } from "app/services/requests.service";
 import { TasksService } from "app/services/tasks.service";
 import { DoubtsService } from "app/services/doubts.service";
 import { CommentsService } from "app/services/comments.service";
+import { TeamsUserComponent } from './teams/teams-user/teams-user.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +99,8 @@ import { CommentsService } from "app/services/comments.service";
     FilterPipe,
     UserStoriesDashboardComponent,
     UserStoriesDashboardListComponent,
-    UserStoriesDashboardItemComponent
+    UserStoriesDashboardItemComponent,
+    TeamsUserComponent
   ],
   imports: [
     BrowserModule,

@@ -11,13 +11,18 @@ export class TeamsService {
 
   get() {
     return this.http.get(this.httpUtil.url('/teams'), this.httpUtil.headers())
-    .map(this.httpUtil.extrairDados);
+               .map(this.httpUtil.extrairDados);
+  }
+  
+  getById(id : number){
+    return this.http.get(this.httpUtil.url('/teams/'+id), this.httpUtil.headers())
+               .map(this.httpUtil.extrairDados);
   }
 
   post(desciption: string) { //Create team
     return this.http.post(this.httpUtil.url('/teams'), JSON.stringify({description: desciption}),
-      this.httpUtil.headers())
-    .map(this.httpUtil.extrairDados);
+                this.httpUtil.headers())
+               .map(this.httpUtil.extrairDados);
   }
 
   postTeamUsers(teamid: number, id: number, func: number) { //Create team_users

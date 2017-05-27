@@ -17,7 +17,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a [routerLink]="['/teams']" *ngIf="isLogged() && getType()==1">Teams</a></li>
+						<li><a [routerLink]="['/teams']" *ngIf="isLogged()">Teams</a></li>
 						<!--li><a [routerLink]="['/userstories']" *ngIf="isLogged()">User Stories</a></li-->
 					</ul>
 					<ul class="nav navbar-nav navbar-right">

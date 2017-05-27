@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Project } from '../project';
 import { Router } from "@angular/router";
 import { UserTeam } from "app/models/userteam";
+import { TeamsService } from "app/services/teams.service";
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ProjectItemComponent {
   @Input() projectId: number;
   @Input() teamFunction: UserTeam;
 
-  constructor(private router: Router){
+  constructor(private router: Router, private teamService: TeamsService){
 	}
 
   selectRoute(){

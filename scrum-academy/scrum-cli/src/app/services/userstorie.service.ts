@@ -38,4 +38,13 @@ export class UserStorieService {
                     JSON.stringify({ description: description,priority: priority}),this.httpUtil.headers())
                    .map(this.httpUtil.extrairDados);
     }
+    getUserStoriesByProjectId(id: number){
+        return this.http.get(this.httpUtil.url('/projects/'+id+'/userstories'),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
+
+    updateScore(id : number, userstorieid: number, score: number){
+        return this.http.put(this.httpUtil.url('/projects/'+id+'/userstories/'+userstorieid),JSON.stringify({score:score}),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
 }
