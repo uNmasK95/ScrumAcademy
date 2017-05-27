@@ -27,7 +27,7 @@ export class HttpUtilService {
   //  console.log("Tou no extrair dados, ver o que é o responde:");
   //  console.log("Response:"+response);
       let data = response.json();
-    console.log(data);
+    //console.log(data);
       return data || {};
     }
     

@@ -11,7 +11,6 @@ import { ProjectComponent } from './dashboard/project/project.component';
 import { TeamsComponent } from './teams/teams.component';
 import { UserStoriesComponent } from './user-stories/user-stories.component';
 import { QuestionsComponent } from './questions/questions.component';
-import { QuestionsDetailComponent } from './questions/questions-detail/questions-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { IsAuthenticatedService } from './services/is-authenticated.service';
 import { SprintsComponent } from "app/sprints/sprints.component";

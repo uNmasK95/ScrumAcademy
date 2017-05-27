@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Sprint } from "app/sprints/sprint";
 import { SprintService } from "app/services/sprint.service";
 import { Project } from "app/dashboard/project/project";
+import { TeamsService } from "app/services/teams.service";
+import { UserService } from "app/services/user.service";
+import { User } from "app/models/user";
 
 @Component({
   selector: 'sprints-user-stories-tasks',
@@ -13,7 +16,8 @@ export class SprintsUserStoriesTasksComponent implements OnInit {
   project : Project;
   sprint : Sprint;
   descriptiontext = false;
-  model: any = {}
+  model: any = {};
+
   constructor(private sprintService: SprintService) { }
 
   ngOnInit() {
@@ -25,8 +29,8 @@ export class SprintsUserStoriesTasksComponent implements OnInit {
     this.model.descriptionS = this.sprint.description; 
     this.descriptiontext = true;
   }
+
   sprintDescriptionSave(){
-    ;
     this.sprintService.update(this.project.id,this.model.descriptionS, this.sprint.id).subscribe(
       resultado =>{
         console.log(resultado);
@@ -39,5 +43,7 @@ export class SprintsUserStoriesTasksComponent implements OnInit {
     this.descriptiontext = false;
     
   }
+
+
 
 }

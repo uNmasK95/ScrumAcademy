@@ -3,7 +3,8 @@ import { Question } from '../question';
 
 @Component({
   selector: 'questions-list',
-  templateUrl: './questions-list.component.html'
+  templateUrl: './questions-list.component.html',
+  styleUrls: ['./questions-list.component.css']
 })
 export class QuestionsListComponent implements OnInit {
   p1: Question = new Question("Task2","Proj2", "user1", "How to 1?");
@@ -22,7 +23,9 @@ export class QuestionsListComponent implements OnInit {
     this.questionSelected = q;
     this.questionIdSelected = i;
   }
-  constructor() { }
+  constructor() { 
+
+  }
 
   ngOnInit() {
   }

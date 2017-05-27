@@ -1,7 +1,10 @@
-<h1>Questions</h1>
+<div class="row panel">
 <div class="row">
+  <div class="col-me-11 col-md-offset-1">
+  <h1>Questions:</h1>
+  </div>
   <div class="col-md-12">
-    <ul class="list-group">
+    <ul id="questionslist" class="list-group">
       <questions-item *ngFor="let q of questions; let i = index" [question]="q" [questionId]="i" (click)="onSelect(q,i)"></questions-item>
     </ul>
   </div>
@@ -9,4 +12,5 @@
 
 <div *ngIf="questionSelected">
   <questions-detail [question]="questionSelected" [questionId]="questionIdSelected"></questions-detail>
+</div>
 </div>

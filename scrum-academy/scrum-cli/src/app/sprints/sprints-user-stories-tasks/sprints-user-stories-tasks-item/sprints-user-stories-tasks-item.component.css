@@ -58,7 +58,7 @@
     color: black;
 }
 .newtaskaddUser{
-    margin-left: 30px;   
+    margin-left: 10px;   
 }
 
 /*#removeUser {
@@ -79,6 +79,7 @@
    right: 0;
    padding: 1px 1px 1px 1px;
    color: red;
+   border: none;
 } 
 
 #taskDescription{
@@ -86,4 +87,10 @@
 }
 #forTask{
     position: relative;
+}
+
+.alert{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    border: none;
 }

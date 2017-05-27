@@ -13,9 +13,10 @@ export class RequestsService {
   //create new request :team_id, :statement_id, :accept
   create(teamId : number, statementID: number, accept: boolean ) {
       console.log("Vou criar request");
+      console.log(JSON.stringify({ team_id: teamId, statement_id: statementID, accept: accept}));
       return this.http.post(this.httpUtil.url('/requests'),
                   JSON.stringify({ team_id: teamId, statement_id: statementID, accept: accept}) , this.httpUtil.headers())
-                .map(this.httpUtil.extrairDados);
+                      .map(this.httpUtil.extrairDados);
   }
   getByUser(idUser : number, validate: boolean){
         let headersParams = { 'Content-Type': 'application/json' };

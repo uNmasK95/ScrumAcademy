@@ -1,4 +1,4 @@
-<div class="row" >
+<div *ngIf="getType()==1" class="row" >
   <div class="col-md-12">
     <div class="panel panel-dashboardTeams">
       <div class="panel-body">
@@ -20,6 +20,35 @@
             <div class="alert alert-info" role="alert">No requests for any Project!</div>
           </div>
 
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="getType()==2" class="row" >
+  <alert></alert>
+  <div class="col-md-12">
+    <div class="panel panel-dashboardTeams">
+      <div class="panel-body">
+        
+        <div class="row">
+          <div class="col-md-6 col-md-offset-2 col-sm-9" id="titTeams">
+            <h3>Teams</h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 col-md-offset-2" *ngIf="!emptyTeams">
+            <ul class="list-group">
+                <team-user *ngFor="let r of teams; let i = index" [teams]="r"></team-user>
+            </ul>
+          </div>
+
+          <div class="col-md-10 col-md-offset-2" *ngIf="emptyTeams">
+            <div class="alert alert-info" role="alert">No Teams!</div>
+          </div>
         </div>
 
       </div>

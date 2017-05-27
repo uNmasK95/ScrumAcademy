@@ -14,12 +14,13 @@
             <div>User Storie 2</div>
             <div><span class='handle'>+</span>User Storie 1</div-->
             <div id="forTask" style="background:white;"   *ngFor='let t of tasks'>   
-              <h4 id="taskDescription">{{t}} adadadadaaduudabwduabudba udbawu dbua bduw kn dkand ka ndkan dwka wndkwa</h4>
+              <h4 id="taskDescription">{{t.description}}</h4>
               <span *ngIf="!hasUserAss(t)" class='glyphicon glyphicon-user glyphicon-user-donthas'></span>
-              <div  style="background:white;" calss="col-md-offset-2">
-                <button style="background: white"id="removeUser"type="submit" class="btn btn-default pull-right">X</button>
-                <button id="addUser" (click)="addUser(t)" type="submit" class="btn btn-default pull-right">Add User</button>
-              </div>
+                <button style="background: white" id="removeUser"  (click)="removeTask(t)" type="submit" class="btn btn-default pull-right">X</button>
+                <div class="alert alert-success" role="alert" style="background: white" *ngIf="haveuser(t)">
+                    Email: {{t.userEmail}}
+                  <button id="addUser" (click)="addUser(t)" type="submit" class="btn btn-default pull-right">Add User</button>
+                </div>
             </div>
         </div>
 
@@ -30,12 +31,12 @@
       <div *ngIf="addD">
         <form id="taskForm" (ngSubmit)="addU()" class="form-horizontal">
           <div class="form-group">
-            <h2>Task: {{taskSelected}}</h2>
+            <h2>Task: {{taskSelected.description}}</h2>
             <label class="col-xs-4 control-label">Developer</label>
             <div class="col-xs-7 col-xs-offset-1 selectContainer">
                 <select class="form-control" id="newUser"  name="newUser" [(ngModel)]="modelNewTask.newUser">
                     <!--option value="">Choose a developer</option-->
-                    <option *ngFor='let u of users' [value]="u.username" >{{u.username}}</option>
+                    <option *ngFor='let u of users' [value]="u.id" >{{u.email}}</option>
                     <!--option value="green">Green</option>
                     <option value="red">Red</option>
                     <option value="yellow">Yellow</option>
@@ -59,6 +60,20 @@
             <label class="col-xs-4 control-label" for="newtask"></label>
             <input type="text" class="form-control" id="taskN" name="newtask" [(ngModel)]="modelNewTask.newtask" tabindex="1" placeholder="Description: Ex: Print Hello" #newtask="ngModel" required>
             <div *ngIf="f.submitted && !newtask.valid" class="help-block">New Task is required</div>
+          </div>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newtask.valid }">
+            <label class="col-xs-4 control-label" for="newTaskUser">Develope: </label>
+            <div class="col-xs-7 col-xs-offset-1 selectContainer">
+                <select class="form-control" id="newUser"  name="newTaskUser" [(ngModel)]="modelNewTask.newTaskUser" #newTaskUser="ngModel" required>
+                    <!--option value="">Choose a developer</option-->
+                    <option *ngFor='let u of users' [value]="u.id" >{{u.email}}</option>
+                    <!--option value="green">Green</option>
+                    <option value="red">Red</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="white">White</option-->
+                </select>
+                <div *ngIf="f.submitted && !newTaskUser.valid" class="help-block">Developer is required</div>
+            </div>
           </div>
           
           <div class="form-group">
