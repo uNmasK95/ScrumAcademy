@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
     this.userLogged = JSON.parse(localStorage.getItem('userOn'));
     this.model = JSON.parse(localStorage.getItem('userOn'));
   }
-
+ 
   edit(){
     console.log(this.userLogged);
     console.log("user");
@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
         this.userService.userconfirm(this.model.email,this.model.password).subscribe(
           resultado => {
             //localStorage.setItem('currentUser',resultado.token);
-            this.userService.update(this.userLogged.id,this.model.nome,this.model.newpassword).subscribe(
+            this.userService.update(this.userLogged.id,this.model.name,this.model.newpassword).subscribe(
               resultado => {
                 this.userLogged.name = this.model.name;
                 localStorage.setItem('userOn',JSON.stringify(this.userLogged));
@@ -54,8 +54,7 @@ export class ProfileComponent implements OnInit {
       }
       else{
         //mandar pedido alterar apenas o nome
-        
-        this.userService.updateName(this.userLogged.id,this.model.nome).subscribe(
+        this.userService.updateName(this.userLogged.id,this.model.name).subscribe(
           resultado =>{
             this.userLogged.name = this.model.name;
             localStorage.setItem('userOn',JSON.stringify(this.userLogged));
@@ -73,7 +72,7 @@ export class ProfileComponent implements OnInit {
       if(this.model.password && this.model.newpassword == this.model.newconfpassword){
         this.userService.userconfirm(this.model.email,this.model.password).subscribe(
             resultado => {
-              this.userService.update(this.userLogged.id,this.model.nome,this.model.newpassword).subscribe(
+              this.userService.update(this.userLogged.id,this.model.name,this.model.newpassword).subscribe(
                 resultado => {
                   this.userLogged.name = this.model.name;
                   localStorage.setItem('userOn',JSON.stringify(this.userLogged));

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../question';
+import { DoubtsService } from "app/services/doubts.service";
 
 @Component({
   selector: 'questions-list',
@@ -7,27 +8,50 @@ import { Question } from '../question';
   styleUrls: ['./questions-list.component.css']
 })
 export class QuestionsListComponent implements OnInit {
-  p1: Question = new Question("Task2","Proj2", "user1", "How to 1?");
-  p2: Question = new Question("Task7","Proj22", "user5", "How to 2?");
-  p3: Question = new Question("Task6","Proj23", "user3", "How to 3?");
-  p4: Question = new Question("Task5","Proj253", "user2", "How to 4?");
-  p5: Question = new Question("Task3","Proj6", "user1", "How to 5?");
-  p6: Question = new Question("Task","Proj4", "user6", "How to 6?");
-  questions: Question[] =  [this.p1,this.p2,this.p3,this.p4,this.p5,this.p6];
+  //p1: Question = new Question("Task2","Proj2", "user1", "How to 1?");
+  questions: Question[] =  [];
 
- 
+  userId: number;
   questionSelected: Question;
   questionIdSelected: number;
+  model : any = {};
 
   onSelect(q: Question, i: number){
     this.questionSelected = q;
     this.questionIdSelected = i;
   }
-  constructor() { 
-
+  constructor(private doubtsService:DoubtsService) { 
   }
 
   ngOnInit() {
+    this.userId = JSON.parse(localStorage.getItem('userOn')).id;
+    this.doubtsService.getByUser(this.userId).subscribe(
+      resultado =>{
+        for(let doubts of resultado){
+          if(!doubts.answer){
+            console.log(doubts);
+            let doubt = new Question(doubts.id,doubts.description,doubts.user.name,doubts.answer);
+            this.questions.push(doubt);
+          }
+        }
+      }, 
+      error =>{
+        console.log(error);
+      }
+    );
+  }
+  answerDoubt(){
+    if(this.model.answer){
+      this.doubtsService.updateAnswer(this.questionSelected.id,this.model.answer).subscribe(
+        resultado =>{
+          console.log("esta");
+          this.questions.splice(this.questionIdSelected,1);
+        },
+        error =>{
+          console.log(error);
+        }
+      );
+    }
   }
 
 }

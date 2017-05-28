@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { URLSearchParams,Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { User } from '../models/user';
 import { HttpUtilService } from "app/services/http-util.service";
@@ -27,31 +27,12 @@ export class UserService {
 
     //É preciso ver qual o caminho, faz update do nome do user
     updateName(id:number,name: string){
-        let headersParams = { 'Content-Type': 'application/json' };
-        if (localStorage['currentUser']) {
-            console.log("token")
-            headersParams['Authorization'] = localStorage['currentUser'];
-        }
-        var search = new URLSearchParams();
-        search.set('name', ''+name);
-        let headers = new Headers(headersParams);
-        let options = new RequestOptions({ headers: headers, search:search});
-        return this.http.put(this.httpUtil.url('/users/'+id),options)
+        return this.http.put(this.httpUtil.url('/users/'+id),JSON.stringify({name: name}),this.httpUtil.headers())
                    .map(this.httpUtil.extrairDados);
     }
 
     //é preciso ver o caminho, faz update do nome e da passe do user
     update(id:number,name: string, password: string){
-        let headersParams = { 'Content-Type': 'application/json' };
-        if (localStorage['currentUser']) {
-            console.log("token")
-            headersParams['Authorization'] = localStorage['currentUser'];
-        }
-        var search = new URLSearchParams();
-        search.set('name', ''+name);
-        search.set('password', ''+password);
-        let headers = new Headers(headersParams);
-        let options = new RequestOptions({ headers: headers, search:search});
         return this.http.put(this.httpUtil.url('/users/' + id),JSON.stringify({name: name, password: password}),this.httpUtil.headers())
                    .map(this.httpUtil.extrairDados);
     }

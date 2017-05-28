@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpUtilService } from './http-util.service';
 import { Router } from '@angular/router';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { URLSearchParams,Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Task } from "app/models/task";
 
 @Injectable()
