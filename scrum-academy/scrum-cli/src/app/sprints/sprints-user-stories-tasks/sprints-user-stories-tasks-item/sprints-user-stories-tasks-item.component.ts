@@ -79,7 +79,7 @@ export class SprintsUserStoriesTasksItemComponent {
     if(this.taskSelected.userId!=+this.modelNewTask.newUser){
       console.log(this.taskSelected)
       console.log(this.modelNewTask);
-      let task: Task = new Task(this.taskSelected.id,this.taskSelected.description,this.modelNewTask.newUser,this.taskSelected.state);
+      let task: Task = new Task(this.taskSelected.id,this.taskSelected.description,this.modelNewTask.newUser,this.taskSelected.userEmail, this.taskSelected.state);
       this.tasksService.update(this.projectId,this.userstorie.id,task).subscribe(
         resultado =>{
           console.log(resultado);
