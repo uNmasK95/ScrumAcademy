@@ -15,13 +15,15 @@ export class DoubtsService {
         if (localStorage['currentUser']) {
             headersParams['Authorization'] = localStorage['currentUser'];
         }
-        var search = new URLSearchParams();
-        search.set('task', ''+taskId);
+        var search1 = new URLSearchParams();
+        search1.set('task', ''+taskId);
         let headers = new Headers(headersParams);
-        let options = new RequestOptions({ headers: headers, search:search});
-        return this.http.get(this.httpUtil.url('/doubts'),options )
+        let options = new RequestOptions({ headers: headers, search:search1});
+        console.log(options);
+        return this.http.get(this.httpUtil.url('/doubts?task='+taskId),options )
                    .map(this.httpUtil.extrairDados);
   }
+  
 
   create(description: string, userId: number,taskId: number){
     console.log("Create comments");
