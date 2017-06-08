@@ -41,8 +41,10 @@ export class TeamsCreateComponent implements OnInit {
                   console.log("res");
                   console.log(resultado);
                   for(let i=0;i<resultado.length;i++){
-                    this.users.push(new User(resultado[i].id,resultado[i].name,resultado[i].email,resultado[i].type.id));
-                    this.usersNames[i] = resultado[i].name;
+                    if(resultado[i].id != JSON.parse(localStorage.getItem('userOn')).id){
+                      this.users.push(new User(resultado[i].id,resultado[i].name,resultado[i].email,resultado[i].type.id));
+                      this.usersNames[i] = resultado[i].name;
+                    }
                   }
                   this.getStatementsAvailable();
                   //this.users = resultado;
