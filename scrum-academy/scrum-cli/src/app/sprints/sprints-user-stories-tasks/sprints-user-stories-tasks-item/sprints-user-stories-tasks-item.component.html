@@ -19,7 +19,7 @@
                 <button style="background: white" id="removeUser"  (click)="removeTask(t)" type="submit" class="btn btn-default pull-right">X</button>
                 <div class="alert alert-success" role="alert" style="background: white" *ngIf="haveuser(t)">
                     Email: {{t.userEmail}}
-                  <button id="addUser" (click)="addUser(t)" type="submit" class="btn btn-default pull-right">Add User</button>
+                  <button id="addUser" (click)="addUser(t)" type="submit" class="btn btn-default pull-right">Update User</button>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
   
           <div class="form-group">
               <div class="col-xs-4">
-                  <button id="submitTask" type="submit" class="btn btn-primary">Add User</button>
+                  <button id="submitTask" type="submit" class="btn btn-primary">Update User</button>
                   <!--button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button-->
               </div>
           </div>
