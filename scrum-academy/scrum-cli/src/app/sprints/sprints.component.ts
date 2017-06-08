@@ -45,6 +45,10 @@ export class SprintsComponent implements OnInit {
     this.router.navigate(['projects',this.project.id]);
   }
 
+  criadas(){
+    this.typeofpage=1;
+  }
+
   getSprints(){
       this.sprintService.get(this.project.id).subscribe(
         resultado => {

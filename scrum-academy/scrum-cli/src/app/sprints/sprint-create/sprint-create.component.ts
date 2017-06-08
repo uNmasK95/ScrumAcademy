@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Project } from "app/dashboard/project/project";
 import { SprintService } from "app/services/sprint.service";
@@ -11,6 +11,7 @@ import { SprintService } from "app/services/sprint.service";
 })
 export class SprintCreateComponent implements OnInit {
 
+  @Output() criadas = new EventEmitter();
   returnUrl: string;
   projectId : number;
   project : Project;
@@ -91,7 +92,7 @@ export class SprintCreateComponent implements OnInit {
         );
         
       }
-      this.router.navigate(['projects',this.projectId,'sprints']);
+      this.criadas.emit("change");
       // ESTA LINHA NAO TESTEI, MAS É PARA ELE ASEGUIR A CRIAR ATUALIZAR LOGO É ESSA A IDEIA
      // this.voltar();
     }

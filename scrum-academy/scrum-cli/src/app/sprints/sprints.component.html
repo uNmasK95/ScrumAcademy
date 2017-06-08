@@ -34,7 +34,7 @@
   </div>
 </div>
 <div *ngIf="typeofpage==0">
-    <sprint-create></sprint-create>
+    <sprint-create (criadas)="criadas()"></sprint-create>
 </div>
 <div *ngIf="typeofpage==2">
     <h1> Project has not started yet.</h1>

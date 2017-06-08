@@ -107,7 +107,7 @@ export class SprintsUserStoriesTasksItemComponent {
         console.log(error);
       }
     );
-    this.tasks.push(this.modelNewTask.newtask);// AQUI MUDAR DEPOIS PARA TASK
+    this.getTasks();
     this.addT = false;
   }
 
