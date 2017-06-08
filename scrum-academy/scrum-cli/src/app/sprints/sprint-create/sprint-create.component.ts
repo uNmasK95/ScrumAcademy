@@ -91,6 +91,8 @@ export class SprintCreateComponent implements OnInit {
         );
         
       }
+      this.router.navigate(['projects',this.projectId,'sprints']);
+      // ESTA LINHA NAO TESTEI, MAS É PARA ELE ASEGUIR A CRIAR ATUALIZAR LOGO É ESSA A IDEIA
      // this.voltar();
     }
   }

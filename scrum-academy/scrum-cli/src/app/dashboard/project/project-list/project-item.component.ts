@@ -17,6 +17,9 @@ export class ProjectItemComponent {
 
   constructor(private router: Router, private teamService: TeamsService){
 	}
+  ngOnInit(){
+      this.project.description = this.project.description.substring(0,14) +"...";
+  }
 
   selectRoute(){
     //ver consoante id utilizador ver que tipo é neste projeto

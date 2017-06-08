@@ -31,29 +31,34 @@ export class RegisterComponent {
             private userService : UserService) { }
 
   register() {
-        this.loading = true;
-        if(this.model.type){
-            if(this.model.password == this.model.confirmpassword){
-                this.isauthenticationService.register(this.model.username,this.model.email,this.model.password,this.model.type)
-                    .subscribe(
-                        data => {
-                            this.utilizadorOn();
-                            this.router.navigate(['']);
-                        },
-                        error => {
-                            this.alertService.error("Email já esta a ser utilizado");
-                            this.loading = false;
-                        });
+        if(this.validateEmail(this.model.email)){
+            this.loading = true;
+            if(this.model.type){
+                if(this.model.password == this.model.confirmpassword){
+                    this.isauthenticationService.register(this.model.username,this.model.email,this.model.password,this.model.type)
+                        .subscribe(
+                            data => {
+                                this.utilizadorOn();
+                                this.router.navigate(['']);
+                            },
+                            error => {
+                                this.alertService.error("Email já esta a ser utilizado");
+                                this.loading = false;
+                            });
+                }
+                else{
+                    this.loading = false;
+                    this.alertService.error("Password e Confirm Password Diferentes");
+                }
             }
             else{
                 this.loading = false;
-                this.alertService.error("Password e Confirm Password Diferentes");
-            }
+                this.alertService.error("Type não selecionado");
+            }   
         }
         else{
-            this.loading = false;
-            this.alertService.error("Type não selecionado");
-        }   
+            this.alertService.error("Email não existe");
+        }
     }
     utilizadorOn(){
         this.userService.getById(+localStorage.getItem('id')).subscribe(
@@ -69,4 +74,8 @@ export class RegisterComponent {
             });
     }
 
+    validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
 }

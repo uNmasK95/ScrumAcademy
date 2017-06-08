@@ -5,7 +5,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-8 col-md-offset-2">
     <ul class="list-group">
       <user-stories-item *ngFor="let us of userStories; let i = index" [userStorie]="us" (click)="onSelect(us)"></user-stories-item>
     </ul>

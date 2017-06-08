@@ -14,7 +14,7 @@
 									<div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
 								</div>
 								<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-									<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" [(ngModel)]="model.email" #email="ngModel" required >
+									<input type="email" name="email" id="email" autocomplete="off" tabindex="1" class="form-control" placeholder="Email Address" value="" [(ngModel)]="model.email" #email="ngModel"required >
 									<div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
 								</div>
 								<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
