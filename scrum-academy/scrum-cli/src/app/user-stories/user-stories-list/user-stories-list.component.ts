@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStorie } from '../userstorie';
+import { UserStorieService } from "app/services/userstorie.service";
 
 @Component({
   selector: 'user-stories-list',
@@ -7,21 +8,34 @@ import { UserStorie } from '../userstorie';
 })
 export class UserStoriesListComponent implements OnInit {
 
-  u1: UserStorie = new UserStorie("UserStorie 1",10);
-  u2: UserStorie = new UserStorie("UserStorie 2",20);
-  u3: UserStorie = new UserStorie("UserStorie 3",30);
-  userStories: UserStorie[] =  [this.u1,this.u2,this.u3];
+  userStories: UserStorie[];
 
- 
+  projectIdSelected : number;
   userStorieSelected: UserStorie;
   userStorieIdSelected: number;
 
-  onSelect(us: UserStorie, i: number){
+  constructor(private userStorieService: UserStorieService) { }
+
+  onSelect(us: UserStorie){
     this.userStorieSelected = us;
-    this.userStorieIdSelected = i;
+    this.userStorieIdSelected = us.id;
   }
 
+  // ao iniciar vai buscar todos as userstories daquele projecto
   ngOnInit() {
+    this.projectIdSelected = +localStorage.getItem('projectId');
+    this.userStorieService.getFeatures(this.projectIdSelected).subscribe(
+      response =>{
+        this.userStories=response;
+        console.log(response);
+      },
+      error =>{
+        console.log(error);
+      }
+    );
   }
+
+
+
 
 }

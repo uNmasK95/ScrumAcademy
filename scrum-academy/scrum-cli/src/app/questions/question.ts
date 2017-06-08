@@ -1,8 +1,8 @@
 export class Question {
     constructor(
-        public task: string,
-        public project: string,
+        public id: number,
+        public description: string,
         public user: String,
-        public question: String)
+        public answer: String)
         {}
 }

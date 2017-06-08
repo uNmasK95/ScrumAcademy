@@ -1,0 +1,81 @@
+/*.dash{
+    padding: 0%;
+}*/
+
+/*.dash1{
+    height: 50%;
+}*/
+
+.dash{
+    padding: 0%;
+    border: 1px solid red;
+}
+/*#bag2{
+    height: 100%;
+    /*width: 100%;
+}
+#bag3{
+    height: 100%;
+    /*width: 100%;
+}
+*/
+.b1{
+    height: 100%;
+    border-right: 2px solid black;
+    padding: 0;
+}
+.b2{
+    height: 100%;
+    border-right: 2px solid black;
+    padding: 0;
+}
+.b3{
+    height: 100%;
+    padding: 0;
+}
+
+img {
+    height: 50px;
+    width: 50px;
+    /*position: absolute;*/
+    top: 0px;
+    left: 0px;
+    float: left;
+    padding-right: 2px;
+}
+span {
+    cursor: pointer;
+    color: green;
+    text-shadow: 1px 1px 2px grey, 0 0 25px grey, 0 0 5px darkgrey; 
+}
+
+#sp{
+    cursor: pointer;
+    color: red;
+}
+#as{
+    color: green;
+}
+#as2{
+    color: lightcoral;
+}
+#newC{
+    cursor: pointer;
+    color: green;
+}
+#buttonAddC{
+    background-color: #ecf0f1;
+    color: black;
+    cursor: pointer;
+}
+#buttonAddC:hover{
+    background-color: lightgreen;
+    color: #ecf0f1;;
+}
+th{
+    text-align: center;
+}
+.r1{
+    padding-left: 10px;
+    padding-right: 10px;
+}

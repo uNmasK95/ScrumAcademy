@@ -1,16 +1,18 @@
 <div class="col-md-12">
-  <div class="col-md-5">
-    <a [routerLink]="['/projects',projectId,'sprints',sprintId]" class="list-group-item clearfix" routerLinkActive="active">
+  <div class="col-md-4">
+    <a [routerLink]="['/projects',projectId,'sprints',sprintId]" class="list-group-item clearfix" (click)="onSelect()" routerLinkActive="active">
       <!--[routerLink]="['projects',projectId]" class="list-group-item clearfix" routerLinkActive="active"-->
       <div class="pull-left">
-        <p class="list-group-item-text">{{sprint.description}}</p>
+        <p class="list-group-item-text">Description : {{sprint.description}}</p>
+        <p class="list-group-item-text">Inicial Date : {{sprint.startDate}}</p>
+         <p class="list-group-item-text">End Date : {{sprint.endDate}}</p>
       </div>
     </a>
   </div>
 
   <!--Dashboard sprints -->
-  <div class="col-md-7">
-    <sprint-dashboard></sprint-dashboard>
+  <div class="col-md-8">
+    <sprint-dashboard [sprintId]="sprint.id" ></sprint-dashboard>
   </div>
 
 </div>

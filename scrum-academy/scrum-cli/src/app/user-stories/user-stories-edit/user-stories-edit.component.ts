@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { UserStorieService } from "app/services/userstorie.service";
+import { AlertService } from "app/services/alert.service";
+import { UserStorie } from "app/user-stories/userstorie";
 
 @Component({
   selector: 'user-stories-edit',
@@ -6,12 +9,79 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./user-stories-edit.component.css']
 })
 export class UserStoriesEditComponent implements OnInit {
-
-  @Input() userStorieId: number;
+  @Input() userStorie: UserStorie;
   
-  constructor() { }
+  model : any ={};
+  projectIdSelected : number;
+
+  constructor(private userStorieService: UserStorieService, private alertService: AlertService) { }
 
   ngOnInit() {
+    this.projectIdSelected = +localStorage.getItem('projectId');
   }
 
+  edit(){
+    //caso que ele mudou o priority
+    if(this.model.newpriorityUS != undefined && this.model.newdescroptionUS != undefined){
+      if(this.model.newpriorityUS>0 && this.model.newpriorityUS<=10){
+        this.editServiceFeatureAll(this.model.newdescroptionUS,this.model.newpriorityUS);
+      }
+      else{
+        // mandar alerta
+        this.alertService.error("Choose priority between 1 and 10!");
+      }
+    }
+    else{
+      if(this.model.newdescroptionUS != undefined){
+        this.editServiceFeatureDescription(this.model.newdescroptionUS);
+      }
+      else{
+        if(this.model.newpriorityUS!=undefined){
+          if(this.model.newpriorityUS>0 && this.model.newpriorityUS<=10){
+            this.editServiceFeaturePriority(this.model.newpriorityUS);
+          }
+          else{
+            // mandar alerta
+            this.alertService.error("Choose priority between 1 and 10!");
+          }
+        }
+      }
+    }
+  }
+
+  // edit all feature
+  editServiceFeatureAll(description: string, priority: string){
+    this.userStorieService.updateFeatures(this.projectIdSelected,description,priority,this.userStorie.id).subscribe(
+        resultado =>{
+          let feature = resultado;
+          console.log(resultado);
+        },
+        error =>{
+          console.log(error);
+        }
+      )
+  }
+  editServiceFeaturePriority(priority: string){
+    this.userStorieService.updateFeaturePriority(this.projectIdSelected,priority,this.userStorie.id).subscribe(
+      resultado =>{
+        let feature = resultado;
+        console.log(resultado);
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
+   editServiceFeatureDescription(description: string){
+      console.log(this.userStorie.id);
+    this.userStorieService.updateFeatureDescription(this.projectIdSelected,description,this.userStorie.id).subscribe(
+      resultado =>{
+        let feature = resultado;
+        console.log(resultado);
+      },
+      error =>{
+        console.log(error);
+      }
+    )
+  }
 }

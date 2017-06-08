@@ -8,21 +8,21 @@
 				<div class="navbar-header">
 					<!--a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">Scrum Academy</a-->
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle navigation</span></button>					
-					<a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">Scrum Academy</a>
+					
+					<a class="navbar-brand" [routerLink]="['/']" routerLinkActive="active">
+                        <img id="imgLogo" src="../assets/img/lll.png" alt="LogSA">
+                    </a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a [routerLink]="['/teams']" *ngIf="isLogged() && getType()==1">Teams</a></li>
-						<!--li><a [routerLink]="['/userstories']" *ngIf="isLogged()">User Stories</a></li-->
-					</ul>
 					<ul class="nav navbar-nav navbar-right">
+						<li><a [routerLink]="['/teams']" *ngIf="isLogged()">Teams</a></li>
 						<li><a [routerLink]="['/questions']" *ngIf="isLogged() && getType()==1">Questions</a></li>
 						<li class="dropdown" *ngIf="isLogged()">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
 							<ul class="dropdown-menu" >
-								<li><a [routerLink]="['/profile', 1]" ><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+								<li><a *ngIf="getId()>0" [routerLink]="['/profile', getId()]" ><span class="glyphicon glyphicon-user"></span>Profile</a></li>
 								<li><a [routerLink]="['/']" (click)="logout()" ><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 							</ul>
 						</li>

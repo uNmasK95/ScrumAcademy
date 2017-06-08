@@ -1,0 +1,220 @@
+
+<div class="row r1">
+        <table class="table table-bordered">
+        <thead>
+        <tr id="titT">
+            <th>User Storie</th>
+            <th>ToDo</th>
+            <th>Work In Progress</th>
+            <th>Done</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <h2 class="list-group-item-text">
+                    {{userstorie.description}}<br>
+                    <small>Priority:{{userstorie.priority}}</small><br>
+                    <small>Score:{{userstorie.score}}</small>
+                </h2>
+            </td>
+            <td class="success">
+                <div id="bag1" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksToAss'>
+                    <div *ngFor='let t1 of myTasksToAss' [attr.taskId]="t1.id">
+                        <img src="../assets/img/mytodo.png" alt="iconPerson" >
+                        <h5>{{userOnName}}<br>
+                        <span class="glyphicon glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal" 
+                            (click)="changeTask(t1)">Comment/Doubt</span></h5>
+                        {{t1.description}}
+                    </div>
+                </div>
+            </td>
+            <td class="success">
+                <div id="bag2" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksInProgress'>
+                    <div *ngFor='let t2 of myTasksInProgress' [attr.taskId]="t2.id">
+                        <img src="../assets/img/myprogress.png" alt="iconPerson">
+                        <h5>{{userOnName}}<br>
+                        <span class="glyphicon glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal"
+                            (click)="changeTask(t2)">Comment/Doubt</span></h5>
+                        {{t2.description}}
+                    </div>
+                </div>
+            </td>
+            <td class="success">
+                <div id="bag3" class='container' [dragula]='"third-bag"+[userstorie.id]' [dragulaModel]='myTasksDone'>
+                    <div *ngFor='let t3 of myTasksDone' [attr.taskId]="t3.id">
+                        <img src="../assets/img/mydone.png" alt="iconPerson">
+                        <h5>{{userOnName}}<br>
+                        <span class="glyphicon glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal"
+                            (click)="changeTask(t3)">Comment/Doubt</span></h5>
+                        {{t3.description}}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td >
+            </td>
+            <td class="danger">
+                <div class='container'>
+                    <div *ngFor='let ot1 of othersTasksToAss'>
+                        <img src="../assets/img/otherstodo.png" alt="iconPerson">
+                        <h5>{{ot1.userName}}<br>
+                        <span class="glyphicon glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#myModal2"
+                            (click)="changeTask(ot1)">Comment/Doubt</span></h5>
+                        {{ot1.description}}
+                    </div>
+                </div>
+            </td>
+            <td class="danger">
+                <div class='container' >
+                    <div *ngFor='let ot2 of othersTasksInProgress'>
+                        <img src="../assets/img/othersprogress.png" alt="iconPerson">
+                        <h5>{{ot2.userName}}<br>
+                        <span class="glyphicon glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#myModal2"
+                            (click)="changeTask(ot2)">Comment/Doubt</span></h5>
+                        {{ot2.description}}
+                    </div>
+                </div>
+            </td>
+            <td class="danger">
+                <div class='container'>
+                    <div *ngFor='let ot3 of othersTasksDone'>
+                        <img src="../assets/img/othersdone.png" alt="iconPerson">
+                        <h5>{{ot2.userName}}<br>
+                        <span class="glyphicon glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#myModal2"
+                            (click)="changeTask(ot3)">Comment/Doubt</span></h5>
+                        {{ot3.description}}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal for tasksUserOn -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog ">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Comments/Doubts</h4>
+        </div>
+
+        
+        <div class="modal-body">
+            <div class="modal-inline">
+                <h4 class="modal-title">Comments <p id="newC" class="glyphicon glyphicon glyphicon-plus-sign" (click)="addC()"></p></h4>  
+                <div *ngIf="addc">
+                    <form (ngSubmit)="f.form.valid && createComment()" #f="ngForm" novalidate>
+                        <div class="form-group">
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !descriptionC.valid }">
+                                <label for="descriptionC">Comment:</label>
+                                <textarea class="form-control" rows="3" name="descriptionC"
+                                     [(ngModel)]="model.descriptionC" id="iddescriptionC" 
+                                    #descriptionC="ngModel" placeholder="Put here the comment..." required>
+                                </textarea>
+                                <div *ngIf="f.submitted && !descriptionC.valid" class="help-block">Description is required</div>
+                            </div>
+
+                            <button type="submit" id="buttonAddC">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Create
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div *ngFor='let c of comments'>
+                    <p href="#" title="Remove" data-toggle="popover" data-trigger="hover" id="sp"
+                        class="glyphicon glyphicon glyphicon-remove-circle" (click)="removeC(c.id)"> </p>{{c.description}}
+                </div>  
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-inline">
+                <h4 class="modal-title">Doubts <p id="newC" class="glyphicon glyphicon glyphicon-plus-sign" (click)="addD()"></p></h4>  
+                <div *ngIf="addd">
+                    <form (ngSubmit)="f.form.valid && createDoubt()" #f="ngForm" novalidate>
+                        <div class="form-group">
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !descriptionD.valid }">
+                                <label for="descriptionD">Doubt:</label>
+                                <textarea class="form-control" rows="3" name="descriptionD"
+                                     [(ngModel)]="model.descriptionD" id="iddescriptionD" 
+                                    #descriptionD="ngModel" placeholder="Put here the doubt to do to teacher..." required>
+                                </textarea>
+                                <div *ngIf="f.submitted && !descriptionD.valid" class="help-block">Description is required</div>
+                            </div>
+
+                            <button type="submit" id="buttonAddC">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Create
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div *ngFor='let d of doubts'>
+                    <div class="panel panel-dashboardDoubts">
+                    <p href="#" title="Remove" data-toggle="popover" data-trigger="hover" id="sp"
+                        class="glyphicon glyphicon glyphicon-remove-circle" (click)="removeD(d.id)"> </p>Question: {{d.description}}<br>
+                    
+                    <p *ngIf="d.answer" href="#" id="as" class="glyphicon glyphicon glyphicon-ok-circle">Answer: {{d.answer}} </p>
+                    <p *ngIf="!d.answer" href="#" id="as2" class="glyphicon glyphicon glyphicon-ok-circle">Answer: ... </p>
+                    </div>
+                </div>  
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="addC2()">Close</button>
+        </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Modal for tasksOthersUsers -->
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog ">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Comments/Doubts</h4>
+        </div>
+
+        
+        <div class="modal-body">
+            <div class="modal-inline">
+                <h4 class="modal-title">Comments </h4>  
+                    
+                <div *ngFor='let c of comments'>
+                    <p href="#" data-toggle="popover" data-trigger="hover"
+                        class="glyphicon glyphicon glyphicon-arrow-right" > </p>{{c.description}}
+                </div>  
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-inline">
+                <h4 class="modal-title">Doubts </h4>  
+                <div *ngFor='let d of doubts'>
+                    <div class="panel panel-dashboardDoubts">
+                    Question: {{d.description}}<br>
+                    
+                    <p *ngIf="d.answer" href="#" id="as" class="glyphicon glyphicon glyphicon-ok-circle">Answer: {{d.answer}} </p>
+                    <p *ngIf="!d.answer" href="#" id="as2" class="glyphicon glyphicon glyphicon-ok-circle">Answer: ... </p>
+                    </div>
+                </div>  
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="addC2()">Close</button>
+        </div>
+        </div>
+        
+    </div>
+</div>

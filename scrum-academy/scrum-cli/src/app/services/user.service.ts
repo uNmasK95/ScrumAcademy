@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { URLSearchParams,Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { User } from '../models/user';
 import { HttpUtilService } from "app/services/http-util.service";
@@ -15,11 +15,32 @@ export class UserService {
         return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
     }*/
 
-    getById(id: number) {
-       return this.http.get(this.httpUtil.url('/users/' + id), this.httpUtil.headers()).map(this.httpUtil.extrairDados);
-        //console.log(this.http.get('https://evening-anchorage-49793.herokuapp.com/types'));
+    get(){
+        return this.http.get(this.httpUtil.url('/users'), this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
     }
 
+    getById(id: number) {
+        return this.http.get(this.httpUtil.url('/users/' + id), this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
+
+    //É preciso ver qual o caminho, faz update do nome do user
+    updateName(id:number,name: string){
+        return this.http.put(this.httpUtil.url('/users/'+id),JSON.stringify({name: name}),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
+
+    //é preciso ver o caminho, faz update do nome e da passe do user
+    update(id:number,name: string, password: string){
+        return this.http.put(this.httpUtil.url('/users/' + id),JSON.stringify({name: name, password: password}),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
+
+    userconfirm(email: string, password: string){
+        return this.http.post((this.httpUtil.url('/auth/login')), JSON.stringify({email : email, password : password}) ,this.httpUtil.headers())
+                .map(this.httpUtil.extrairDados);
+    }
    // informcacoesUser(mail: string){
       //  let data = this.(mail).catch(this.httpUtil.processarErros);
        // this.user.email = da.email;
@@ -27,12 +48,6 @@ export class UserService {
        // this.user.type = da.type.id;
        // this.user.name = da.name;
     //}
-
-    getType(): Observable<String[]>{
-        return this.http.get(this.httpUtil.url('/types'))
-               .map(this.httpUtil.extrairDados)
-               .catch(this.httpUtil.processarErros);
-    }
 
     /*create(user: User) {
         return this.http.post('/api/users', user, this.jwt()).map((response: Response) => response.json());

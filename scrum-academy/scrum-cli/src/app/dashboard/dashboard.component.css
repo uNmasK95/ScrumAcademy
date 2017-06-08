@@ -1,9 +1,38 @@
-.container{
-    border: 1px solid black;
+#tituloprojects{
+    color: black;
 }
-.row{
-    border: 1px solid red;
+
+#criarTP{
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
 }
-.crl{
-    border: 1px solid blue;
+
+#newSome{
+    cursor: pointer;
+    color: green;
+}
+#newSome:hover{
+    color:lightgreen;
+}
+
+img{
+    margin: auto;
+    padding-bottom: 0;
+}
+h2{
+    text-align: center;
+    /*border-bottom: 5px solid #A13462;*/
+}
+#redline{  
+    /*border-top: 5px solid #A13462;
+    padding-left: 50px;
+    padding-right: 50px;*/
+/*
+    padding-left: 20%;
+    padding-right: 20%;*/
+    text-align: center;
+    border-top: 5px solid #A13462;
+    border-bottom: 5px solid #A13462;
+     width   : 70%;
+    border-radius: 7px;
 }

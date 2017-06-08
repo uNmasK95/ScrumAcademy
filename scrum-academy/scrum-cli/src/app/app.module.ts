@@ -23,13 +23,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { TeamsItemComponent } from './teams/teams-item/teams-item.component';
 import { QuestionsListComponent } from './questions/questions-list/questions-list.component';
 import { QuestionsItemComponent } from './questions/questions-list/questions-item.component';
-import { QuestionsDetailComponent } from './questions/questions-detail/questions-detail.component';
+import { QuestionsDetailComponent } from './questions/questions-list/questions-detail.component';
 import { UserStoriesDetailComponent } from './user-stories/user-stories-detail/user-stories-detail.component';
 import { UserStoriesListComponent } from './user-stories/user-stories-list/user-stories-list.component';
 import { UserStoriesItemComponent } from './user-stories/user-stories-list/user-stories-item.component';
 import { UserStoriesEditComponent } from './user-stories/user-stories-edit/user-stories-edit.component';
 import { UserStoriesNewComponent } from './user-stories/user-stories-new/user-stories-new.component';
-import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { IsAuthenticatedService } from './services/is-authenticated.service';
 import { HttpUtilService } from './services/http-util.service';
 import { LoginGuardService } from "./services/login-guard.service";
@@ -46,6 +45,21 @@ import { SprintsUserStoriesTasksItemComponent } from './sprints/sprints-user-sto
 import { AlertService } from "app/services/alert.service";
 import { AlertComponent } from "app/directives/alert.component";
 import { UserService } from "app/services/user.service";
+import { TeamsCreateComponent } from './teams/teams-create/teams-create.component';
+import { FilterPipe } from './teams/teams-create/FilterPipe';
+import { UserStoriesDashboardComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard.component';
+import { UserStoriesDashboardListComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard-list/user-stories-dashboard-list.component';
+import { UserStoriesDashboardItemComponent } from './user-stories/user-stories-dashboard/user-stories-dashboard-item/user-stories-dashboard-item.component';
+import { ProjectService } from "app/services/project.service";
+import { TeamsService } from "app/services/teams.service";
+import { UserStorieService } from "app/services/userstorie.service";
+import { SprintService } from "app/services/sprint.service";
+import { DragulaService } from "app/components/dragula.provider";
+import { RequestsService } from "app/services/requests.service";
+import { TasksService } from "app/services/tasks.service";
+import { DoubtsService } from "app/services/doubts.service";
+import { CommentsService } from "app/services/comments.service";
+import { TeamsUserComponent } from './teams/teams-user/teams-user.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +85,6 @@ import { UserService } from "app/services/user.service";
     UserStoriesItemComponent,
     UserStoriesEditComponent,
     UserStoriesNewComponent,
-    ProfileEditComponent,
     SprintsComponent,
     SprintsListComponent,
     SprintsItemComponent,
@@ -81,7 +94,13 @@ import { UserService } from "app/services/user.service";
     SprintsUserStoriesTasksComponent,
     SprintsUserStoriesTasksListComponent,
     SprintsUserStoriesTasksItemComponent,
-    AlertComponent
+    AlertComponent,
+    TeamsCreateComponent,
+    FilterPipe,
+    UserStoriesDashboardComponent,
+    UserStoriesDashboardListComponent,
+    UserStoriesDashboardItemComponent,
+    TeamsUserComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +117,15 @@ import { UserService } from "app/services/user.service";
     LoginGuardService,
     HttpUtilService,
     UserService,
-    AlertService],
+    ProjectService,
+    UserStorieService,
+    TeamsService,
+    AlertService,
+    SprintService,
+    RequestsService,
+    TasksService,
+    CommentsService,
+    DoubtsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

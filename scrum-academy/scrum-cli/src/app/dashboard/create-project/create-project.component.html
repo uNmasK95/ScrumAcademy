@@ -3,51 +3,59 @@
 		<div class="col-md-12">
 			<div class="panel panel-home">
 				<div class="panel-body">
+            <div  *ngIf="!projCreated">
             <div class="row">
               <div class="col-md-8 col-md-offset-2 crl">
-                <b>Create Project</b>
+                <h3>Create Project</h3>
               </div>
             </div>
-            
+            <alert></alert>
             <div class="row">
               <div class="col-md-6 col-md-offset-3">
-                <form class="form-horizontal">
-                  <div class="form-group nameProj">
+                <form class="form-horizontal" (ngSubmit)="f.form.valid && createProject()" #f="ngForm" novalidate>
+                  <div class="form-group nameProj" [ngClass]="{ 'has-error': f.submitted && !nameP.valid }">
                     <label class="control-label col-sm-2" for="nameP">Name:</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="nameP" id="idProject" tabindex="1" placeholder="Ex: Project GPS - Scrum Academy">
+                    <div class="col-sm-9 col-sm-offset-1">
+                      <input type="text" class="form-control" name="nameP" [(ngModel)]="model.nameP" id="idProject" tabindex="1" placeholder="Ex: Project GPS - Scrum Academy" #nameP="ngModel" required>
+                      <div *ngIf="f.submitted && !nameP.valid" class="help-block">Name Project is required</div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="description">Password:</label>
-                    <div class="col-sm-10"> 
-                      <input type="text" class="form-control" name="description" id="description" tabindex="2" placeholder="Ex: A web application that ...">
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !descriptionP.valid }">
+                    <label class="control-label col-sm-2" for="descriptionP">Description:</label>
+                    <div class="col-sm-9 col-sm-offset-1">
+                      <input type="text" class="form-control" name="descriptionP" [(ngModel)]="model.descriptionP" id="iddescription" tabindex="2" placeholder="Ex: A web application that ..." #descriptionP="ngModel" required>
+                      <div *ngIf="f.submitted && !descriptionP.valid" class="help-block">Description is required</div>
                     </div>
                   </div>
-                  <div class="form-group">
+
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !initialD.valid }">
                     <label class="control-label col-sm-2" for="initialD">Initial Date:</label>
-                    <div class="col-sm-10"> 
-                      
+                    <div class="col-sm-9 col-sm-offset-1">
+                      <input type="date" name="initialD" placeholder="yyyy/mm/dd" id="idinitialD"[(ngModel)]="model.initialD" #initialD="ngModel" required>
+                      <div *ngIf="f.submitted && !initialD.valid" class="help-block">Initial Date is required</div>
                     </div>
                   </div>
-                  <div class="form-group">
+
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !endD.valid }">
                     <label class="control-label col-sm-2" for="endD">End Date:</label>
-                    <div class="col-sm-10"> 
-                      
+                    <div class="col-sm-9 col-sm-offset-1">
+                      <input type="date" name="endD" placeholder="yyyy/mm/dd" id="idendD"[(ngModel)]="model.endD" #endD="ngModel" required>
+                      <div *ngIf="f.submitted && !endD.valid" class="help-block">End Date is required</div>
                     </div>
                   </div>
 
                   <div class="form-group"> 
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-default" (click)="onSelect()">Submit</button>
+                    <div class="col-sm-offset-5 col-sm-7 col-xs-offset-4 col-xs-8">
+                      <button [disabled]="loading" type="submit" class="btn btn-default">Submit</button>
                     </div>
                   </div>
                 </form>
               </div>
             </div>
+            </div>
 
             <div *ngIf="projCreated">
-              <user-stories ></user-stories>
+              <user-stories></user-stories>
             </div>
 				</div>
 			</div>

@@ -1,0 +1,18 @@
+<div class="col-md-12">
+  <a  id="idteam" class="list-group-item clearfix" >
+  <div  class="col-md-12 pull-left">
+    <h4 class="list-group-item-heading">Team: {{teams.teamDescription}}</h4>
+  </div>
+    <div class="col-md-3" >
+      <h5 class="control-label">Add new Project</h5>
+    </div>
+    <div class="col-md-3 col-md-offset-3" >
+      <select class="form-control" id="newProject"  name="newProject" [(ngModel)]="model.newProject">
+        <option *ngFor='let p of projects' [value]="p.id" >{{p.description}}</option>
+      </select>
+    </div>
+    <div class="col-md-3 center">
+      <button class="btn btn-success" (click)='request()' >Request</button>
+    </div>
+  </a>  
+</div>

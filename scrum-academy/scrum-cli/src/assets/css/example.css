@@ -38,6 +38,18 @@ h3 {
   padding: 10px;
 }
 
+
+h4 {
+}
+
+
+h5 {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 5px solid #A13462;
+  padding-top: 1px;
+  padding-bottom: 10px;
+}
+
 h3 div {
   margin-bottom: 10px;
 }
@@ -108,18 +120,19 @@ input {
   width: 100%;
 }
 
+/*
 button {
   background-color: #ecf0f1;
   color: #942A57;
   border: 0;
   cursor: pointer;
   outline: none;
-}
+}*/
 
-button:hover {
+/*button:hover {
   background-color: #e74c3c;
   color: #ecf0f1;
-}
+}*/
 
 .gh-fork {
   position: fixed;
@@ -134,13 +147,14 @@ button:hover {
 }
 .container {
   display: table-cell;
-  background-color: rgba(255, 255, 255, 0.2);
+  /*background-color: rgba(255, 255, 255, 0.2);*/
   
   padding: 20px;
-  border: 3px solid black;
+  /*border: 3px solid black;*/
+
 }
 .container:nth-child(odd) {
-  background-color: rgba(0, 0, 0, 0.2);
+ /* background-color: rgba(0, 0, 0, 0.2);*/
 }
 /*
  * note that styling gu-mirror directly is a bad practice because it's too generic.
@@ -150,7 +164,9 @@ button:hover {
 .gu-mirror {
   margin: 10px;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
+  /*background-color: rgba(0, 0, 0, 0.2);*/
+  background-color: white;
+  
   transition: opacity 0.4s ease-in-out;
 }
 .container div {
@@ -158,18 +174,29 @@ button:hover {
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
+  box-shadow: 5px 5px 3px grey;
+  /*text-align: center;*/
+
+  color: black;
+  text-shadow: 1px 1px 2px grey, 0 0 25px grey, 0 0 5px darkgrey;
 
 }
 .gu-mirror {
   cursor: grabbing;
   cursor: -moz-grabbing;
   cursor: -webkit-grabbing;
+
+  
+  text-align: center;
+  color: black;
+  text-shadow: 1px 1px 2px grey, 0 0 25px grey, 0 0 5px darkgrey;
+  box-shadow: 5px 5px 3px grey;
 }
 .container .ex-moved {
   background-color: #e74c3c;
 }
 .container.ex-over {
-  background-color: rgba(255, 255, 255, 0.3);
+ /* background-color: rgba(255, 255, 255, 0.3);*/
 }
 .handle {
   padding: 0 5px;

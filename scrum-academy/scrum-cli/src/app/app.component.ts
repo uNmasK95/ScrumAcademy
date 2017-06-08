@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IsAuthenticatedService } from './services/is-authenticated.service';
 import { LoginGuardService } from './services/login-guard.service';
 import { UserService } from "./services/user.service";
+import { User } from "app/models/user";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,8 @@ import { UserService } from "./services/user.service";
 })
 export class AppComponent {
   type: string;
+  user: User;
+
   constructor(
     private isAuthenticatedService: IsAuthenticatedService,
     private router: Router,
@@ -19,12 +22,15 @@ export class AppComponent {
     }
 
   ngOnInit() {
+     this.user = JSON.parse(localStorage.getItem('userOn'));
+      console.log(this.user);
   }
 
   logout(){
     this.isAuthenticatedService.logout();
     delete localStorage['token'];
-    delete localStorage['user'];
+    delete localStorage['userOn'];
+    location.reload();
   }
 
   isLogged(){
@@ -32,9 +38,27 @@ export class AppComponent {
     return this.isAuthenticatedService.getLoginStatus();
   }
 
-  getType(){
-    return localStorage['type'];
+  getId(){
+     if(localStorage.getItem('userOn')){
+    let p =JSON.parse(localStorage.getItem('userOn')).type
+    if(p>0){
+      return p;
+    }
+     }
+    return 0;
   }
+
+  getType(){
+    if(localStorage.getItem('userOn')){
+      let p =JSON.parse(localStorage.getItem('userOn')).type
+      if(p==1 || p==2){
+       // console.log(localStorage.getItem('userOn'));
+        return p;
+    }
+    }
+    return false;
+  }
+
 
  /* home(){
     if(this.isAuthenticatedService.getLoginStatus()){

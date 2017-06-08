@@ -1,9 +1,67 @@
+<div *ngIf="getType()==1" class="row" >
+  <div class="col-md-12">
+    <div class="panel panel-dashboardTeams">
+      <div class="panel-body">
+        
+        <div class="row">
+          <div class="col-md-6 col-md-offset-2 col-sm-9" id="titTeams">
+            <h3>Teams - Requests</h3>
+          </div>
+        </div>
 
-<h1>Teams</h1>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2" *ngIf="!emptyRequests">
+            <ul class="list-group">
+              <teams-item *ngFor="let r of requests; let i = index" [request]="r"></teams-item>
+            </ul>
+          </div>
+
+          <div class="col-md-8 col-md-offset-2" *ngIf="emptyRequests">
+            <div class="alert alert-info" role="alert">No requests for any Project!</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="getType()==2" class="row" >
+  <alert></alert>
+  <div class="col-md-12">
+    <div class="panel panel-dashboardTeams">
+      <div class="panel-body">
+        
+        <div class="row">
+          <div class="col-md-6 col-md-offset-2 col-sm-9" id="titTeams">
+            <h3>Teams</h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 col-md-offset-2" *ngIf="!emptyTeams">
+            <ul class="list-group">
+                <team-user *ngFor="let r of teams; let i = index" [teams]="r"></team-user>
+            </ul>
+          </div>
+
+          <div class="col-md-10 col-md-offset-2" *ngIf="emptyTeams">
+            <div class="alert alert-info" role="alert">No Teams!</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--h1>Teams</h1>
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
-      <teams-item *ngFor="let t of teams; let i = index" [team]="t" [teamId]="i"></teams-item>
+      <teams-item *ngFor="let r of requests; let i = index" [request]="r" [requestId]="i"></teams-item>
     </ul>
   </div>
-</div>
+</div-->
