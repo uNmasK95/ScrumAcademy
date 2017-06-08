@@ -11,6 +11,10 @@ import { AlertService } from "app/services/alert.service";
 })
 export class UserStoriesNewComponent implements OnInit {
   userstorie: UserStorie;
+  userStories: UserStorie[];
+
+  userStorieSelected: UserStorie;
+  userStorieIdSelected: number;
 
   model : any ={}
   projectIdSelected : number ;
@@ -20,6 +24,15 @@ export class UserStoriesNewComponent implements OnInit {
   ngOnInit() {
       // ver se isto funciona senão colocar em baixo
        this.projectIdSelected = +localStorage.getItem('projectId');
+        this.userStorieService.getFeatures(this.projectIdSelected).subscribe(
+          response =>{
+            this.userStories=response;
+            console.log(response);
+          },
+          error =>{
+            console.log(error);
+          }
+        );
   }
 
   //Create Features
@@ -29,8 +42,9 @@ export class UserStoriesNewComponent implements OnInit {
       this.userstorie = new UserStorie(0,this.model.descriptionUS,this.model.priorityUS);
       this.userStorieService.createFeatures(this.projectIdSelected,this.userstorie).subscribe(
         resultado =>{
+          this.atualizar();
           let userstorie = resultado;
-          console.log(resultado);
+          this.alertService.success("UserStorie Criada");
         },
         error =>{
           console.log(error);
@@ -42,6 +56,19 @@ export class UserStoriesNewComponent implements OnInit {
       this.alertService.error("Choose priority between 1 and 10!");
     }
   }
+
+  atualizar(){
+    this.userStorieService.getFeatures(this.projectIdSelected).subscribe(
+      response =>{
+        this.userStories=response;
+        console.log(response);
+      },
+      error =>{
+        console.log(error);
+      }
+    );
+  }
+
   
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Request } from "../request";
 import { RequestsService } from "app/services/requests.service";
 
@@ -9,6 +9,7 @@ import { RequestsService } from "app/services/requests.service";
 })
 export class TeamsItemComponent  {
   @Input() request: Request;
+  @Output() elimina  = new EventEmitter()
   //@Input() requestId: number;
 
   constructor(
@@ -23,6 +24,7 @@ export class TeamsItemComponent  {
       this.requestsService.remove(this.request.id)
         .subscribe();
     }
-  }
+    this.elimina.emit(this.request.id);
+}
 
 }

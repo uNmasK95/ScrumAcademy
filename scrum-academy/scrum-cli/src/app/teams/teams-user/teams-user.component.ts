@@ -65,7 +65,7 @@ export class TeamsUserComponent implements OnInit {
                   console.log("estou aqui");
                   let proj = this.projects.find(x => x.id == project.statement.id);
                   let i = this.projects.indexOf(proj);
-                  this.projects.splice(i,1)
+                  this.projects.splice(i,1);
                 }
               }
               console.log(this.projects);

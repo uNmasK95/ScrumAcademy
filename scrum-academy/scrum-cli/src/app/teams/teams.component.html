@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-md-8 col-md-offset-2" *ngIf="!emptyRequests">
             <ul class="list-group">
-              <teams-item *ngFor="let r of requests; let i = index" [request]="r"></teams-item>
+              <teams-item *ngFor="let r of requests; let i = index" [request]="r" (elimina)="elimina($event)"></teams-item>
             </ul>
           </div>
 
