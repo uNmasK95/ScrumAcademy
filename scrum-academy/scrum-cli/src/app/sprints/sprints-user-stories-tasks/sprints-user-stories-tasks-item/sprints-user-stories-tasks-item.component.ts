@@ -43,9 +43,12 @@ export class SprintsUserStoriesTasksItemComponent {
   getTasks(){
     this.tasksService.getByUserStory(this.projectId,this.userstorie.id).subscribe(
       resultado =>{
-        for(let task of resultado){
-          let novatask : TaskUser = new TaskUser(task.id, task.description,task.user.id,task.user.email,task.state);
-          this.tasks.push(novatask);
+        if(this.tasks !=[]){
+          this.tasks = [];
+          for(let task of resultado){
+            let novatask : TaskUser = new TaskUser(task.id, task.description,task.user.id,task.user.email,task.state);
+            this.tasks.push(novatask);
+          }
         }
       },
       error =>{
@@ -102,12 +105,12 @@ export class SprintsUserStoriesTasksItemComponent {
     this.tasksService.create(this.projectId,this.userstorie.id,this.modelNewTask.newtask,this.modelNewTask.newTaskUser).subscribe(
       resultado =>{
         console.log("adicionei task");
+        this.getTasks();
       },
       error =>{
         console.log(error);
       }
     );
-    this.getTasks();
     this.addT = false;
   }
 
