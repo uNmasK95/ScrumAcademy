@@ -30,3 +30,15 @@
     font-size: 23px;
 }
 
+#divF{
+    align-content: left;
+    cursor: pointer;
+    color: black;
+}
+#addU{
+    cursor: pointer;
+    color: green;
+}
+#addU:hover{
+    color: lightgreen;
+}

@@ -23,9 +23,15 @@
 }
 #breakUS{
     margin-bottom: 40px;
+    
+    background-color: #D3D3D3;
+    border: 2px solid gray;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .container{
-   background-color: white; 
+   /*background-color: white; */
+   border-left: 2px solid gray;
 }
 
 #submitTask{
@@ -37,21 +43,6 @@
     color: red;
     background-color: white;
 }
-/*.panel-login>.panel-heading a.active{
-	color: #029f5b;
-	font-size: 18px;
-}*/
-
-#colorTasks{
-    background-color: red;
-}
-/*
-#removeUser{
-    margin-left: 10px;
-    background-color:#FF5A5A  ;
-    padding: 1px 1px 1px 1px;
-    color: black;
-}*/
 #addUser{
     background-color:green  ;
     padding: 1px 1px 1px 1px;
@@ -60,18 +51,6 @@
 .newtaskaddUser{
     margin-left: 10px;   
 }
-
-/*#removeUser {
-     line-height: 12px;
-     width: 18px;
-     font-size: 8pt;
-     font-family: tahoma;
-     margin-top: 1px;
-     margin-right: 2px;
-     position:absolute;
-     top:0;
-     right:0;
- }*/
 
 #removeUser{
    position: absolute;
@@ -94,3 +73,60 @@
     margin: 0px 0px 0px 0px;
     border: none;
 }
+
+#addT{
+    cursor: pointer;
+    color: green;
+}
+#addT:hover{
+    color: lightgreen;
+}
+
+#updU{
+    cursor: pointer;
+    color: green;
+}
+#updU:hover{
+    color: lightgreen;
+}
+
+#tsk {
+    height: 60px;
+    width: 60px;
+    /*position: absolute;*/
+    top: 0px;
+    left: 0px;
+    float: left;
+    padding-right: 2px;
+}
+
+#rmv {
+    height: 50px;
+    width: 30px;
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    float: right;
+    cursor: pointer;
+    padding-top: 20px;
+}
+#crdE{
+    margin-left: 10px;
+}
+#editT{
+    border-top: 2px solid gray;
+    padding-top: 5px;
+    margin-top: 5px;
+}
+#newUser{
+    /*width: 50%;*/
+}
+#addTask{
+   border-top: 2px solid gray;
+    padding-top: 5px;
+    margin-top: 5px; 
+}
+#createT{
+    margin-top: 5px;
+}
+

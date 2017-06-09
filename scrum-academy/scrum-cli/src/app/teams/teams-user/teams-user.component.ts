@@ -85,9 +85,9 @@ export class TeamsUserComponent implements OnInit {
       let p = this.model.newProject;
       this.requestsService.create(this.teams.teamId, p, false).subscribe(
         resultado =>{
-          this.alertService.success("Sent request");
+          this.alertService.success("Sent request.");
         }, erro=>{
-           this.alertService.error("Dont need sent other request! Wait Product Onwner answer!");
+           this.alertService.error("Dont need sent other request! Wait for Product Onwner answer!");
         }
       );
     }

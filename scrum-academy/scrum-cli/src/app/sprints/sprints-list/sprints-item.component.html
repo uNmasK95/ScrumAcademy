@@ -1,19 +1,22 @@
-<div class="col-md-12">
-  <div class="col-md-4">
-    <a [routerLink]="['/projects',projectId,'sprints',sprintId]" class="list-group-item clearfix" (click)="onSelect()" routerLinkActive="active">
-      <!--[routerLink]="['projects',projectId]" class="list-group-item clearfix" routerLinkActive="active"-->
-      <div class="pull-left">
-        <p class="list-group-item-text">Description : {{sprint.description}}</p>
-        <p class="list-group-item-text">Inicial Date : {{sprint.startDate}}</p>
-         <p class="list-group-item-text">End Date : {{sprint.endDate}}</p>
+<div class="col-md-12 col-sm-12">
+  <div id="all" class="row">
+    <div id="spri1" class="col-md-5 col-sm-5">
+      <div >
+        <!--[routerLink]="['projects',projectId]" class="list-group-item clearfix" routerLinkActive="active"-->
+        <div class="pull-left">
+          <h2>{{sprint.description}} <span title="View/Associate Tasks to User Stories" data-toggle="popover" data-trigger="hover" id="view" class="glyphicon glyphicon-eye-open" [routerLink]="['/projects',projectId,'sprints',sprintId]" (click)="onSelect()" routerLinkActive="active"></span> </h2>
+          <p class="list-group-item-text" style='font-weight:bold;'>Inicial Date:</p><p>{{sprint.startDate}}</p>
+          <p class="list-group-item-text" style='font-weight:bold;'>End Date:</p><p>{{sprint.endDate}}</p>
+        </div>
       </div>
-    </a>
-  </div>
+      <br>
+    </div>
 
-  <!--Dashboard sprints -->
-  <div class="col-md-8">
-    <sprint-dashboard [sprintId]="sprint.id" ></sprint-dashboard>
-  </div>
+    <!--Dashboard sprints -->
+    <div id="spri2" class="col-md-7 col-sm-7">
+      <sprint-dashboard [sprintId]="sprint.id" ></sprint-dashboard>
+    </div>
 
+  </div>
 </div>
 

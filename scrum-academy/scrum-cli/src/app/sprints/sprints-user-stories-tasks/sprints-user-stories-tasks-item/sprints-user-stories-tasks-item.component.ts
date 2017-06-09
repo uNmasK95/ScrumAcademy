@@ -28,7 +28,7 @@ export class SprintsUserStoriesTasksItemComponent {
   teamId: number;
   projectId: number;
   taskSelected: TaskUser;
-
+  tsk: TaskUser = null;
   modelNewTask: any = {};
 
   public constructor(private tasksService: TasksService, private teamsService:TeamsService, private userService:UserService) {

@@ -21,6 +21,7 @@ export class SprintDashboardComponent {
   public anterioruserStoriesAss :Array<UserStorieProject> = [];
   public userStoriesAss:Array<UserStorieProject> = [];
   public controlasameSprint:Array<UserStorieProject> = [];
+  usE: UserStorieProject = null;
 
   public constructor(private dragulaService:DragulaService,
                      private userStorieService: UserStorieService,
@@ -142,6 +143,7 @@ export class SprintDashboardComponent {
   }
 
   scoreEdit(us,id){
+    this.usE=us;
     if(this.scoreeditok){
       this.scoreeditok = false;
     }
@@ -154,6 +156,9 @@ export class SprintDashboardComponent {
 
   saveScoreEdit(){
     this.scoreeditok = false;
+    if(!this.model.score){
+      this.model.score=0;
+    }
     this.userStorieService.updateScore(this.project.id,this.userstorieselect.id,this.model.score).subscribe(
       resultado =>{
         this.userStoriesAss[this.positionuserstorieselect].score = this.model.score;

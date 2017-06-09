@@ -28,7 +28,7 @@
 </div>
 
 <div *ngIf="getType()==2" class="row" >
-  <alert></alert>
+  
   <div class="col-md-12">
     <div class="panel panel-dashboardTeams">
       <div class="panel-body">
@@ -40,7 +40,13 @@
         </div>
 
         <div class="row">
-          <div class="col-md-10 col-md-offset-2" *ngIf="!emptyTeams">
+          <div class="col-md-8 col-md-offset-2">
+            <alert></alert>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2" *ngIf="!emptyTeams">
             <ul class="list-group">
                 <team-user *ngFor="let r of teams; let i = index" [teams]="r"></team-user>
             </ul>

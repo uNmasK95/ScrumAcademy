@@ -34,7 +34,7 @@ export const routes: Routes = [
     { path: 'projects/:id/sprints/new', component: SprintCreateComponent }, //para SM //mudar comp
     { path: 'projects/:id/sprints/:id2', component: SprintsUserStoriesTasksComponent }, //para SM //mudar comp
 
-    { path: 'projects/:id', component: UserStoriesDashboardComponent }, //para Dev    
+    { path: 'projects/:id', component: UserStoriesDashboardComponent }, //para Dev/SM    
 
     { path: 'teams', component: TeamsComponent, canActivate: [ IsAuthenticatedService ] },
     { path: 'teams/new', component: TeamsCreateComponent, canActivate: [ IsAuthenticatedService ] }, //Para SM

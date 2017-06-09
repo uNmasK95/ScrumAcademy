@@ -59,9 +59,15 @@ span {
 #as2{
     color: lightcoral;
 }
+#btC{
+    color: black;
+}
 #newC{
     cursor: pointer;
     color: green;
+}
+#newC:hover{
+    color: lightgreen;
 }
 #buttonAddC{
     background-color: #ecf0f1;
@@ -69,8 +75,7 @@ span {
     cursor: pointer;
 }
 #buttonAddC:hover{
-    background-color: lightgreen;
-    color: #ecf0f1;;
+    background-color: ecf0f2;
 }
 th{
     text-align: center;
@@ -78,4 +83,11 @@ th{
 .r1{
     padding-left: 10px;
     padding-right: 10px;
+}
+.close{
+    color: black;
+}
+.table{
+    border: 2px solid black;
+    border-radius: 8px;
 }

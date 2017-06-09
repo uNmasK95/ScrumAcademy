@@ -19,7 +19,7 @@ export class DoubtsService {
         search.set('task', ''+taskId);
         let headers = new Headers(headersParams);
         let options = new RequestOptions({ headers: headers, search:search});
-        return this.http.get(this.httpUtil.url('/doubts'),options )
+        return this.http.get(this.httpUtil.url('/doubts?task='+taskId),options )
                    .map(this.httpUtil.extrairDados);
   }
    getByUser(userId: number){

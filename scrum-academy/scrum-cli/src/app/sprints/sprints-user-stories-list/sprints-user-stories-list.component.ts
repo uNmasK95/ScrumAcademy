@@ -19,6 +19,7 @@ export class SprintsUserStoriesListComponent {
   scoreeditok : boolean = false;
   userstorieselect : UserStorieProject;
   model: any = {}
+  usE: UserStorieProject = null;
 
   public constructor(private dragulaService:DragulaService,
                       private userStorieService: UserStorieService, 
@@ -97,6 +98,7 @@ export class SprintsUserStoriesListComponent {
     return ' Score: '+ usp.score+' Priority: '+usp.priority+' Description: ' + usp.description;
   }
   scoreEdit(us,id){
+    this.usE=us;
     if(this.scoreeditok){
       this.scoreeditok = false;
     }
@@ -109,6 +111,9 @@ export class SprintsUserStoriesListComponent {
 
   saveScoreEdit(){
     this.scoreeditok = false;
+    if(!this.model.score){
+      this.model.score=0;
+    }
     this.userStorieService.updateScore(this.project.id,this.userstorieselect.id,this.model.score).subscribe(
       resultado =>{
         this.userStoriesToAss[this.positionuserstorieselect].score = this.model.score;

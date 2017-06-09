@@ -1,0 +1,27 @@
+#all{
+    height: 100%; min-height: 100%;
+}
+.row{
+    border: 2px solid gray;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    background-color: #D3D3D3;
+}
+
+#spri1{
+    border-right: 1px solid gray;
+    height: 100%;
+}
+#spri2{
+    border-left: 1px solid gray;
+    
+}
+
+#view{
+    cursor: pointer;
+    color: #4682B4;
+}
+#view:hover{
+    color: #1E90FF;
+}

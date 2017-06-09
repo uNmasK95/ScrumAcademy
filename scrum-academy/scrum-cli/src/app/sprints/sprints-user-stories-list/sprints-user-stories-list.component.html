@@ -1,18 +1,24 @@
-<div class="col-md-10">
+<div id="toA" class="col-md-10">
   <div id="iddragula" class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesToAss'>
-      <!--div>User Storie 1</div>
-      <div>User Storie 2</div>
-      <div>User Storie 1</div-->
       <div *ngFor='let us of userStoriesToAss; let i = index' [attr.item-id]="us.id" [attr.project-id]="project.id">
-          <span class='addU' (click)="scoreEdit(us,i)">+</span>{{apresentaUserStory(us)}}
+          <img src="../../../assets/img/us.png" alt="iconUS" >
+            <span title="Edit Score" data-toggle="popover" data-trigger="hover" id="cgS" class='glyphicon glyphicon-edit' (click)="scoreEdit(us,i)"></span>
+            Score: {{us.score}}<br>
+            Priority: {{us.priority}}<br>
+            Description: {{us.description}}
+            <p id="edit" *ngIf="us==usE">
+                Edit Score:
+                <input type="number" class="form-control" placeholder="score" id="idscore" name="score" [(ngModel)]="model.score" #score="ngModel">
+                <span id="upd" (click)="saveScoreEdit()" class="glyphicon glyphicon-plus-sign" title="Add new score" data-toggle="popover" data-trigger="hover"></span>
+            </p>
       </div>
   </div>
 </div>
- <div class="col-md-2">
+ <!--div class="col-md-2">
      <div *ngIf="scoreeditok">
             <div class="row">
             <input type="number" class="form-control" placeholder="score" id="idscore" name="score" [(ngModel)]="model.score" #score="ngModel">
             <button type="submit" (click)="saveScoreEdit()" class="btn btn-default btn-primary">Save</button>
           </div>
      </div>
-  </div>
+  </div-->

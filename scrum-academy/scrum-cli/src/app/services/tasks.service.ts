@@ -53,7 +53,6 @@ export class TasksService {
   getByUserStory(projectId: number, userStorieId: number){
     return this.http.get(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks'),this.httpUtil.headers())
                 .map(this.httpUtil.extrairDados);
-    
   }
 
   delete(projectId: number, userStorieId: number, taskid: number) {

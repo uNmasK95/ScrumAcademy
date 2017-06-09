@@ -48,11 +48,11 @@
               <div class="col-md-2">
                 <label class="control-label " for="devs">Developers:</label>
                 <div *ngIf="queryString.valid" class="panel panel-userSearch">
-                    <ul class="list-users">
+                    <!--ul class="list-users"-->
                       <div *ngFor="let u of usersNames | FilterPipe: model.queryString">
-                        <a (click)="addUser(u)"><span class="glyphicon glyphicon-arrow-right"></span>{{u}}</a>
+                        <span (click)="addUser(u)" id="addU" class="glyphicon glyphicon-plus-sign" title="Add to team" data-toggle="popover" data-trigger="hover"></span> {{u}}
                       </div>
-                    </ul>
+                    <!--/ul-->
                   </div>
               </div>
 
@@ -70,7 +70,7 @@
                     </thead>
                     <tbody>
                     <tr *ngFor="let uSelec of usersSelected" >
-                            <td><strong> {{ uSelec.name }}</strong></td>
+                            <td><span class="glyphicon glyphicon-user"></span><strong> {{ uSelec.name }}</strong></td>
                             <td nowrap>
                                 <button type="button" class="btn btn-danger btn-xs" (click)="removeUser(uSelec)">
                                     <span class="glyphicon glyphicon glyphicon-remove"></span> 
@@ -85,7 +85,7 @@
 
             <div class="row">
               <div class="col-sm-3 col-md-offset-2">
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success" title="Create team" data-toggle="popover" data-trigger="hover">Create</button>
               </div>
             </div>
           </div>

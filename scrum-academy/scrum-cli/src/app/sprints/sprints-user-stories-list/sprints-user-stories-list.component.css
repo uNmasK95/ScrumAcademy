@@ -14,3 +14,40 @@
     background-color: lightgreen;
     cursor: pointer;
 }
+
+#cgS{
+    cursor: pointer;
+}
+#cgS:hover{
+    color: darkgray;
+}
+
+
+img {
+    height: 50px;
+    width: 50px;
+    /*position: absolute;*/
+    top: 0px;
+    left: 0px;
+    float: left;
+    padding-right: 2px;
+}
+
+#toA{
+    background-color: #a6a6a6;
+    border: 2px solid gray;
+
+}
+
+#edit{
+    border-top: 2px solid gray;
+    padding-top: 5px;
+    margin-top: 5px;
+}
+#upd{
+    cursor: pointer;
+    color: green;
+}
+#upd:hover{
+    color: lightgreen;
+}

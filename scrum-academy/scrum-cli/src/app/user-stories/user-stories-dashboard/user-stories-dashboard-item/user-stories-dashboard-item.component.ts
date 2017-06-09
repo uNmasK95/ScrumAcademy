@@ -71,6 +71,7 @@ export class UserStoriesDashboardItemComponent implements OnInit {
           console.log(resultado)
           for(let r of resultado){
             let t : Task = new Task(r.id,r.description,r.user.id,r.user.name,r.state);
+            console.log(t);
             this.allTasks.push(t);
             if(t.state==0){ //ToDo
               if(t.userId==userId){//Minha task

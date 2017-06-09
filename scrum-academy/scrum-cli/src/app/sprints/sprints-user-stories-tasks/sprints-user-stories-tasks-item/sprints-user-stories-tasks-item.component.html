@@ -1,58 +1,40 @@
 
 <div id="breakUS" class="row">
     <!--div class="col-md-12"-->
-    <div class="col-md-3">
-      <div class="pull-left">
-        <h2 class="list-group-item-text">{{userstorie.description}}<span class='addU' (click)="addtask()">+</span></h2>
+    <div  class="col-md-3">
+      <div id="frst" class="pull-left">
+        <h2>{{userstorie.description}} <span id="addT" class='glyphicon glyphicon-plus-sign' (click)="addtask()" title="Create Task" data-toggle="popover" data-trigger="hover"></span></h2>
       </div>
     </div>
 
      <!--Dashboard tasks -->
     <div class="col-md-5">
-        <div id=colorTasks class='container' style="background:#C0C0C0;">
+        <div id=colorTasks class='container'>
             <!--div>User Storie 1</div>
             <div>User Storie 2</div>
             <div><span class='handle'>+</span>User Storie 1</div-->
-            <div id="forTask" style="background:white;"   *ngFor='let t of tasks'>   
-              <h4 id="taskDescription">{{t.description}}</h4>
-              <span *ngIf="!hasUserAss(t)" class='glyphicon glyphicon-user glyphicon-user-donthas'></span>
-                <button style="background: white" id="removeUser"  (click)="removeTask(t)" type="submit" class="btn btn-default pull-right">X</button>
-                <div class="alert alert-success" role="alert" style="background: white" *ngIf="haveuser(t)">
-                    Email: {{t.userEmail}}
-                  <button id="addUser" (click)="addUser(t)" type="submit" class="btn btn-default pull-right">Add User</button>
-                </div>
+            <div id="forTask"  *ngFor='let t of tasks'>
+                <img id="tsk" src="../../../../assets/img/task2.png" alt="iconUS" />
+                <img id="rmv" src="../../../../assets/img/delete.png" alt="iconDe" (click)="removeTask(t)" title="Remove task" data-toggle="popover" data-trigger="hover"/>
+                <!--span id="rmv" (click)="removeTask(t)" class="glyphicon glyphicon-remove" title="Remove task" data-toggle="popover" data-trigger="hover"></span-->   
+                <h4 id="taskDescription">{{t.description}}</h4><br>
+                <p id="crdE"> Email: {{t.userEmail}}  <span id="updU" (click)="addUser(t)" class='glyphicon glyphicon-edit' title="Change developer" data-toggle="popover" data-trigger="hover"></span></p>
+                
+                <p id="editT" *ngIf="taskSelected==t">
+                    <label>Edit Task (select new developer):</label>
+                    <select class="form-control" id="newUser"  name="newUser" [(ngModel)]="modelNewTask.newUser">
+                        <option *ngFor='let u of users' [value]="u.id" >{{u.email}}</option>
+                    </select>
+                    <span id="addT" class='glyphicon glyphicon-plus-sign pull-rigth' (click)="addU()" title="Change developer" data-toggle="popover" data-trigger="hover"></span>
+                </p>
             </div>
         </div>
 
     </div>
 
     <!--Do lado para adicionar tarefas ou associar users-->
-    <div class="col-md-3 newtaskaddUser">
-      <div *ngIf="addD">
-        <form id="taskForm" (ngSubmit)="addU()" class="form-horizontal">
-          <div class="form-group">
-            <h2>Task: {{taskSelected.description}}</h2>
-            <label class="col-xs-4 control-label">Developer</label>
-            <div class="col-xs-7 col-xs-offset-1 selectContainer">
-                <select class="form-control" id="newUser"  name="newUser" [(ngModel)]="modelNewTask.newUser">
-                    <!--option value="">Choose a developer</option-->
-                    <option *ngFor='let u of users' [value]="u.id" >{{u.email}}</option>
-                    <!--option value="green">Green</option>
-                    <option value="red">Red</option>
-                    <option value="yellow">Yellow</option>
-                    <option value="white">White</option-->
-                </select>
-            </div>
-          </div>
-  
-          <div class="form-group">
-              <div class="col-xs-4">
-                  <button id="submitTask" type="submit" class="btn btn-primary">Add User</button>
-                  <!--button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button-->
-              </div>
-          </div>
-        </form>
-      </div>
+    <div class="col-md-3 newtaskaddUser"  >
+
       <div *ngIf="addT">
         <form id="taskForm" class="form-horizontal" (ngSubmit)="f.form.valid && addTask()" #f="ngForm" novalidate>
            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newtask.valid }">
@@ -62,7 +44,7 @@
             <div *ngIf="f.submitted && !newtask.valid" class="help-block">New Task is required</div>
           </div>
           <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newtask.valid }">
-            <label class="col-xs-4 control-label" for="newTaskUser">Develope: </label>
+            <label class="col-xs-4 control-label" for="newTaskUser">Developer: </label>
             <div class="col-xs-7 col-xs-offset-1 selectContainer">
                 <select class="form-control" id="newUser"  name="newTaskUser" [(ngModel)]="modelNewTask.newTaskUser" #newTaskUser="ngModel" required>
                     <!--option value="">Choose a developer</option-->
