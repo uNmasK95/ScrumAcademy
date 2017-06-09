@@ -9,3 +9,16 @@
     margin-top: 10px;
     margin-bottom: 20px;
 }
+img {
+    height: 65px;
+    width: 65px;
+    /*position: absolute;*/
+    top: 0px;
+    left: 0px;
+    float: left;
+    padding-right: 2px;
+}
+
+.panel{
+    padding-bottom: 25px;
+}

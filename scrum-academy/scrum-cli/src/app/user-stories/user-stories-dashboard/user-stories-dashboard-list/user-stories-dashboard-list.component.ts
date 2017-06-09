@@ -19,6 +19,28 @@ export class UserStoriesDashboardListComponent implements OnInit {
   constructor(private sprintService: SprintService,private tasksService: TasksService) { }
 
   ngOnInit() {
+      let dateNow: Date = new Date();
+      console.log(dateNow);
+      this.sprintService.get(this.projectId)
+        .subscribe(
+          resultado => {
+            for(let sprint of resultado){ //Percorrer sprints
+              if(dateNow > new Date(sprint.startDate) && dateNow < new Date(sprint.endDate)){ //Tou nesta sprint
+                this.sprintNow = new Sprint(sprint.id, sprint.description,new Date(sprint.startDate),new Date(sprint.endDate));
+                for(let ustorie of sprint.userstorie){ //Guardar as US da sprint atual
+                  let userStorie: UserStorieUser = new UserStorieUser(ustorie.id,ustorie.description,
+                    ustorie.priority,ustorie.score);
+                  this.userstories.push(userStorie);
+                  console.log("Fiz push da userStorie:");
+                  console.log(userStorie);
+                }
+              }
+            }
+            if(this.userstories.length!=0)this.empty=false;
+            else this.empty = true;
+          });
+    }
+  /*ngOnInit() {
     let dateNow: Date = new Date();
     console.log(dateNow);
     this.sprintService.get(this.projectId)
@@ -101,6 +123,6 @@ export class UserStoriesDashboardListComponent implements OnInit {
           if(this.userstories.length!=0)this.empty=false;
           else this.empty = true;
         });
-  }
+  }*/
 
 }

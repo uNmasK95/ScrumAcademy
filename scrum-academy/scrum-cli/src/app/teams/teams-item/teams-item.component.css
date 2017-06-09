@@ -4,3 +4,12 @@
 #reject{
     margin-left: 5px;
 }
+img {
+    height: 17%;
+    width:  17%;
+    /*position: absolute;*/
+    top: 0px;
+    left: 0px;
+    float: left;
+    padding-right: 2px;
+}

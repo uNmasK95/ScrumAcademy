@@ -244,7 +244,7 @@ export class UserStoriesDashboardItemComponent implements OnInit {
   //Doubts ----
   createDoubt(){
     console.log(this.model.descriptionD);
-    this.doubtsService.create(this.model.descriptionD,JSON.parse(localStorage.getItem('userOn')).id,this.taskSelected.id)
+    this.doubtsService.create(this.projectId+':'+this.model.descriptionD,JSON.parse(localStorage.getItem('userOn')).id,this.taskSelected.id)
       .subscribe(
         resultado => {
           console.log(resultado);
@@ -271,6 +271,12 @@ export class UserStoriesDashboardItemComponent implements OnInit {
               );
         }
       );
+  }
+
+  parseD(desc){
+    let aux = desc.split(':');
+    if(aux.length==1) return desc;
+    return aux[1];
   }
 
 }

@@ -27,7 +27,10 @@ export class ProjectService {
          return this.http.get(this.httpUtil.url('/projects'),this.httpUtil.headers())
                    .map(this.httpUtil.extrairDados);
     }
-
+    getProjectsById(id: number){
+         return this.http.get(this.httpUtil.url('/projects/'+id),this.httpUtil.headers())
+                   .map(this.httpUtil.extrairDados);
+    }
 
     getProjectsByUserId(id : string){
          let headersParams = { 'Content-Type': 'application/json' };

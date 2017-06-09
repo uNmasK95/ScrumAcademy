@@ -55,6 +55,8 @@ span {
 }
 #as{
     color: green;
+    width: 100%;
+    height: 100%;
 }
 #as2{
     color: lightcoral;
@@ -90,4 +92,8 @@ th{
 .table{
     border: 2px solid black;
     border-radius: 8px;
+}
+
+.modal-body p {
+    word-wrap: break-word;
 }

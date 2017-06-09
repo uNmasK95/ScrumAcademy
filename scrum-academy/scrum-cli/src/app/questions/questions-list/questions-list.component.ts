@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../question';
 import { DoubtsService } from "app/services/doubts.service";
+import { AlertService } from "app/services/alert.service";
+import { ProjectService } from "app/services/project.service";
 
 @Component({
   selector: 'questions-list',
@@ -20,7 +22,7 @@ export class QuestionsListComponent implements OnInit {
     this.questionSelected = q;
     this.questionIdSelected = i;
   }
-  constructor(private doubtsService:DoubtsService) { 
+  constructor(private doubtsService:DoubtsService,private alertService: AlertService,private projectService: ProjectService) { 
   }
 
   ngOnInit() {
@@ -30,8 +32,21 @@ export class QuestionsListComponent implements OnInit {
         for(let doubts of resultado){
           if(!doubts.answer){
             console.log(doubts);
-            let doubt = new Question(doubts.id,doubts.description,doubts.user.name,doubts.answer);
-            this.questions.push(doubt);
+            //
+            let aux = doubts.description.split(':');
+            let v = aux[0];
+            if(aux.length==1) v=1;
+            let projN: string = "";
+            this.projectService.getProjectsById(parseInt(v))
+              .subscribe(res =>{
+                projN=res.name;
+                let doubt = new Question(doubts.id,doubts.description,doubts.user.name,doubts.answer,projN);
+                console.log(doubt);
+                this.questions.push(doubt);
+              });
+            //
+            /*let doubt = new Question(doubts.id,doubts.description,doubts.user.name,doubts.answer,projN);
+            this.questions.push(doubt);*/
           }
         }
       }, 
@@ -40,12 +55,14 @@ export class QuestionsListComponent implements OnInit {
       }
     );
   }
+
   answerDoubt(){
     if(this.model.answer){
       this.doubtsService.updateAnswer(this.questionSelected.id,this.model.answer).subscribe(
         resultado =>{
           console.log("esta");
           this.questions.splice(this.questionIdSelected,1);
+          this.questionSelected = null;
         },
         error =>{
           console.log(error);
@@ -53,5 +70,12 @@ export class QuestionsListComponent implements OnInit {
       );
     }
   }
+
+  parseD(desc){
+    let aux = desc.split(':');
+    if(aux.length==1) return desc;
+    return aux[1];
+  }
+
 
 }

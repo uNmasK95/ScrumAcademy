@@ -157,7 +157,7 @@
                 <div *ngFor='let d of doubts'>
                     <div class="panel panel-dashboardDoubts">
                     <p href="#" title="Remove" data-toggle="popover" data-trigger="hover" id="sp"
-                        class="glyphicon glyphicon glyphicon-remove-circle" (click)="removeD(d.id)"> </p>Question: {{d.description}}<br>
+                        class="glyphicon glyphicon glyphicon-remove-circle" (click)="removeD(d.id)"> </p>Question: {{parseD(d.description)}}<br>
                     
                     <p *ngIf="d.answer" href="#" id="as" class="glyphicon glyphicon glyphicon-ok-circle">Answer: {{d.answer}} </p>
                     <p *ngIf="!d.answer" href="#" id="as2" class="glyphicon glyphicon glyphicon-ok-circle">Answer: ... </p>
@@ -202,7 +202,7 @@
                 <h4 class="modal-title">Doubts </h4>  
                 <div *ngFor='let d of doubts'>
                     <div class="panel panel-dashboardDoubts">
-                    Question: {{d.description}}<br>
+                    Question: {{parseD(d.description)}}<br>
                     
                     <p *ngIf="d.answer" href="#" id="as" class="glyphicon glyphicon glyphicon-ok-circle">Answer: {{d.answer}} </p>
                     <p *ngIf="!d.answer" href="#" id="as2" class="glyphicon glyphicon glyphicon-ok-circle">Answer: ... </p>

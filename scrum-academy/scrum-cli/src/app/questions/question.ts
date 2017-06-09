@@ -3,6 +3,7 @@ export class Question {
         public id: number,
         public description: string,
         public user: String,
-        public answer: String)
+        public answer: String,
+        public project: String)
         {}
 }
