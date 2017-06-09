@@ -33,8 +33,7 @@
     </div>
 
     <!--Do lado para adicionar tarefas ou associar users-->
-    <div class="col-md-3 newtaskaddUser"  >
-
+    <div class="col-md-3 newtaskaddUser">
       <div *ngIf="addT">
         <form id="taskForm" class="form-horizontal" (ngSubmit)="f.form.valid && addTask()" #f="ngForm" novalidate>
            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newtask.valid }">

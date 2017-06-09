@@ -1,57 +1,67 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-dashboardDev">
-      <div class="panel-body">
-        <div *ngIf="typeofpage==1"> 
-          <div class="row">
-            <div class="col-md-6 col-sm-6">
-              <h1>{{project.name}} - Sprints</h1>
-            </div>
-            <!--div class="col-md-3 col-xs-3 col-sm-3 col-sm-offset-3 col-xs-offset-3 col-md-offset-3">
-              <button id="createSrintButton" type="button" [routerLink]="['new']" class="btn btn-primary btn-lg">Create Sprint</button>
-            </div--> 
-            <div class="col-md-3 col-sm-2 col-md-offset-3">
-              <img id="dash" src="../../../../assets/img/das.png" alt="iconDsh" [routerLink]="['/projects',project.id]" title="Go to my Dashboard" data-toggle="popover" data-trigger="hover"/>
-            </div>
-          </div>
 
-          <div class="row">
-            <!--Lista sprints-->
-            <div class="col-md-3 col-sm-3">
-                <h2 id="sp">Sprint:</h2>
+<div *ngIf="typeofpage==1">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-dashboardDev">
+        <div class="panel-body">
+          <div *ngIf="typeofpage==1"> 
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <h1>{{project.name}} - Sprints</h1>
+              </div>
+              <!--div class="col-md-3 col-xs-3 col-sm-3 col-sm-offset-3 col-xs-offset-3 col-md-offset-3">
+                <button id="createSrintButton" type="button" [routerLink]="['new']" class="btn btn-primary btn-lg">Create Sprint</button>
+              </div--> 
+              <div class="col-md-3 col-sm-2 col-md-offset-3">
+                <img id="dash" src="../../../../assets/img/das.png" alt="iconDsh" [routerLink]="['/projects',project.id]" title="Go to my Dashboard" data-toggle="popover" data-trigger="hover"/>
+              </div>
             </div>
-            <div class="col-md-4 col-sm-4">
-              <h2>User Stories:</h2>
-            </div>
-            <div class="col-md-5 col-sm-5">
-              <h2>UserStories to Associate:</h2>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-7 col-sm-7">
-              <sprints-list></sprints-list>
+            <div class="row">
+              <!--Lista sprints-->
+              <div class="col-md-3 col-sm-3">
+                  <h2 id="sp">Sprint:</h2>
+              </div>
+              <div class="col-md-4 col-sm-4">
+                <h2>User Stories:</h2>
+              </div>
+              <div class="col-md-5 col-sm-5">
+                <h2>UserStories to Associate:</h2>
+              </div>
             </div>
-            <div class="col-md-5 col-sm-5">
-              <sprints-user-stories-list></sprints-user-stories-list>
-            </div>
-          </div>
-            <!--Lista User stories-->
-            <!--div class="col-md-4 col-sm-4">
-              <h2>UserStories to Associate:</h2>
-              <sprints-user-stories-list></sprints-user-stories-list>
-            </div-->
 
-          
-        </div>
-        <div *ngIf="typeofpage==0">
-            <sprint-create></sprint-create>
-        </div>
-        <div *ngIf="typeofpage==2">
-            <h1> Project has not started yet.</h1>
+            <div class="row">
+              <div class="col-md-7 col-sm-7">
+                <sprints-list></sprints-list>
+              </div>
+              <div class="col-md-5 col-sm-5">
+                <sprints-user-stories-list></sprints-user-stories-list>
+              </div>
+            </div>
+              <!--Lista User stories-->
+              <!--div class="col-md-4 col-sm-4">
+                <h2>UserStories to Associate:</h2>
+                <sprints-user-stories-list></sprints-user-stories-list>
+              </div-->
+
+            
+          </div>
+          <div *ngIf="typeofpage==0">
+              <sprint-create></sprint-create>
+          </div>
+          <div *ngIf="typeofpage==2">
+              <h1> Project has not started yet.</h1>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<div *ngIf="typeofpage==0">
+    <sprint-create (criadas)="criadas()"></sprint-create>
+</div>
+<div *ngIf="typeofpage==2">
+    <h1> Project has not started yet.</h1>
+</div>
+
 

@@ -25,8 +25,7 @@ import { QuestionsListComponent } from './questions/questions-list/questions-lis
 import { QuestionsItemComponent } from './questions/questions-list/questions-item.component';
 import { QuestionsDetailComponent } from './questions/questions-list/questions-detail.component';
 import { UserStoriesDetailComponent } from './user-stories/user-stories-detail/user-stories-detail.component';
-import { UserStoriesListComponent } from './user-stories/user-stories-list/user-stories-list.component';
-import { UserStoriesItemComponent } from './user-stories/user-stories-list/user-stories-item.component';
+import { UserStoriesItemComponent } from './user-stories/user-stories-new/user-stories-item.component';
 import { UserStoriesEditComponent } from './user-stories/user-stories-edit/user-stories-edit.component';
 import { UserStoriesNewComponent } from './user-stories/user-stories-new/user-stories-new.component';
 import { IsAuthenticatedService } from './services/is-authenticated.service';
@@ -81,7 +80,6 @@ import { TeamsUserComponent } from './teams/teams-user/teams-user.component';
     QuestionsItemComponent,
     QuestionsDetailComponent,
     UserStoriesDetailComponent,
-    UserStoriesListComponent,
     UserStoriesItemComponent,
     UserStoriesEditComponent,
     UserStoriesNewComponent,

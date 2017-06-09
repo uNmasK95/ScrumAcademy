@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from "app/dashboard/project/project";
 import { UserStorieService } from "app/services/userstorie.service";
 import { SprintService } from "app/services/sprint.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'sprints',
@@ -12,7 +13,7 @@ export class SprintsComponent implements OnInit {
 
   project: Project;
   typeofpage: number = 5;
-  constructor(private userStorieService: UserStorieService, private sprintService: SprintService) { }
+  constructor(private userStorieService: UserStorieService,private router: Router, private sprintService: SprintService) { }
 
   ngOnInit() {
     console.log(JSON.parse(localStorage.getItem('teamUser')).job);
@@ -38,6 +39,14 @@ export class SprintsComponent implements OnInit {
         }
       }
     }
+  }
+
+  dashboard(){
+    this.router.navigate(['projects',this.project.id]);
+  }
+
+  criadas(){
+    this.typeofpage=1;
   }
 
   getSprints(){

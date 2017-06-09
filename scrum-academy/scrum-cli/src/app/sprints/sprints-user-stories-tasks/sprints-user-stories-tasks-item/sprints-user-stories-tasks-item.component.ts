@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
 import { UserStorie } from "app/user-stories/userstorie";
 import { UserStorieProject } from "app/user-stories/userstorieproject";
 import { TasksService } from "app/services/tasks.service";
@@ -43,9 +43,12 @@ export class SprintsUserStoriesTasksItemComponent {
   getTasks(){
     this.tasksService.getByUserStory(this.projectId,this.userstorie.id).subscribe(
       resultado =>{
-        for(let task of resultado){
-          let novatask : TaskUser = new TaskUser(task.id, task.description,task.user.id,task.user.email,task.state);
-          this.tasks.push(novatask);
+        if(this.tasks !=[]){
+          this.tasks = [];
+          for(let task of resultado){
+            let novatask : TaskUser = new TaskUser(task.id, task.description,task.user.id,task.user.email,task.state);
+            this.tasks.push(novatask);
+          }
         }
       },
       error =>{
@@ -76,20 +79,24 @@ export class SprintsUserStoriesTasksItemComponent {
 
   //Submit User
   addU(){
-    if(this.taskSelected.userId!=+this.modelNewTask.newUser){
-      console.log(this.taskSelected)
-      console.log(this.modelNewTask);
-      let task: Task = new Task(this.taskSelected.id,this.taskSelected.description,this.modelNewTask.newUser,this.taskSelected.userEmail, this.taskSelected.state);
-      this.tasksService.update(this.projectId,this.userstorie.id,task).subscribe(
-        resultado =>{
-          console.log(resultado);
-        },
-        error =>{
-          console.log(error);
-        }
-      );
-      console.log(this.modelNewTask.newUser);
-    }
+      if(this.taskSelected.userId!=+this.modelNewTask.newUser){
+        let novouser = this.users.find(x => x.id == this.modelNewTask.newUser);
+        let task: Task = new Task(this.taskSelected.id,this.taskSelected.description,this.modelNewTask.newUser,novouser.email, this.taskSelected.state);
+        this.tasksService.update(this.projectId,this.userstorie.id,task).subscribe(
+          resultado =>{
+            console.log(resultado);
+          },
+          error =>{
+            console.log(error);
+          }
+        );
+        let taskantiga = this.tasks.find(x => x.id == this.taskSelected.id);
+        let i = this.tasks.indexOf(taskantiga);
+        taskantiga.userEmail = novouser.email;
+        taskantiga.userId = novouser.id;
+        let tasknova = taskantiga;
+        this.tasks.splice(i,1,tasknova);
+      }
      this.addD = false;
   }
   //Submit Task
@@ -98,12 +105,12 @@ export class SprintsUserStoriesTasksItemComponent {
     this.tasksService.create(this.projectId,this.userstorie.id,this.modelNewTask.newtask,this.modelNewTask.newTaskUser).subscribe(
       resultado =>{
         console.log("adicionei task");
+        this.getTasks();
       },
       error =>{
         console.log(error);
       }
     );
-    this.tasks.push(this.modelNewTask.newtask);// AQUI MUDAR DEPOIS PARA TASK
     this.addT = false;
   }
 

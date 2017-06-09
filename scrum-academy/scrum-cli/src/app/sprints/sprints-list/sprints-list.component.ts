@@ -46,7 +46,7 @@ export class SprintsListComponent implements OnInit {
             if(i!=0){
               //ver userStorys de sprint e ver as tasks se estao todas com o estado acabado se sim nao faz nada 
               // se nao estiverem fazer um postSprintUserStorie com a sprint em que estamos
-              for(let userStorie of previousprint){
+              for(let userStorie of previousprint.userstorie){
                 //console.log("userstorie");
                 //console.log(userStorie);
                 this.tasksService.getByUserStory(this.project.id,userStorie.id).subscribe(
@@ -71,7 +71,7 @@ export class SprintsListComponent implements OnInit {
               if(i!=0){
                 //ver userStorys de sprint e ver as tasks se estao todas com o estado acabado se sim nao faz nada 
                 // se nao estiverem fazer um postSprintUserStorie com a sprint em que estamos
-                for(let userStorie of previousprint){
+                for(let userStorie of previousprint.userstorie){
                   //console.log("userstorie");
                   //console.log(userStorie);
                   this.tasksService.getByUserStory(this.project.id,userStorie.id).subscribe(

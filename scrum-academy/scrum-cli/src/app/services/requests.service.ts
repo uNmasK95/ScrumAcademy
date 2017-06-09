@@ -12,7 +12,6 @@ export class RequestsService {
 
   //create new request :team_id, :statement_id, :accept
   create(teamId : number, statementID: number, accept: boolean ) {
-      console.log("Vou criar request");
       console.log(JSON.stringify({ team_id: teamId, statement_id: statementID, accept: accept}));
       return this.http.post(this.httpUtil.url('/requests'),
                   JSON.stringify({ team_id: teamId, statement_id: statementID, accept: accept}) , this.httpUtil.headers())
@@ -42,7 +41,6 @@ export class RequestsService {
 
     //remove request
     remove(requestId: number) {
-      console.log("Vou criar request");
       return this.http.delete(this.httpUtil.url('/requests/'+requestId), this.httpUtil.headers())
                 .map(this.httpUtil.extrairDados);
     }

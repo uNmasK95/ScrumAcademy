@@ -68,5 +68,11 @@ export class TeamsComponent implements OnInit {
     return false;
   }
 
+  elimina(decision){
+    let request = this.requests.find(x => x.id == decision);
+    let i = this.requests.indexOf(request);
+    this.requests.splice(i,1);
+  }
+
 
 }
