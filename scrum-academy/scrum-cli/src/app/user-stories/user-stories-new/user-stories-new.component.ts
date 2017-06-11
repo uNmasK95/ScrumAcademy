@@ -69,6 +69,10 @@ export class UserStoriesNewComponent implements OnInit {
     );
   }
 
+   onSelect(userstorie: UserStorie){
+    this.userStorieSelected = userstorie;
+  }
+
   
 
 }

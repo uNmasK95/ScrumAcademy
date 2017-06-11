@@ -34,6 +34,7 @@ img {
 }
 
 #toA{
+    /*position: fixed;*/
     background-color: #a6a6a6;
     border: 2px solid gray;
 

@@ -25,7 +25,7 @@
                     <select class="form-control" id="newUser"  name="newUser" [(ngModel)]="modelNewTask.newUser">
                         <option *ngFor='let u of users' [value]="u.id" >{{u.email}}</option>
                     </select>
-                    <span id="addT" class='glyphicon glyphicon-plus-sign pull-rigth' (click)="addU()" title="Change developer" data-toggle="popover" data-trigger="hover"></span>
+                    <span id="addT" class='glyphicon glyphicon-plus-sign' (click)="addU()" title="Change developer" data-toggle="popover" data-trigger="hover"></span>
                 </p>
             </div>
         </div>
