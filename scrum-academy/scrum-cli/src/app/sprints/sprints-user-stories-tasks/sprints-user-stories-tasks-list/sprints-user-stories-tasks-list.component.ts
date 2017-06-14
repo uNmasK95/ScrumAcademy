@@ -80,12 +80,4 @@ export class SprintsUserStoriesTasksListComponent implements OnInit {
     );
   }
 
-  usernovoemit(user){
-    let userstoriesnovo = this.userstories.find(x => x.id == user);
-    console.log(user)
-    console.log(this.userstories);
- //   let i = this.userstories.indexOf(userstoriesnovo);
-   // this.userstories.splice(i,1);
-  }
-
 }

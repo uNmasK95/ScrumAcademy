@@ -33,11 +33,40 @@ img {
     padding-right: 2px;
 }
 
-#toA{
-    /*position: fixed;*/
-    background-color: #a6a6a6;
-    border: 2px solid gray;
+@media screen and (max-width: 768px) and (min-width: 425px) {
+    #toA{
+        position: fixed;
+        width:32%;
+        background-color: #a6a6a6;
+        border: 2px solid gray;
+    }
 
+}
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+    #toA{
+        position: fixed;
+        width:33%;
+        background-color: #a6a6a6;
+        border: 2px solid gray;
+    }
+}
+
+@media screen and (max-width: 1440px) and (min-width: 1025px) {
+    #toA{
+        position: fixed;
+        width:29%;
+        background-color: #a6a6a6;
+        border: 2px solid gray;
+    }
+}
+
+@media screen and (min-width: 1441px) { 
+    #toA{
+        position: fixed;
+        width:16%;
+        background-color: #a6a6a6;
+        border: 2px solid gray;
+    }
 }
 
 #edit{

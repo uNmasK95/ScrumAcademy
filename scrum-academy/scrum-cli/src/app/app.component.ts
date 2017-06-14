@@ -54,7 +54,7 @@ export class AppComponent {
       if(p==1 || p==2){
        // console.log(localStorage.getItem('userOn'));
         return p;
-    }
+      }
     }
     return false;
   }

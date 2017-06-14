@@ -120,6 +120,7 @@
 }
 #newUser{
     width: 50%;
+    display:inline;
 }
 #addTask{
    border-top: 2px solid gray;

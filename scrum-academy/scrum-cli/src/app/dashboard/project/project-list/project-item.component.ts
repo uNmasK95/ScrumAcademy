@@ -18,6 +18,7 @@ export class ProjectItemComponent {
   constructor(private router: Router, private teamService: TeamsService){
 	}
   ngOnInit(){
+      // aqui é preciso ver o length primeiro e só depois aplicar isso
       this.project.description = this.project.description.substring(0,14) +"...";
   }
 
