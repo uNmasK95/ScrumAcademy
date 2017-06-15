@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, SimpleChanges } from '@angular/core';
 import { UserStorieService } from "app/services/userstorie.service";
 import { AlertService } from "app/services/alert.service";
 import { UserStorie } from "app/user-stories/userstorie";
@@ -10,6 +10,7 @@ import { UserStorie } from "app/user-stories/userstorie";
 })
 export class UserStoriesEditComponent implements OnInit {
   @Input() userStorie: UserStorie;
+  @Output() editUserStorie  = new EventEmitter()
   
   model : any ={};
   projectIdSelected : number;
@@ -17,12 +18,23 @@ export class UserStoriesEditComponent implements OnInit {
   constructor(private userStorieService: UserStorieService, private alertService: AlertService) { }
 
   ngOnInit() {
+    this.model.newdescroptionUS = this.userStorie.description;
+    this.model.newpriorityUS = this.userStorie.priority;
     this.projectIdSelected = +localStorage.getItem('projectId');
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    this.model.newdescroptionUS = this.userStorie.description;
+    this.model.newpriorityUS = this.userStorie.priority;
   }
 
   edit(){
     //caso que ele mudou o priority
-    if(this.model.newpriorityUS != undefined && this.model.newdescroptionUS != undefined){
+    console.log(this.model.newdescroptionUS);
+    console.log(this.model.newpriorityUS);
+    this.userStorie.description = this.model.newdescroptionUS;
+    this.userStorie.priority = this.model.newpriorityUS;
+    if(this.model.newpriorityUS != this.userStorie.description && this.model.newdescroptionUS != this.userStorie.priority){
       if(this.model.newpriorityUS>0 && this.model.newpriorityUS<=10){
         this.editServiceFeatureAll(this.model.newdescroptionUS,this.model.newpriorityUS);
       }
@@ -32,11 +44,11 @@ export class UserStoriesEditComponent implements OnInit {
       }
     }
     else{
-      if(this.model.newdescroptionUS != undefined){
+      if(this.model.newdescroptionUS != this.userStorie.description){
         this.editServiceFeatureDescription(this.model.newdescroptionUS);
       }
       else{
-        if(this.model.newpriorityUS!=undefined){
+        if(this.model.newpriorityUS!= this.userStorie.priority){
           if(this.model.newpriorityUS>0 && this.model.newpriorityUS<=10){
             this.editServiceFeaturePriority(this.model.newpriorityUS);
           }
@@ -53,6 +65,8 @@ export class UserStoriesEditComponent implements OnInit {
   editServiceFeatureAll(description: string, priority: string){
     this.userStorieService.updateFeatures(this.projectIdSelected,description,priority,this.userStorie.id).subscribe(
         resultado =>{
+          localStorage.setItem('userStorieEdit',JSON.stringify({userStorie:this.userStorie}));
+          this.editUserStorie.emit("mudei")
           let feature = resultado;
           console.log(resultado);
         },
@@ -64,6 +78,8 @@ export class UserStoriesEditComponent implements OnInit {
   editServiceFeaturePriority(priority: string){
     this.userStorieService.updateFeaturePriority(this.projectIdSelected,priority,this.userStorie.id).subscribe(
       resultado =>{
+        localStorage.setItem('userStorieEdit',JSON.stringify({userStorie:this.userStorie}));
+        this.editUserStorie.emit("mudei")
         let feature = resultado;
         console.log(resultado);
       },
@@ -76,6 +92,8 @@ export class UserStoriesEditComponent implements OnInit {
       console.log(this.userStorie.id);
     this.userStorieService.updateFeatureDescription(this.projectIdSelected,description,this.userStorie.id).subscribe(
       resultado =>{
+        localStorage.setItem('userStorieEdit',JSON.stringify({userStorie:this.userStorie}));
+        this.editUserStorie.emit("mudei")
         let feature = resultado;
         console.log(resultado);
       },

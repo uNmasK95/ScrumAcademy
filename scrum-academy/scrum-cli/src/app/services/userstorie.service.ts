@@ -33,7 +33,7 @@ export class UserStorieService {
                    .map(this.httpUtil.extrairDados);
     }
 
-    updateFeatures(id: number, priority: string, description: string, idfeature: number){
+    updateFeatures(id: number, description: string,priority: string, idfeature: number){
         return this.http.put(this.httpUtil.url('/statements/'+id+'/features/'+idfeature),
                     JSON.stringify({ description: description,priority: priority}),this.httpUtil.headers())
                    .map(this.httpUtil.extrairDados);

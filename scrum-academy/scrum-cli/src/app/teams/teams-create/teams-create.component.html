@@ -36,27 +36,29 @@
             </div>
     
             <br>
-            <div class="row">
-              <div class="col-md-2 col-md-offset-2">
-                <label class="control-label " for="searchDev">Search:</label>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !queryString.valid }">
-                  <input type="text" name="queryString" id="queryString" [(ngModel)]="model.queryString" tabindex="1" class="form-control" placeholder="Search to type" value="" #queryString="ngModel" required >
+            <form>
+              <div class="row">
+                <div class="col-md-2 col-md-offset-2">
+                  <label class="control-label " for="searchDev">Search:</label>
                 </div>
-              </div>
-              <div class="col-md-2">
-                <label class="control-label " for="devs">Developers:</label>
-                <div *ngIf="queryString.valid" class="panel panel-userSearch">
-                    <!--ul class="list-users"-->
-                      <div *ngFor="let u of usersNames | FilterPipe: model.queryString">
-                        <span (click)="addUser(u)" id="addU" class="glyphicon glyphicon-plus-sign" title="Add to team" data-toggle="popover" data-trigger="hover"></span> {{u}}
-                      </div>
-                    <!--/ul-->
+                <div class="col-md-3">
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !queryString.valid }">
+                    <input type="text" name="queryString" id="queryString" [(ngModel)]="model.queryString" tabindex="1" class="form-control" placeholder="Search to type" value="" #queryString="ngModel" required>
                   </div>
-              </div>
+                </div>
+                <div class="col-md-2">
+                  <label class="control-label " for="devs">Developers:</label>
+                  <div *ngIf="queryString.valid" class="panel panel-userSearch">
+                      <!--ul class="list-users"-->
+                        <div *ngFor="let u of usersNames | FilterPipe: model.queryString">
+                          <span (click)="addUser(u)" id="addU" class="glyphicon glyphicon-plus-sign" title="Add to team" data-toggle="popover" data-trigger="hover"></span> {{u}}
+                        </div>
+                      <!--/ul-->
+                    </div>
+                </div>
 
-            </div>
+              </div>
+            </form>
 
             <div class="row">
               <div class="col-md-7 col-md-offset-2">

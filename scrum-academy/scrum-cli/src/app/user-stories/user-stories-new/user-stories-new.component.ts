@@ -17,11 +17,13 @@ export class UserStoriesNewComponent implements OnInit {
   userStorieIdSelected: number;
 
   model : any ={}
+  projectOn: Project;
   projectIdSelected : number ;
 
   constructor(private userStorieService: UserStorieService, private alertService: AlertService) { }
 
   ngOnInit() {
+      this.projectOn = JSON.parse(localStorage.getItem('projectOn'));
       // ver se isto funciona senão colocar em baixo
        this.projectIdSelected = +localStorage.getItem('projectId');
         this.userStorieService.getFeatures(this.projectIdSelected).subscribe(
@@ -53,7 +55,15 @@ export class UserStoriesNewComponent implements OnInit {
     }
     else{
       // mandar alerta
-      this.alertService.error("Choose priority between 1 and 10!");
+    }
+  }
+
+  prioriodade(){
+    if(this.model.priorityUS>0 && this.model.priorityUS<=10){
+      return true;
+    }
+    else{
+      return false;
     }
   }
 
@@ -69,8 +79,16 @@ export class UserStoriesNewComponent implements OnInit {
     );
   }
 
-   onSelect(userstorie: UserStorie){
+  onSelect(userstorie: UserStorie){
     this.userStorieSelected = userstorie;
+  }
+
+  editUserStorie(){
+    let userstorieedit = JSON.parse(localStorage.getItem('userStorieEdit')).userStorie;
+    let storie = this.userStories.find(x => x.id == userstorieedit.id);
+    let i = this.userStories.indexOf(storie);
+    this.userStories.splice(i,1,userstorieedit);
+
   }
 
   

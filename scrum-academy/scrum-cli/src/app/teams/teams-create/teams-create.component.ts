@@ -8,6 +8,7 @@ import { UserService } from "app/services/user.service";
 import { User } from "app/models/user";
 import { ProjectService } from "app/services/project.service";
 import { RequestsService } from "app/services/requests.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'teams-create',
@@ -32,18 +33,19 @@ export class TeamsCreateComponent implements OnInit {
   constructor(
     private alertService: AlertService,
      private userService: UserService,
+     private router: Router,
      private teamsService: TeamsService,
      private projectService: ProjectService,
      private requestsService: RequestsService){
       this.userService.get()
         .subscribe(
                 resultado => {
-                  console.log("res");
-                  console.log(resultado);
                   for(let i=0;i<resultado.length;i++){
                     if(resultado[i].id != JSON.parse(localStorage.getItem('userOn')).id){
-                      this.users.push(new User(resultado[i].id,resultado[i].name,resultado[i].email,resultado[i].type.id));
-                      this.usersNames[i] = resultado[i].name;
+                      if(resultado[i].type.id !=1){
+                        this.users.push(new User(resultado[i].id,resultado[i].name,resultado[i].email,resultado[i].type.id));
+                        this.usersNames.push(resultado[i].name);
+                      }
                     }
                   }
                   this.getStatementsAvailable();
@@ -116,7 +118,11 @@ export class TeamsCreateComponent implements OnInit {
   //Create Request
   createRequest(teamId){
     this.requestsService.create(teamId, this.model.projSelected, false )
-      .subscribe();
+      .subscribe(
+        resultado =>{
+          this.router.navigate(['/teams']);
+        }
+      );
   }
 
   addTeam(){
@@ -140,7 +146,8 @@ export class TeamsCreateComponent implements OnInit {
             this.addUserTeam(teamId, this.usersSelected[i].id,2);
           }
           //Create Request
-          this.createRequest(teamId)
+          this.createRequest(teamId);
+          
         }
     );
 

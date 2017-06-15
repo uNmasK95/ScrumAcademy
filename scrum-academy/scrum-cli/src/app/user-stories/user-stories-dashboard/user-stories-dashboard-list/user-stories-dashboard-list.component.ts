@@ -3,6 +3,7 @@ import { UserStorieUser } from "app/models/userStorieUser";
 import { SprintService } from "app/services/sprint.service";
 import { Sprint } from "app/sprints/sprint";
 import { TasksService } from "app/services/tasks.service";
+import { Project } from "app/dashboard/project/project";
 
 @Component({
   selector: 'user-stories-dashboard-list',
@@ -13,6 +14,7 @@ export class UserStoriesDashboardListComponent implements OnInit {
 
   @Input() projectId: number;
   
+  public projectOn:Project;
   public userstories: UserStorieUser[] = []; 
   public sprintNow: Sprint = new Sprint(0,"",new Date(),new Date());
   public empty: boolean = false;
@@ -21,6 +23,7 @@ export class UserStoriesDashboardListComponent implements OnInit {
   ngOnInit() {
       let dateNow: Date = new Date();
       console.log(dateNow);
+      this.projectOn = JSON.parse(localStorage.getItem('projectOn'));
       this.sprintService.get(this.projectId)
         .subscribe(
           resultado => {

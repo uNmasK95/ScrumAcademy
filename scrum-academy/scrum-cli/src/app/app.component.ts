@@ -22,8 +22,13 @@ export class AppComponent {
     }
 
   ngOnInit() {
-     this.user = JSON.parse(localStorage.getItem('userOn'));
       console.log(this.user);
+  }
+  haveUser(){
+    if(this.user){
+      return true;
+    }
+    return false;
   }
 
   logout(){
@@ -35,6 +40,7 @@ export class AppComponent {
 
   isLogged(){
     //console.log("Cpn isLogged"+this.isAuthenticatedService.getLoginStatus());
+     this.user = JSON.parse(localStorage.getItem('userOn'));
     return this.isAuthenticatedService.getLoginStatus();
   }
 
@@ -47,6 +53,7 @@ export class AppComponent {
      }
     return 0;
   }
+
 
   getType(){
     if(localStorage.getItem('userOn')){

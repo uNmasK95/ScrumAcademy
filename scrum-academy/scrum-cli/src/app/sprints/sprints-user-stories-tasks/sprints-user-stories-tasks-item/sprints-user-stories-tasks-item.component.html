@@ -18,12 +18,12 @@
                 <img id="rmv" src="../../../../assets/img/delete.png" alt="iconDe" (click)="removeTask(t)" title="Remove task" data-toggle="popover" data-trigger="hover"/>
                 <!--span id="rmv" (click)="removeTask(t)" class="glyphicon glyphicon-remove" title="Remove task" data-toggle="popover" data-trigger="hover"></span-->   
                 <h4 id="taskDescription">{{t.description}}</h4><br>
-                <p id="crdE"> Email: {{t.userEmail}}  <span id="updU" (click)="addUser(t)" class='glyphicon glyphicon-edit' title="Change developer" data-toggle="popover" data-trigger="hover"></span></p>
+                <p id="crdE"> Name: {{t.name}}  <span id="updU" (click)="addUser(t)" class='glyphicon glyphicon-edit' title="Change developer" data-toggle="popover" data-trigger="hover"></span></p>
                 
                 <p id="editT" *ngIf="taskSelected==t">
                     <label>Edit Task (select new developer):</label>
-                    <select class="form-control" id="newUser"  name="newUser" [(ngModel)]="modelNewTask.newUser">
-                        <option *ngFor='let u of users' [value]="u.id" >{{u.email}}</option>
+                    <select class="form-control" id="newUser1"  name="newUser1" [(ngModel)]="modelNewTask.newUser">
+                        <option *ngFor='let u of users' [value]="u.id" >{{u.name}}</option>
                     </select>
                     <span id="addT" class='glyphicon glyphicon-plus-sign' (click)="addU()" title="Change developer" data-toggle="popover" data-trigger="hover"></span>
                 </p>
@@ -38,16 +38,16 @@
         <form id="taskForm" class="form-horizontal" (ngSubmit)="f.form.valid && addTask()" #f="ngForm" novalidate>
            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newtask.valid }">
             <h2>New Task:</h2>
-            <label class="col-xs-4 control-label" for="newtask"></label>
+            <label class="col-md-4 col-xs-4 control-label" for="newtask"></label>
             <input type="text" class="form-control" id="taskN" name="newtask" [(ngModel)]="modelNewTask.newtask" tabindex="1" placeholder="Description: Ex: Print Hello" #newtask="ngModel" required>
             <div *ngIf="f.submitted && !newtask.valid" class="help-block">New Task is required</div>
           </div>
-          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newtask.valid }">
-            <label class="col-xs-4 control-label" for="newTaskUser">Developer: </label>
-            <div class="col-xs-7 col-xs-offset-1 selectContainer">
-                <select class="form-control" id="newUser"  name="newTaskUser" [(ngModel)]="modelNewTask.newTaskUser" #newTaskUser="ngModel" required>
+          <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newTaskUser.valid }">
+            <label class="col-md-4 col-xs-4 control-label" for="newTaskUser">Developer: </label>
+            <div class="col-md-8 col-xs-8 selectContainer">
+                <select class="has-error form-control" id="newUser"  name="newTaskUser" [(ngModel)]="modelNewTask.newTaskUser" #newTaskUser="ngModel" required>
                     <!--option value="">Choose a developer</option-->
-                    <option *ngFor='let u of users' [value]="u.id" >{{u.email}}</option>
+                    <option *ngFor='let u of users' [value]="u.id" >{{u.name}}</option>
                     <!--option value="green">Green</option>
                     <option value="red">Red</option>
                     <option value="yellow">Yellow</option>

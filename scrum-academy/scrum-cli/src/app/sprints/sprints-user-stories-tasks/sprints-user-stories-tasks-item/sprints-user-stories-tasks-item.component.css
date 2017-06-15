@@ -119,8 +119,13 @@
     margin-top: 5px;
 }
 #newUser{
-    width: 50%;
+    width: 100%;
     display:inline;
+}
+
+#newUser1{
+    width: 90%;
+    display:inline;  
 }
 #addTask{
    border-top: 2px solid gray;

@@ -46,7 +46,8 @@ export class SprintsUserStoriesTasksItemComponent {
         if(this.tasks !=[]){
           this.tasks = [];
           for(let task of resultado){
-            let novatask : TaskUser = new TaskUser(task.id, task.description,task.user.id,task.user.email,task.state);
+            console.log(task);
+            let novatask : TaskUser = new TaskUser(task.id, task.description,task.user.id,task.user.name,task.user.email,task.state);
             this.tasks.push(novatask);
           }
         }

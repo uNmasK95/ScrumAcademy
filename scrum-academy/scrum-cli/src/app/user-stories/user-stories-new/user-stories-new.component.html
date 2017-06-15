@@ -1,11 +1,35 @@
 <div class="row">
   <div class=" col-xs-12 col-sm-7 col-sm-offset-2">
+    <h2>{{projectOn.name}}</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-6 col-md-offset-2">
+    <h3>User Stories:</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5 col-md-offset-2">
+    <ul class="list-group">
+      <user-stories-item *ngFor="let us of userStories; let i = index" [userStorie]="us" (click)="onSelect(us)"></user-stories-item>
+    </ul>
+  </div>
+  <div class="col-md-5">
+    <div *ngIf="userStorieSelected">
+      <user-stories-edit (editUserStorie)="editUserStorie()" [userStorie]="userStorieSelected" ></user-stories-edit>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-6 col-md-offset-2">
     <h3>Create User Stories:</h3>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2 col-sm-7 col-sm-offset-2">
-    <alert></alert>
     <form class="form-horizontal" (ngSubmit)="f.form.valid && createUserStorie()" #f="ngForm" novalidate>
       <div class="form-group">
         <!--div> <ter aqui if>
@@ -19,13 +43,18 @@
           <label class="col-sm-offset-1"for="desriptionUS">Description:</label>
           <!--input type="text" class="form-control" id="des"-->
           <textarea class="form-control col-sm-offset-1" rows="5" name="descriptionUS" [(ngModel)]="model.descriptionUS" id="iddescriptionUS" #descriptionUS="ngModel" required></textarea>
-          <div *ngIf="f.submitted && !descriptionUS.valid" class="help-block">Description is required</div>
+           <div class="col-md-offset-1">
+            <div *ngIf="f.submitted && !descriptionUS.valid" class="help-block">Description is required</div>
+           </div>
         </div>
       
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !priorityUS.valid }">
           <label class="col-sm-offset-1"for="priorityUS">Priority:</label>
           <input type="number" min="1" max="10" class="form-control col-sm-offset-1" id="pr" name="priorityUS" [(ngModel)]="model.priorityUS" #priorityUS="ngModel" required>
-          <div *ngIf="f.submitted && !priorityUS.valid" class="help-block">Priority is required</div>
+          <div class="col-md-offset-1">
+            <div *ngIf="f.submitted && !priorityUS.valid && prioriodade()" class="help-block">Priority is required</div>
+            <div *ngIf="f.submitted && !prioriodade()" class="help-block">Priority between 1 and 10!</div>
+          </div>
          </div>
 
         <button type="submit" id="buttonUserStory"class="btn btn-primary col-sm-offset-1">
@@ -33,26 +62,5 @@
         </button>
       </div>
     </form>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-6 col-md-offset-2">
-    <h3>User Stories:</h3>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <ul class="list-group">
-      <user-stories-item *ngFor="let us of userStories; let i = index" [userStorie]="us" (click)="onSelect(us)"></user-stories-item>
-    </ul>
-  </div>
-</div>
-<div class="row"> 
-  <div class="col-md-12">
-    <div *ngIf="userStorieSelected">
-      <user-stories-detail [userStorie]="userStorieSelected" [userStorieId]="userStorieIdSelected"></user-stories-detail>
-    </div>
   </div>
 </div>

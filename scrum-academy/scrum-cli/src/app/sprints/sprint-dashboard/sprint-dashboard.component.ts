@@ -26,7 +26,6 @@ export class SprintDashboardComponent {
   public constructor(private dragulaService:DragulaService,
                      private userStorieService: UserStorieService,
                      private sprinService: SprintService) {
-    dragulaService.removeModel;
     dragulaService.dropModel.subscribe((value:any) => {
       this.onDropModel(value.slice(1));
     });
@@ -47,6 +46,7 @@ export class SprintDashboardComponent {
   private onDropModel(args:any):void {
     let [el, target, source] = args;
     let usAqui : boolean =false;
+    console.log(el);
     console.log(target);
     console.log(source);
      let p :UserStorieProject;
@@ -56,33 +56,70 @@ export class SprintDashboardComponent {
           usAqui = true;
         }
     }
-     
-    if(this.project.id == el.getAttribute('project-id') || (this.sprintId == el.getAttribute('sprint-id') && this.project.id == el.getAttribute('project-id'))){
+      console.log(this.sprintId)
+    if(target.id == "iddragula2" && source.id=="iddragula2"){
         let posicaoparaeliminar = 0;
-       for( let us of this.anterioruserStoriesAss){
-          if(us.id == el.getAttribute('item-id')){
-            usAqui = true;
-            break;
-          }
-          posicaoparaeliminar++;
-      }
-      if(usAqui){
-        if(target.id == "iddragula2"){
-          console.log(this.anterioruserStoriesAss);
-             console.log(this.userStoriesAss);
-          console.log("DAdada" + this.comparaarry() )
-          if(!this.comparaarry()){
-            console.log("COLOCA");
-            this.anterioruserStoriesAss.push(p);
-            this.sprinService.postSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id'),0).subscribe(
-            );
-          }
+        for( let us of this.anterioruserStoriesAss){
+            if(us.id == el.getAttribute('item-id')){
+              usAqui = true;
+              break;
+            }
+            posicaoparaeliminar++;
+        }
+        if(el.getAttribute('sprint-id') == this.sprintId){
+           console.log("ELIMINA");
+           this.anterioruserStoriesAss.splice(posicaoparaeliminar,1);
+           this.sprinService.deleteSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id')).subscribe();
         }
         else{
-            console.log("ELIMINA");
-            this.anterioruserStoriesAss.splice(posicaoparaeliminar,1);
-            this.sprinService.deleteSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id')).subscribe(
-            );
+          for( let us of this.anterioruserStoriesAss){
+            if(us.id == el.getAttribute('item-id')){
+              usAqui = true;
+              break;
+            }
+            posicaoparaeliminar++;
+          }
+          if(usAqui){
+            if(!this.comparaarry()){
+              console.log("COLOCA");
+              this.anterioruserStoriesAss.push(p);
+              this.sprinService.postSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id'),0).subscribe(
+              );
+            }
+          }
+        }
+        console.log("Dadad")
+        console.log(this.userStoriesAss)
+        console.log(this.anterioruserStoriesAss)
+    }
+    else{
+      if(this.project.id == el.getAttribute('project-id') || (this.sprintId == el.getAttribute('sprint-id') && this.project.id == el.getAttribute('project-id'))){
+          let posicaoparaeliminar = 0;
+        for( let us of this.anterioruserStoriesAss){
+            if(us.id == el.getAttribute('item-id')){
+              usAqui = true;
+              break;
+            }
+            posicaoparaeliminar++;
+        }
+        if(usAqui){
+          if(target.id == "iddragula2"){
+            console.log(this.anterioruserStoriesAss);
+              console.log(this.userStoriesAss);
+            console.log("DAdada" + this.comparaarry() )
+            if(!this.comparaarry()){
+              console.log("COLOCA");
+              this.anterioruserStoriesAss.push(p);
+              this.sprinService.postSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id'),0).subscribe(
+              );
+            }
+          }
+          else{
+              console.log("ELIMINA");
+              this.anterioruserStoriesAss.splice(posicaoparaeliminar,1);
+              this.sprinService.deleteSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id')).subscribe(
+              );
+          }
         }
       }
     }

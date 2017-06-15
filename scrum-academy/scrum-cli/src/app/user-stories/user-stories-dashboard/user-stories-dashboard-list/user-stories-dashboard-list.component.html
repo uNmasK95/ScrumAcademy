@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <h1>Scrum Academy ({{sprintNow.startDate.getDate()}}/{{sprintNow.startDate.getMonth()+1}}/{{sprintNow.startDate.getFullYear()}})->({{sprintNow.endDate.getDate()}}/{{sprintNow.endDate.getMonth()+1}}/{{sprintNow.endDate.getFullYear()}})</h1>
+    <h1>{{projectOn.name}} {{sprintNow.startDate.getDate()}}-{{sprintNow.startDate.getMonth()+1}}-{{sprintNow.startDate.getFullYear()}} to {{sprintNow.endDate.getDate()}}-{{sprintNow.endDate.getMonth()+1}}-{{sprintNow.endDate.getFullYear()}}</h1>
     <br>
     <ul class="list-group">
       <user-stories-dashboard-item *ngFor="let us of userstories; let i = index" [userstorie]="us">

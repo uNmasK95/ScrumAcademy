@@ -20,7 +20,7 @@
 						<li><a [routerLink]="['/teams']" *ngIf="isLogged()">Teams</a></li>
 						<li><a [routerLink]="['/questions']" *ngIf="isLogged() && getType()==1">Questions</a></li>
 						<li class="dropdown" *ngIf="isLogged()">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" *ngIf="haveUser()" aria-expanded="false">{{user.name}}<span class="caret"></span></a>
 							<ul class="dropdown-menu" >
 								<li><a *ngIf="getId()>0" [routerLink]="['/profile', getId()]" ><span class="glyphicon glyphicon-user"></span>Profile</a></li>
 								<li><a [routerLink]="['/']" (click)="logout()" ><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
