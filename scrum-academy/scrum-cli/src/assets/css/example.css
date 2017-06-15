@@ -178,7 +178,7 @@ button {
   /*text-align: center;*/
 
   color: black;
-  text-shadow: 1px 1px 2px grey, 0 0 25px grey, 0 0 5px darkgrey;
+  /*text-shadow: 1px 1px 2px grey, 0 0 25px grey, 0 0 5px darkgrey;*/
 
 }
 .gu-mirror {
@@ -189,7 +189,7 @@ button {
   
   text-align: center;
   color: black;
-  text-shadow: 1px 1px 2px grey, 0 0 25px grey, 0 0 5px darkgrey;
+  /*  text-shadow: 1px 1px 2px grey, 0 0 25px grey, 0 0 5px darkgrey;*/
   box-shadow: 5px 5px 3px grey;
 }
 .container .ex-moved {
