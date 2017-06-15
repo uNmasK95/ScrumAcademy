@@ -90,7 +90,7 @@ export class SprintCreateComponent implements OnInit {
             console.log("algo correu mal");
           }
         );
-        
+          
       }
       this.criadas.emit("change");
       // ESTA LINHA NAO TESTEI, MAS É PARA ELE ASEGUIR A CRIAR ATUALIZAR LOGO É ESSA A IDEIA

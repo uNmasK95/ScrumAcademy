@@ -13,7 +13,7 @@ import { TasksService } from "app/services/tasks.service";
 export class UserStoriesDashboardComponent implements OnInit {
 
   private subscription: Subscription;
-  private projectId: number = 0;
+  public projectId: number = 0;
 
   private sprints: Sprint[] = [];
 

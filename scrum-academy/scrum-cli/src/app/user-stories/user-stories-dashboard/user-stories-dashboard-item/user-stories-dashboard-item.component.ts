@@ -22,19 +22,19 @@ export class UserStoriesDashboardItemComponent implements OnInit {
 
   private subscription: Subscription;
   private projectId: number = 0;
-  private myTasksToAss: Task[] = []; //[new Task(1,"TaskToAss1",3,0),new Task(2,"TaskToAss2",3,0)]; 
-  private othersTasksToAss: Task[] = [];
-  private myTasksInProgress: Task[] = []; //[new Task(3,"TaskIn3",3,1),new Task(4,"TaskIn4",3,1)];
-  private othersTasksInProgress: Task[] = [];
-  private myTasksDone: Task[] = []; //[new Task(5,"TaskD5",3,2),new Task(6,"TaskD6",3,2)];
-  private othersTasksDone: Task[] = [];
+   myTasksToAss: Task[] = []; //[new Task(1,"TaskToAss1",3,0),new Task(2,"TaskToAss2",3,0)]; 
+   othersTasksToAss: Task[] = [];
+   myTasksInProgress: Task[] = []; //[new Task(3,"TaskIn3",3,1),new Task(4,"TaskIn4",3,1)];
+   othersTasksInProgress: Task[] = [];
+   myTasksDone: Task[] = []; //[new Task(5,"TaskD5",3,2),new Task(6,"TaskD6",3,2)];
+   othersTasksDone: Task[] = [];
   private allTasks: Task[] = [];//this.tasksToAss.concat(this.tasksInProgress.concat(this.tasksDone));  //Todas tasks
   
   private userOnName = JSON.parse(localStorage.getItem('userOn')).name;
   private taskSelected : Task = new Task(999,"",999,"",0);
 
-  private comments: Comment[] = [];
-  private doubts: Doubt[] = [];
+   comments: Comment[] = [];
+   doubts: Doubt[] = [];
 
   addc: boolean = false;
   addd: boolean = false;
