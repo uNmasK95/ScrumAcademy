@@ -111,13 +111,13 @@
                 <div *ngIf="addc">
                     <form (ngSubmit)="f.form.valid && createComment()" #f="ngForm" novalidate>
                         <div class="form-group">
-                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !descriptionC.valid }">
+                            <div class="form-group" >
                                 <label for="descriptionC">Comment:</label>
                                 <textarea class="form-control" rows="3" name="descriptionC"
                                      [(ngModel)]="model.descriptionC" id="iddescriptionC" 
                                     #descriptionC="ngModel" placeholder="Put here the comment..." required>
                                 </textarea>
-                                <div *ngIf="f.submitted && !descriptionC.valid" class="help-block">Description is required</div>
+                                <!--div *ngIf="f.submitted && !descriptionC.valid" class="help-block">Description is required</div-->
                             </div>
 
                             <button type="submit" class="btn btn-default" id="buttonAddC">
@@ -139,13 +139,13 @@
                 <div *ngIf="addd">
                     <form (ngSubmit)="f.form.valid && createDoubt()" #f="ngForm" novalidate>
                         <div class="form-group">
-                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !descriptionD.valid }">
+                            <div class="form-group" >
                                 <label for="descriptionD">Doubt:</label>
                                 <textarea class="form-control" rows="3" name="descriptionD"
                                      [(ngModel)]="model.descriptionD" id="iddescriptionD" 
                                     #descriptionD="ngModel" placeholder="Put here the doubt to do to teacher..." required>
                                 </textarea>
-                                <div *ngIf="f.submitted && !descriptionD.valid" class="help-block">Description is required</div>
+                                <!--div *ngIf="f.submitted && !descriptionD.valid" class="help-block">Description is required</div-->
                             </div>
 
                             <button type="submit" class="btn btn-default" id="buttonAddC">

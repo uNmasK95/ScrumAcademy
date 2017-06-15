@@ -37,9 +37,9 @@ export class SprintDashboardComponent {
   }
 
   ngOnInit() {
-    if(this.dragulaService.find('second.bad')){
+    /*if(this.dragulaService.find('second.bad')){
       this.dragulaService.destroy('second-bag');
-    }
+    }*/
     this.getUserStoriesSpring();
   }
 
@@ -47,6 +47,8 @@ export class SprintDashboardComponent {
   private onDropModel(args:any):void {
     let [el, target, source] = args;
     let usAqui : boolean =false;
+    console.log("DOOOOOPPPP");
+    console.log(el);
     console.log(target);
     console.log(source);
      let p :UserStorieProject;

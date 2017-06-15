@@ -211,6 +211,7 @@ export class UserStoriesDashboardItemComponent implements OnInit {
   //Comments ----
   createComment(){
     console.log(this.model.descriptionC);
+    if(!this.model.descriptionC) return;
     this.commentsService.create(this.projectId,this.userstorie.id, 
       this.model.descriptionC,JSON.parse(localStorage.getItem('userOn')).id,this.taskSelected.id)
       .subscribe(
@@ -219,6 +220,7 @@ export class UserStoriesDashboardItemComponent implements OnInit {
           this.comments.push(new Comment(resultado.id,resultado.description,this.taskSelected.id));
         }
       );
+      this.model.descriptionC = null;
   }
 
   removeC(commentId: number){
@@ -251,6 +253,7 @@ export class UserStoriesDashboardItemComponent implements OnInit {
           this.doubts.push(new Doubt(resultado.id,resultado.description,resultado.answer,this.taskSelected.id));
         }
       );
+    this.model.descriptionD = null;
   }
 
   removeD(doubtId: number){
