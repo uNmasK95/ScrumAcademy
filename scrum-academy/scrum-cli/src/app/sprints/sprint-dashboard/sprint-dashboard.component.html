@@ -2,8 +2,7 @@
     <div id="iddragula2" class='container' [dragula]='"first-bag"' [dragulaModel]='userStoriesAss'>
         <div *ngFor='let us of userStoriesAss; let i = index' [attr.item-id]="us.id" [attr.sprint-id]="sprintId" [attr.project-id]="project.id">
             <img src="../../../assets/img/us.png" alt="iconUS" >
-            <span title="Edit Score" data-toggle="popover" data-trigger="hover" id="cgS" class='glyphicon glyphicon-edit' (click)="scoreEdit(us,i)"></span>
-            Score: {{us.score}}<br>
+            Score: {{us.score}} <span title="Edit Score" data-toggle="popover" data-trigger="hover" id="cgS" class='glyphicon glyphicon-edit' (click)="scoreEdit(us,i)"></span><br>
             Priority: {{us.priority}}<br><br>
             Description: {{us.description}}
             <p id="edit" *ngIf="us==usE">
