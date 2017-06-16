@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['/']);
                 },
                 error => {
-                    console.log("ERROR:"+error);
                     this.alertService.error("Email ou Password incorretos!");
                     this.loading = false;
                 }
@@ -55,13 +54,11 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('userOn',JSON.stringify(userOn));
             },
             error => {
-                    console.log(error);
             });
     }
     /*
     this.loading = true;
     //this.router.navigate([this.returnUrl]);
-    console.log("aqui")
     this.router.navigate(["projects"]);
   }*/
 

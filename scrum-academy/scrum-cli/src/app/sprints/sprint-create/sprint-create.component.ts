@@ -54,7 +54,6 @@ export class SprintCreateComponent implements OnInit {
   addSprint(){
     if(this.validadatas()){
       //ver a diferença de dias
-      console.log("ola");
       let Iday = new Date(this.model.Iday);
       let Dday = new Date(this.model.Iday);
       var timeDiff = Math.abs(Iday.getTime() - (new Date(this.project.endD)).getTime());
@@ -65,11 +64,8 @@ export class SprintCreateComponent implements OnInit {
         let descricao = 'Sprint '+(i+1);
         this.sprintService.post(this.project.id,descricao,Iday,Dday).subscribe(
           resultado =>{
-            console.log("sprints Criadas");
           },
           error=>{
-            console.log(error);
-            console.log("algo correu mal");
           }
         );
         i++;
@@ -84,10 +80,8 @@ export class SprintCreateComponent implements OnInit {
         let descricao = 'Sprint '+(i+1);
         this.sprintService.post(this.project.id,descricao,Iday,Dday).subscribe(
           resultado =>{
-            console.log("sprints Criadas");
           },
           error=>{
-            console.log("algo correu mal");
           }
         );
           

@@ -8,7 +8,6 @@ import { Http, Headers, Response } from '@angular/http';
 @Injectable()
 export class IsAuthenticatedService {
 
-  //userLoggedIn : boolean = false;
   userLogged : User; //User logado
 
   constructor(private router: Router, private http: Http, private httpUtil: HttpUtilService){
@@ -16,12 +15,9 @@ export class IsAuthenticatedService {
 
   //call this function when login status changes
   changeLoginStatus(status: boolean){
-      //this.userLoggedIn = status;
-      console.log("in changeLoginStatus: ", status);
   }
 
   getLoginStatus(){
-    //return this.userLoggedIn;
     return localStorage['currentUser'];
   }
 
@@ -31,7 +27,6 @@ export class IsAuthenticatedService {
                 .map(
                   (response: Response) => {
                       let data = response.json();
-                      console.log(data);
                       if(data && data.auth_token){
                         localStorage.setItem('currentUser',data.auth_token);
                         localStorage.setItem('id',data.user_id);

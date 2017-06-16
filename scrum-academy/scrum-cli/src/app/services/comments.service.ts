@@ -10,7 +10,6 @@ export class CommentsService {
   constructor(private http: Http, private httpUtil: HttpUtilService) { }
 
   get(projectId: number, userStorieId: number, taskId: number){
-    console.log("Get comments");
     return this.http.get(this.httpUtil.url('/projects/'+projectId+'/userstories/'
       +userStorieId+'/tasks/'+taskId+'/comments'),
             this.httpUtil.headers())
@@ -18,7 +17,6 @@ export class CommentsService {
   }
 
   create(projectId: number, userStorieId: number, description: string, userId: number,taskId: number){
-    console.log("Create comments");
     return this.http.post(this.httpUtil.url('/projects/'+projectId+'/userstories/'
             +userStorieId+'/tasks/'+taskId+'/comments'),
             JSON.stringify({ description: description, user_id: userId}),
@@ -27,7 +25,6 @@ export class CommentsService {
   }
 
   remove(projectId: number, userStorieId: number, taskId: number, commentId: number){
-    console.log("Remove comment");
     return this.http.delete(this.httpUtil.url('/projects/'+projectId+'/userstories/'
       +userStorieId+'/tasks/'+taskId+'/comments/'+commentId),
             this.httpUtil.headers())

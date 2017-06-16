@@ -25,7 +25,6 @@ export class TeamsUserComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.teams   )
   }
 
    ngAfterViewChecked()
@@ -44,31 +43,23 @@ export class TeamsUserComponent implements OnInit {
   }
 
   requeststate(){
-    console.log(this.adicionanovoproject  );
     return this.adicionanovoproject
   }
    getProjectsUser(){
       this.projectService.getStatementsPossible().subscribe(
         resultado =>{
-          console.log("statements")
-          console.log(resultado)
           this.projects=resultado;
           let userOn =JSON.parse(localStorage.getItem('userOn'))
           this.projectService.getProjectsByUserId(userOn.id).subscribe(
             resultado=>{
-              console.log(this.projects)
-              //console.log("dadad cd")
               let projetostodos = resultado;
               for(let project of projetostodos){
-                console.log(project)
                 if(project.team.id == this.teams.teamId){
-                  console.log("estou aqui");
                   let proj = this.projects.find(x => x.id == project.statement.id);
                   let i = this.projects.indexOf(proj);
                   this.projects.splice(i,1);
                 }
               }
-              console.log(this.projects);
           },
             error=>{
               console.log(error);

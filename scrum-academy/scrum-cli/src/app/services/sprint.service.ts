@@ -15,7 +15,6 @@ export class SprintService {
                .map(this.httpUtil.extrairDados);
   }
   post(id: number,description: string,Iday: Date, Dday: Date){
-      console.log('/project/'+id+'/sprints');
     return this.http.post(this.httpUtil.url('/projects/'+id+'/sprints'),
                 JSON.stringify({description: description,startDate: Iday , endDate: Dday }),this.httpUtil.headers())
                .map(this.httpUtil.extrairDados);

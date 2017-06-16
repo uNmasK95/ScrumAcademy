@@ -70,7 +70,6 @@ export class RegisterComponent {
                     localStorage.setItem('userOn',JSON.stringify(userOn));
             },
             error => {
-                    console.log(error);
             });
     }
 

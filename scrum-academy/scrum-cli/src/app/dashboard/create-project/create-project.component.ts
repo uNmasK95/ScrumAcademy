@@ -22,19 +22,14 @@ export class CreateProjectComponent implements OnInit {
     if(this.validaDatas()){
       this.loading = true;
       this.project = new Project(0,this.model.nameP,this.model.descriptionP, new Date(this.model.initialD), new Date(this.model.endD));
-      console.log(this.project);
-    // console.log("data");
-    // console.log( new Date(this.model.initialD));
       let user = JSON.parse(localStorage.getItem('userOn'));
       this.projectService.create(user.id,this.project).subscribe(
         resultado => {
           let statement = resultado;
           localStorage.setItem('projectId',statement.id);
-          console.log("Criado um Statement");
           this.projCreated=true;
         },
         error => {
-          console.log(error);
           this.loading = false;
           // mandar alerta
           this.alertService.error("Net Down, sorry!");

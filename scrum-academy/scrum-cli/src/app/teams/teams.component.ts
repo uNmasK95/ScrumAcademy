@@ -27,7 +27,6 @@ export class TeamsComponent implements OnInit {
         .subscribe(
           resultado => {
             for(let r of resultado){
-              console.log(r.team.description+"--"+r.statement.name);
               let req : Request = new Request(r.id, r.team.id, r.team.description, r.statement.id, r.statement.name);
               this.requests.push(req);
             }
@@ -51,7 +50,6 @@ export class TeamsComponent implements OnInit {
             this.emptyTeams=true;
           }
           else this.emptyTeams=false;
-          console.log(this.teams);
         }
       );
     }
@@ -61,7 +59,6 @@ export class TeamsComponent implements OnInit {
     if(localStorage.getItem('userOn')){
       let p =JSON.parse(localStorage.getItem('userOn')).type
       if(p==1 || p==2){
-       // console.log(localStorage.getItem('userOn'));
         return p;
       }
     }

@@ -67,8 +67,6 @@ export class DragulaService {
       }
       sourceModel = drake.models[drake.containers.indexOf(source)];
       sourceModel.splice(dragIndex, 1);
-      // console.log('REMOVE');
-      // console.log(sourceModel);
       this.removeModel.emit([name, el, source]);
     });
     drake.on('drag', (el: any, source: any) => {
@@ -81,8 +79,6 @@ export class DragulaService {
       }
       dropIndex = this.domIndexOf(dropElm, target);
       sourceModel = drake.models[drake.containers.indexOf(source)];
-      // console.log('DROP');
-      // console.log(sourceModel);
       if (target === source) {
         sourceModel.splice(dropIndex, 0, sourceModel.splice(dragIndex, 1)[0]);
       } else {

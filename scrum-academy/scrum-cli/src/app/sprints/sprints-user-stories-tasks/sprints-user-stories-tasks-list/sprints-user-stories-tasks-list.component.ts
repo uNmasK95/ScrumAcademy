@@ -63,7 +63,6 @@ export class SprintsUserStoriesTasksListComponent implements OnInit {
     this.teamsService.getById(this.teamId).subscribe(
       resultado =>{
         for(let user of resultado.team_users){
-          console.log("um uswer")
           this.userService.getById(user.user_id).subscribe(
             resultado =>{
               let userOn = resultado;

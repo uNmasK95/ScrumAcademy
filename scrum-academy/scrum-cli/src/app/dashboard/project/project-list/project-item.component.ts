@@ -27,7 +27,6 @@ export class ProjectItemComponent {
     let funct = JSON.parse(localStorage.getItem('UserTeamProject'))[0].job;
     if(localStorage.getItem('userOn')){
       let type = JSON.parse(localStorage.getItem('userOn')).type
-      console.log("sou o type :  "+type);
       if(type==1){ //PO
         localStorage.setItem('projectOn',JSON.stringify(this.project));
         localStorage.setItem('projectId',''+this.projectId);

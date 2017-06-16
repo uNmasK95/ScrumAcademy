@@ -34,21 +34,14 @@ export class SprintsListComponent implements OnInit {
         let previousprint;
         let allsprints : Sprint[] = resultado;
         let i = 0;
-        console.log(resultado);
         for(let sprint of resultado){
-          console.log(sprint);
           let timeEnd = new Date(sprint.endDate);
-          //console.log(i);
           if( timeEnd.getTime() > timenow.getTime()){
-            //console.log(previousprint)
-            //console.log(sprint)
                 //se tem sprint antes desta ver se esta tudo direito;
             if(i!=0){
               //ver userStorys de sprint e ver as tasks se estao todas com o estado acabado se sim nao faz nada 
               // se nao estiverem fazer um postSprintUserStorie com a sprint em que estamos
               for(let userStorie of previousprint.userstorie){
-                //console.log("userstorie");
-                //console.log(userStorie);
                 this.tasksService.getByUserStory(this.project.id,userStorie.id).subscribe(
                   resultado =>{
                     for(let task of resultado){
@@ -72,8 +65,6 @@ export class SprintsListComponent implements OnInit {
                 //ver userStorys de sprint e ver as tasks se estao todas com o estado acabado se sim nao faz nada 
                 // se nao estiverem fazer um postSprintUserStorie com a sprint em que estamos
                 for(let userStorie of previousprint.userstorie){
-                  //console.log("userstorie");
-                  //console.log(userStorie);
                   this.tasksService.getByUserStory(this.project.id,userStorie.id).subscribe(
                     resultado =>{
                       for(let task of resultado){
@@ -96,7 +87,6 @@ export class SprintsListComponent implements OnInit {
           }
           i++;
         }
-        console.log(this.sprints);
       },
       error =>{
         console.log(error);

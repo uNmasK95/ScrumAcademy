@@ -48,8 +48,6 @@ export class UserStoriesDashboardItemComponent implements OnInit {
     private commentsService: CommentsService,
     private doubtsService: DoubtsService) {
       dragulaService.dropModel.subscribe((value:any) => {
-        console.log("TOU DO DROP:");
-        console.log(value);
         this.onDropModel(value.slice(1));
       });
       dragulaService.removeModel.subscribe((value:any) => {
@@ -62,16 +60,12 @@ export class UserStoriesDashboardItemComponent implements OnInit {
       (params: any) => {
         this.projectId = params['id'];
       });
-    console.log(localStorage.getItem('userOn'));
     let userId =JSON.parse(localStorage.getItem('userOn')).id;
     this.tasksService.get(this.projectId,this.userstorie.id)
       .subscribe(
         resultado => {
-          console.log("RESULTADO DO GETAll"),
-          console.log(resultado)
           for(let r of resultado){
             let t : Task = new Task(r.id,r.description,r.user.id,r.user.name,r.state);
-            console.log(t);
             this.allTasks.push(t);
             if(t.state==0){ //ToDo
               if(t.userId==userId){//Minha task
@@ -92,28 +86,13 @@ export class UserStoriesDashboardItemComponent implements OnInit {
                 this.othersTasksDone.push(t);
               }
             }
-            console.log("Atribui");
-            //console.log(r.team.description+"--"+r.statement.name);
-            //let req : Request = new Request(r.id, r.team.id, r.team.description, r.statement.id, r.statement.name);
-            //this.requests.push(req);
           }
-          console.log(this.allTasks);
-          console.log(this.myTasksToAss);
-          console.log(this.myTasksInProgress);
-          console.log(this.myTasksDone);
-          console.log(this.othersTasksToAss);
-          console.log(this.othersTasksInProgress);
-          console.log(this.othersTasksDone);
         }
       )
   }
 
   private onDropModel(args:any):void {
     let [el, target, source] = args;
-    console.log('onDropModel:');
-    console.log(el);
-    console.log(target);
-    console.log(source);
 
     //Ver target 
     let newState = 0; // 0->"No state"
@@ -122,15 +101,11 @@ export class UserStoriesDashboardItemComponent implements OnInit {
     }else if(target.id=="bag3"){
       newState=2;
     }
-    console.log("TARGET: newState:"+newState+" -- TaskId:"+el.getAttribute('taskId'));
     this.changeState(el.getAttribute('taskId'), newState);
   }
 
   private onRemoveModel(args:any):void {
     let [el, source] = args;
-    console.log('onRemoveModel:');
-    console.log(el);
-    console.log(source);
   }
 
   concate(){
@@ -138,14 +113,10 @@ export class UserStoriesDashboardItemComponent implements OnInit {
   }
 
   changeState(taskId, newState){
-    console.log("Tou changeStat11");
-    console.log(this.allTasks);
     let allTasksAux: Task[] = [];
     this.tasksService.get(this.projectId,this.userstorie.id)
       .subscribe(
         resultado => {
-          console.log("RESULTADO DO GETAll2:"+taskId+"---"+newState),
-          console.log(resultado)
           for(let r of resultado){
             let t : Task = new Task(r.id,r.description,r.user.id,r.user.name,r.state);
             allTasksAux.push(t);
@@ -153,12 +124,9 @@ export class UserStoriesDashboardItemComponent implements OnInit {
 
           //Atualizar task
           let taskToChangeAux = allTasksAux.find(x => x.id == taskId);
-          console.log(taskToChangeAux);
           if(taskToChangeAux){
             let taskToChange = new Task(taskToChangeAux.id,taskToChangeAux.description,taskToChangeAux.userId,taskToChangeAux.userName,newState);
-            console.log("TOU CHANGESTATE");
-            console.log(taskToChange);
-            //console.log(taskToChange.id,taskToChange.description);
+            
             this.tasksService.update(this.projectId,this.userstorie.id, taskToChange)
               .subscribe();
             }
@@ -167,14 +135,11 @@ export class UserStoriesDashboardItemComponent implements OnInit {
   }
 
   changeTask(task: Task){
-    console.log("TOU NO CHANGE TASK");
     this.taskSelected = task;
-    console.log(this.projectId+"-"+this.userstorie.id+"-"+task.id)
     this.commentsService.get(this.projectId,this.userstorie.id, task.id)
       .subscribe(
         resultado =>{
           this.comments = [];
-          console.log(resultado);
           for(let res of resultado){
             let c : Comment = new Comment(res.id,res.description,task.id);
             this.comments.push(c);
@@ -186,7 +151,6 @@ export class UserStoriesDashboardItemComponent implements OnInit {
       .subscribe(
         resultado =>{
           this.doubts = [];
-          console.log(resultado);
           for(let res of resultado){
             let d : Doubt= new Doubt(res.id,res.description, res.answer,task.id);
             this.doubts.push(d);
@@ -210,13 +174,11 @@ export class UserStoriesDashboardItemComponent implements OnInit {
 
   //Comments ----
   createComment(){
-    console.log(this.model.descriptionC);
     if(!this.model.descriptionC) return;
     this.commentsService.create(this.projectId,this.userstorie.id, 
       this.model.descriptionC,JSON.parse(localStorage.getItem('userOn')).id,this.taskSelected.id)
       .subscribe(
         resultado => {
-          console.log(resultado);
           this.comments.push(new Comment(resultado.id,resultado.description,this.taskSelected.id));
         }
       );
@@ -224,11 +186,9 @@ export class UserStoriesDashboardItemComponent implements OnInit {
   }
 
   removeC(commentId: number){
-    console.log(this.model.descriptionC);
     this.commentsService.remove(this.projectId,this.userstorie.id,this.taskSelected.id,commentId)
       .subscribe(
         resultado => {
-          console.log(resultado);
           this.commentsService.get(this.projectId,this.userstorie.id, this.taskSelected.id)
               .subscribe(
                 resultado =>{
@@ -245,11 +205,9 @@ export class UserStoriesDashboardItemComponent implements OnInit {
 
   //Doubts ----
   createDoubt(){
-    console.log(this.model.descriptionD);
     this.doubtsService.create(this.projectId+':'+this.model.descriptionD,JSON.parse(localStorage.getItem('userOn')).id,this.taskSelected.id)
       .subscribe(
         resultado => {
-          console.log(resultado);
           this.doubts.push(new Doubt(resultado.id,resultado.description,resultado.answer,this.taskSelected.id));
         }
       );
@@ -257,11 +215,9 @@ export class UserStoriesDashboardItemComponent implements OnInit {
   }
 
   removeD(doubtId: number){
-    console.log(this.model.descriptionD);
     this.doubtsService.remove(doubtId)
       .subscribe(
         resultado => {
-          console.log(resultado);
           this.doubtsService.get(this.taskSelected.id)
               .subscribe(
                 resultado =>{

@@ -13,7 +13,6 @@ export class ProjectService {
 	}
 
     create(id : number, projecto: Project) {
-        console.log(projecto);
        return this.http.post(this.httpUtil.url('/statements'),JSON.stringify({ name: projecto.name,description: projecto.description
                   , startDate: projecto.initialD, endDate:projecto.endD, user: id}) , this.httpUtil.headers())
                   .map(this.httpUtil.extrairDados);
@@ -41,8 +40,6 @@ export class ProjectService {
         search.set('user', id);
         let headers = new Headers(headersParams);
         let options = new RequestOptions({ headers: headers, search:search});
-        console.log(options);
-        console.log(this.http.get(this.httpUtil.url('/statements'),options ))
         return this.http.get(this.httpUtil.url('/projects'),options)
            .map(this.httpUtil.extrairDados);
     }
@@ -56,8 +53,6 @@ export class ProjectService {
         search.set('user', id);
         let headers = new Headers(headersParams);
         let options = new RequestOptions({ headers: headers, search:search});
-        console.log(options);
-        console.log(this.http.get(this.httpUtil.url('/statements'),options ))
         return this.http.get(this.httpUtil.url('/statements'),options )
                    .map(this.httpUtil.extrairDados);
     }
@@ -69,13 +64,10 @@ export class ProjectService {
             headersParams['Authorization'] = localStorage['currentUser'];
         }
         let date: Date = new Date();
-        console.log(date);
         var search = new URLSearchParams();
         search.set('data', ''+date);
         let headers = new Headers(headersParams);
         let options = new RequestOptions({ headers: headers, search:search});
-        console.log(options);
-        console.log(this.http.get(this.httpUtil.url('/statements'),options ))
         return this.http.get(this.httpUtil.url('/statements'),options )
                    .map(this.httpUtil.extrairDados);
     }

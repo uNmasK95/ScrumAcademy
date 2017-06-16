@@ -29,7 +29,6 @@ export class UserStoriesNewComponent implements OnInit {
         this.userStorieService.getFeatures(this.projectIdSelected).subscribe(
           response =>{
             this.userStories=response;
-            console.log(response);
           },
           error =>{
             console.log(error);
@@ -71,7 +70,6 @@ export class UserStoriesNewComponent implements OnInit {
     this.userStorieService.getFeatures(this.projectIdSelected).subscribe(
       response =>{
         this.userStories=response;
-        console.log(response);
       },
       error =>{
         console.log(error);

@@ -12,7 +12,6 @@ export class TasksService {
 
   //Get all task
   get(projectId: number, userStorieId: number) {
-    console.log("GEt all task");
     return this.http.get(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks/'),
             this.httpUtil.headers())
               .map(this.httpUtil.extrairDados);
@@ -34,7 +33,6 @@ export class TasksService {
 
   //update task
   update(projectId: number, userStorieId: number, task: Task) {
-    console.log("Vou atualizar task");
     return this.http.put(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks/'+task.id),
             JSON.stringify({description: task.description, user_id: task.userId, state: task.state}),
             this.httpUtil.headers())
@@ -42,9 +40,6 @@ export class TasksService {
   }
 
   create(projectId: number, userStorieId: number, description: string, user:number){
-    console.log("criar task");
-    console.log(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks'));
-    console.log(JSON.stringify({description: description, user_id:user}));
     return this.http.post(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks'),
                JSON.stringify({description: description, user_id:user}), this.httpUtil.headers())
                .map(this.httpUtil.extrairDados);
@@ -56,7 +51,6 @@ export class TasksService {
   }
 
   delete(projectId: number, userStorieId: number, taskid: number) {
-    console.log("remove task");
     return this.http.delete(this.httpUtil.url('/projects/'+projectId+'/userstories/'+userStorieId+'/tasks/'+taskid),this.httpUtil.headers())
                .map(this.httpUtil.extrairDados);
   }

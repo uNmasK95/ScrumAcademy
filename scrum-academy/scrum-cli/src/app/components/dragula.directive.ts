@@ -19,7 +19,6 @@ export class DragulaDirective implements OnInit, OnChanges {
   }
 
   public ngOnInit(): void {
-    // console.log(this.bag);
     let bag = this.dragulaService.find(this.dragula);
     let checkModel = () => {
       if (this.dragulaModel) {
@@ -42,8 +41,6 @@ export class DragulaDirective implements OnInit, OnChanges {
   }
 
   public ngOnChanges(changes: {dragulaModel?: SimpleChange}): void {
-    // console.log('dragula.directive: ngOnChanges');
-    // console.log(changes);
     if (changes && changes.dragulaModel) {
       if (this.drake) {
         if (this.drake.models) {

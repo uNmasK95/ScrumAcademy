@@ -33,7 +33,6 @@ export class SprintsUserStoriesTasksComponent implements OnInit {
   sprintDescriptionSave(){
     this.sprintService.update(this.project.id,this.model.descriptionS, this.sprint.id).subscribe(
       resultado =>{
-        console.log(resultado);
         this.sprint.description = this.model.descriptionS;
       },
       error =>{

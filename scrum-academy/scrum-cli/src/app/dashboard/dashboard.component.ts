@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
 
 
   isLogged(){
-    //console.log("das:" + localStorage['token']);
     if(localStorage['currentUser']){
       return true;
     }
@@ -31,7 +30,6 @@ export class DashboardComponent implements OnInit {
       if(localStorage.getItem('userOn')){
       let type =JSON.parse(localStorage.getItem('userOn')).type
       if(type==1 || type==2){
-        //console.log(localStorage.getItem('userOn'));
         return type;
       }
       }

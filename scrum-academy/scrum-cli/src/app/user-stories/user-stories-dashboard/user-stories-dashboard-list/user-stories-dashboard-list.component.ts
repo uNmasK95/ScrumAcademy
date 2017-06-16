@@ -22,7 +22,6 @@ export class UserStoriesDashboardListComponent implements OnInit {
 
   ngOnInit() {
       let dateNow: Date = new Date();
-      console.log(dateNow);
       this.projectOn = JSON.parse(localStorage.getItem('projectOn'));
       this.sprintService.get(this.projectId)
         .subscribe(
@@ -34,8 +33,6 @@ export class UserStoriesDashboardListComponent implements OnInit {
                   let userStorie: UserStorieUser = new UserStorieUser(ustorie.id,ustorie.description,
                     ustorie.priority,ustorie.score);
                   this.userstories.push(userStorie);
-                  console.log("Fiz push da userStorie:");
-                  console.log(userStorie);
                 }
               }
             }
@@ -45,7 +42,6 @@ export class UserStoriesDashboardListComponent implements OnInit {
     }
   /*ngOnInit() {
     let dateNow: Date = new Date();
-    console.log(dateNow);
     this.sprintService.get(this.projectId)
       .subscribe(
         resultado => {
@@ -78,7 +74,6 @@ export class UserStoriesDashboardListComponent implements OnInit {
                 for(let ustorie of sprint.userstorie){
                   let userStorie: UserStorieUser = new UserStorieUser(ustorie.id,ustorie.description,ustorie.priority,ustorie.score);
                   this.userstories.push(userStorie);
-                  console.log("Fiz push da userStorie:");
                 }
               }
               break;
@@ -106,15 +101,12 @@ export class UserStoriesDashboardListComponent implements OnInit {
                   for(let ustorie of sprint){
                     let userStorie: UserStorieUser = new UserStorieUser(ustorie.id,ustorie.description,ustorie.priority,ustorie.score);
                     this.userstories.push(userStorie);
-                    console.log("Fiz push da userStorie:");
                   }
                 }
                 else{
-                  console.log(sprint)
                   for(let ustorie of sprint.userstorie){
                     let userStorie: UserStorieUser = new UserStorieUser(ustorie.id,ustorie.description,ustorie.priority,ustorie.score);
                     this.userstories.push(userStorie);
-                    console.log("Fiz push da userStorie:");
                   }
                 }
                 break;

@@ -46,9 +46,6 @@ export class SprintDashboardComponent {
   private onDropModel(args:any):void {
     let [el, target, source] = args;
     let usAqui : boolean =false;
-    console.log(el);
-    console.log(target);
-    console.log(source);
      let p :UserStorieProject;
     for( let us of this.userStoriesAss){
         if(us.id == el.getAttribute('item-id')){
@@ -56,7 +53,6 @@ export class SprintDashboardComponent {
           usAqui = true;
         }
     }
-      console.log(this.sprintId)
     if(target.id == "iddragula2" && source.id=="iddragula2"){
         let posicaoparaeliminar = 0;
         for( let us of this.anterioruserStoriesAss){
@@ -67,7 +63,6 @@ export class SprintDashboardComponent {
             posicaoparaeliminar++;
         }
         if(el.getAttribute('sprint-id') == this.sprintId){
-           console.log("ELIMINA");
            this.anterioruserStoriesAss.splice(posicaoparaeliminar,1);
            this.sprinService.deleteSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id')).subscribe();
         }
@@ -81,16 +76,12 @@ export class SprintDashboardComponent {
           }
           if(usAqui){
             if(!this.comparaarry()){
-              console.log("COLOCA");
               this.anterioruserStoriesAss.push(p);
               this.sprinService.postSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id'),0).subscribe(
               );
             }
           }
         }
-        console.log("Dadad")
-        console.log(this.userStoriesAss)
-        console.log(this.anterioruserStoriesAss)
     }
     else{
       if(this.project.id == el.getAttribute('project-id') || (this.sprintId == el.getAttribute('sprint-id') && this.project.id == el.getAttribute('project-id'))){
@@ -104,18 +95,13 @@ export class SprintDashboardComponent {
         }
         if(usAqui){
           if(target.id == "iddragula2"){
-            console.log(this.anterioruserStoriesAss);
-              console.log(this.userStoriesAss);
-            console.log("DAdada" + this.comparaarry() )
             if(!this.comparaarry()){
-              console.log("COLOCA");
               this.anterioruserStoriesAss.push(p);
               this.sprinService.postSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id'),0).subscribe(
               );
             }
           }
           else{
-              console.log("ELIMINA");
               this.anterioruserStoriesAss.splice(posicaoparaeliminar,1);
               this.sprinService.deleteSprintUserStorie(this.project.id,this.sprintId,el.getAttribute('item-id')).subscribe(
               );
@@ -149,9 +135,6 @@ export class SprintDashboardComponent {
 
   private onRemoveModel(args:any):void {
     let [el, source] = args;
-    console.log('onRemoveModel:');
-    //console.log(el);
-    //console.log(source);
   }
 
    apresentaUserStory(usp : UserStorieProject){

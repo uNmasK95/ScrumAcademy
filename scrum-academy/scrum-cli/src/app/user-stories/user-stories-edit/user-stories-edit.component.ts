@@ -30,8 +30,6 @@ export class UserStoriesEditComponent implements OnInit {
 
   edit(){
     //caso que ele mudou o priority
-    console.log(this.model.newdescroptionUS);
-    console.log(this.model.newpriorityUS);
     this.userStorie.description = this.model.newdescroptionUS;
     this.userStorie.priority = this.model.newpriorityUS;
     if(this.model.newpriorityUS != this.userStorie.description && this.model.newdescroptionUS != this.userStorie.priority){
@@ -68,7 +66,6 @@ export class UserStoriesEditComponent implements OnInit {
           localStorage.setItem('userStorieEdit',JSON.stringify({userStorie:this.userStorie}));
           this.editUserStorie.emit("mudei")
           let feature = resultado;
-          console.log(resultado);
         },
         error =>{
           console.log(error);
@@ -81,7 +78,6 @@ export class UserStoriesEditComponent implements OnInit {
         localStorage.setItem('userStorieEdit',JSON.stringify({userStorie:this.userStorie}));
         this.editUserStorie.emit("mudei")
         let feature = resultado;
-        console.log(resultado);
       },
       error =>{
         console.log(error);
@@ -89,13 +85,11 @@ export class UserStoriesEditComponent implements OnInit {
     )
   }
    editServiceFeatureDescription(description: string){
-      console.log(this.userStorie.id);
     this.userStorieService.updateFeatureDescription(this.projectIdSelected,description,this.userStorie.id).subscribe(
       resultado =>{
         localStorage.setItem('userStorieEdit',JSON.stringify({userStorie:this.userStorie}));
         this.editUserStorie.emit("mudei")
         let feature = resultado;
-        console.log(resultado);
       },
       error =>{
         console.log(error);

@@ -39,7 +39,6 @@ export class SprintsUserStoriesListComponent {
   }
 
   ngOnInit() {
-    console.log(this.dragulaService.find('second.bad'));
     if(this.dragulaService.find('second.bad')){
       this.dragulaService.destroy('second-bag');
     }
@@ -48,19 +47,10 @@ export class SprintsUserStoriesListComponent {
 
   private onDropModel(args:any):void {
     let [el, target, source] = args;
-    //console.log("vim para aqui")
-    //console.log('onDropModel:');
-    //console.log(el);
-    //console.log(target);
-    //console.log(source);
-    //console.log(el.getAttribute('item-id'));
   }
 
   private onRemoveModel(args:any):void {
     let [el, source] = args;
-    console.log('onRemoveModel:');
-    //console.log(el);
-    //console.log(source);
   }
 
   getUserStories(){
@@ -73,8 +63,6 @@ export class SprintsUserStoriesListComponent {
               for(let sprint of resultado){
                 for(let sprintUserstorie of sprint.userstorie){
                   for(var i =0;i<this.userStoriesToAss.length;i++){
-                  //  console.log(sprintUserstorie.id);
-                   // console.log(this.userStoriesToAss[i].id)
                     if(sprintUserstorie.id ==this.userStoriesToAss[i].id){
                       this.userStoriesToAss.splice(i,1);
                       break;

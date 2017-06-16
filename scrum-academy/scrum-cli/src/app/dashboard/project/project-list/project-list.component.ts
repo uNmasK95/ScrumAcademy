@@ -37,7 +37,6 @@ export class ProjectListComponent implements OnInit {
     this.projectsRetiradosBool = true;
     if(localStorage.getItem('userOn')){
       let userOn =JSON.parse(localStorage.getItem('userOn'))
-      console.log(this.projectsRetiradosBool);
       if(userOn.type==1){
           //get statements
           
@@ -51,7 +50,6 @@ export class ProjectListComponent implements OnInit {
               return true;
             },
             error =>{
-              console.log("error");
               return false;
             }
           );
@@ -65,12 +63,10 @@ export class ProjectListComponent implements OnInit {
                   this.projects.push(projectnovo);
                 }
               }
-              console.log(this.projectsRetiradosBool);
               return true;
               
             },
             error =>{
-              console.log("error");
               return false;
             }
           );*/
@@ -114,13 +110,11 @@ export class ProjectListComponent implements OnInit {
                     }
                   },
                   error =>{
-                    console.log(error);
                   }
                 );
               }
           },
             error=>{
-              console.log(error);
             }
           )
           return erro;
@@ -152,7 +146,6 @@ export class ProjectListComponent implements OnInit {
                   }
                   erro=true;
                   localStorage.setItem('UserTeamProject', JSON.stringify(this.userTeamProject))
-                  console.log(localStorage.getItem('UserTeamProject'));
                 },
                 error=>{
                 }

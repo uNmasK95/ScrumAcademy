@@ -12,7 +12,6 @@ export class RequestsService {
 
   //create new request :team_id, :statement_id, :accept
   create(teamId : number, statementID: number, accept: boolean ) {
-      console.log(JSON.stringify({ team_id: teamId, statement_id: statementID, accept: accept}));
       return this.http.post(this.httpUtil.url('/requests'),
                   JSON.stringify({ team_id: teamId, statement_id: statementID, accept: accept}) , this.httpUtil.headers())
                       .map(this.httpUtil.extrairDados);
@@ -33,7 +32,6 @@ export class RequestsService {
 
     //Update state of request
     update(requestId: number, teamId : number, statementID: number, accept: boolean ) {
-      console.log("Vou atualizar request");
       return this.http.put(this.httpUtil.url('/requests/'+requestId),
                   JSON.stringify({ team_id: teamId, statement_id: statementID, accept: accept}) , this.httpUtil.headers())
                 .map(this.httpUtil.extrairDados);

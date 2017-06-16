@@ -31,7 +31,6 @@ export class QuestionsListComponent implements OnInit {
       resultado =>{
         for(let doubts of resultado){
           if(!doubts.answer){
-            console.log(doubts);
             //
             let aux = doubts.description.split(':');
             let v = aux[0];
@@ -41,17 +40,12 @@ export class QuestionsListComponent implements OnInit {
               .subscribe(res =>{
                 projN=res.name;
                 let doubt = new Question(doubts.id,doubts.description,doubts.user.name,doubts.answer,projN);
-                console.log(doubt);
                 this.questions.push(doubt);
               });
-            //
-            /*let doubt = new Question(doubts.id,doubts.description,doubts.user.name,doubts.answer,projN);
-            this.questions.push(doubt);*/
           }
         }
       }, 
       error =>{
-        console.log(error);
       }
     );
   }
@@ -60,12 +54,10 @@ export class QuestionsListComponent implements OnInit {
     if(this.model.answer){
       this.doubtsService.updateAnswer(this.questionSelected.id,this.model.answer).subscribe(
         resultado =>{
-          console.log("esta");
           this.questions.splice(this.questionIdSelected,1);
           this.questionSelected = null;
         },
         error =>{
-          console.log(error);
         }
       );
     }

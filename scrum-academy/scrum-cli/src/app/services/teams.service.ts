@@ -26,7 +26,6 @@ export class TeamsService {
   }
 
   postTeamUsers(teamid: number, id: number, func: number) { //Create team_users
-    console.log("vou criar team_user");
     return this.http.post(this.httpUtil.url('/teams/'+teamid+'/users'), 
       JSON.stringify({user: id, function: func}),
       this.httpUtil.headers())
@@ -35,7 +34,6 @@ export class TeamsService {
 
   //remove team
   remove(teamId: number) {
-    console.log("Vou remover team");
     return this.http.delete(this.httpUtil.url('/teams/'+teamId), this.httpUtil.headers())
               .map(this.httpUtil.extrairDados);
   }

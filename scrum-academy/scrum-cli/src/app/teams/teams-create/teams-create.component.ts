@@ -67,8 +67,6 @@ export class TeamsCreateComponent implements OnInit {
     this.projectService.getStatements()
       .subscribe(
         resultado => {
-          console.log("resultado dos projcts disponiveis"),
-          console.log(resultado)
           for (let project of resultado) {
             if(new Date(project.endDate)>dateNow){
               let projectnovo: Project = new Project(project.id,project.name,project.description,project.startDate,project.endDate);
@@ -85,7 +83,6 @@ export class TeamsCreateComponent implements OnInit {
   }
 
   addUser(u){
-    console.log("ADD USER");
     //Buscar object correspondente
     let aux = this.users.find(x => x.name == u);
     if(aux){
@@ -94,11 +91,6 @@ export class TeamsCreateComponent implements OnInit {
         this.usersSelected.push(aux); 
       }
     }
-    
-    /*console.log("User selecionados:")
-    for(let i=0; i<this.usersSelected.length;i++){
-      console.log(this.usersSelected[i].name);
-    }*/
   }
 
   removeUser(user:User){
@@ -126,9 +118,6 @@ export class TeamsCreateComponent implements OnInit {
   }
 
   addTeam(){
-    console.log(this.model.name);
-    //console.log(this.model.descrip);
-    console.log(this.model.projSelected);
 
     let teamId: number = 0;
 
@@ -137,9 +126,6 @@ export class TeamsCreateComponent implements OnInit {
       .subscribe(
         resultado => {
           teamId = resultado.id;
-          console.log("RESULTADO:"),
-          console.log(resultado)
-          console.log(localStorage['id']);
           this.addUserTeam(teamId, localStorage['id'],1); //Post do user atual que vai ser SM neste projeto
           //Post Team_user
           for(let i=0;i<this.usersSelected.length;i++){

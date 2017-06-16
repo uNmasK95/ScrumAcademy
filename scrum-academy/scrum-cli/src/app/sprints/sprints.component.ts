@@ -16,7 +16,6 @@ export class SprintsComponent implements OnInit {
   constructor(private userStorieService: UserStorieService,private router: Router, private sprintService: SprintService) { }
 
   ngOnInit() {
-    console.log(JSON.parse(localStorage.getItem('teamUser')).job);
     this.project = JSON.parse(localStorage.getItem('projectOn'));
     this.haveSprints();
   }
@@ -24,9 +23,7 @@ export class SprintsComponent implements OnInit {
   haveSprints(){
     let timenow = new Date();
     let projectdate = new Date(this.project.endD);
-    console.log(this.project);
     if(this.project){
-      console.log(this.project);
       if((projectdate.getTime())> (timenow.getTime())){
          this.getSprints();
       }

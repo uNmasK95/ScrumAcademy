@@ -22,8 +22,6 @@ export class ProfileComponent implements OnInit {
   }
  
   edit(){
-    console.log(this.userLogged);
-    console.log("user");
     this.editSelected = true;
     if(this.userLogged.name != this.model.name){
       if(this.model.password && this.model.newpassword == this.model.newconfpassword){
@@ -42,7 +40,6 @@ export class ProfileComponent implements OnInit {
               },
               error => {
                 this.editSelected = false;
-                console.log(error);
               })
           },
           error => {
@@ -63,12 +60,11 @@ export class ProfileComponent implements OnInit {
           },
           error => {
             this.editSelected = false; 
-            console.log(error);
           }
         );
       }
     }
-    else{console.log(this.model.newpassword);
+    else{
       if(this.model.password && this.model.newpassword == this.model.newconfpassword){
         this.userService.userconfirm(this.model.email,this.model.password).subscribe(
             resultado => {
@@ -83,7 +79,6 @@ export class ProfileComponent implements OnInit {
                 },
                 error => {
                   this.editSelected = false;
-                  console.log(error);
                 })
             },
             error => {

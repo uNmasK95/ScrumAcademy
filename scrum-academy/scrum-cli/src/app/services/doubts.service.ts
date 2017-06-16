@@ -10,7 +10,6 @@ export class DoubtsService {
   constructor(private http: Http, private httpUtil: HttpUtilService) { }
 
  get(taskId: number){
-    console.log("Get duvidas:"+taskId);
     let headersParams = { 'Content-Type': 'application/json' };
         if (localStorage['currentUser']) {
             headersParams['Authorization'] = localStorage['currentUser'];
@@ -23,7 +22,6 @@ export class DoubtsService {
                    .map(this.httpUtil.extrairDados);
   }
    getByUser(userId: number){
-    console.log("Get duvidas:"+userId);
     let headersParams = { 'Content-Type': 'application/json' };
     if (localStorage['currentUser']) {
         headersParams['Authorization'] = localStorage['currentUser'];
@@ -37,7 +35,6 @@ export class DoubtsService {
   }
 
   create(description: string, userId: number,taskId: number){
-    console.log("Create comments");
     return this.http.post(this.httpUtil.url('/doubts'),
             JSON.stringify({ description: description, answer: null , task_id: taskId, user_id: userId}),
             this.httpUtil.headers())
@@ -45,7 +42,6 @@ export class DoubtsService {
   }
 
   update(description: string, answer: string, userId: number,taskId: number, doubtId: number){
-    console.log("update comments");
     return this.http.post(this.httpUtil.url('/doubts/'+doubtId),
             JSON.stringify({ description: description, answer: answer , task_id: taskId, user_id: userId}),
             this.httpUtil.headers())
@@ -58,7 +54,6 @@ export class DoubtsService {
   }
 
   remove(doubtId: number){
-    console.log("Remove comment");
     return this.http.delete(this.httpUtil.url('/doubts/'+doubtId),
             this.httpUtil.headers())
               .map(this.httpUtil.extrairDados);

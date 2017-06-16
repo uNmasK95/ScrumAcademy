@@ -22,7 +22,7 @@ export class AppComponent {
     }
 
   ngOnInit() {
-      console.log(this.user);
+      
   }
   haveUser(){
     if(this.user){
@@ -39,7 +39,6 @@ export class AppComponent {
   }
 
   isLogged(){
-    //console.log("Cpn isLogged"+this.isAuthenticatedService.getLoginStatus());
      this.user = JSON.parse(localStorage.getItem('userOn'));
     return this.isAuthenticatedService.getLoginStatus();
   }
@@ -59,17 +58,10 @@ export class AppComponent {
     if(localStorage.getItem('userOn')){
       let p =JSON.parse(localStorage.getItem('userOn')).type
       if(p==1 || p==2){
-       // console.log(localStorage.getItem('userOn'));
         return p;
       }
     }
     return false;
   }
 
-
- /* home(){
-    if(this.isAuthenticatedService.getLoginStatus()){
-      this.router.navigate(["/"]);
-    }
-  }*/
 }
