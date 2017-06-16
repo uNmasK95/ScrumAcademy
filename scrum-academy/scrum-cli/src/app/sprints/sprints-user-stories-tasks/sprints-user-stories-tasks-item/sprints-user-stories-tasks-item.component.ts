@@ -95,6 +95,7 @@ export class SprintsUserStoriesTasksItemComponent {
         let i = this.tasks.indexOf(taskantiga);
         taskantiga.userEmail = novouser.email;
         taskantiga.userId = novouser.id;
+        taskantiga.name = novouser.name;
         let tasknova = taskantiga;
         this.tasks.splice(i,1,tasknova);
       }

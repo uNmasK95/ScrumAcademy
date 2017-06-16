@@ -36,9 +36,9 @@ export class SprintDashboardComponent {
   }
 
   ngOnInit() {
-    /*if(this.dragulaService.find('second.bad')){
-      this.dragulaService.destroy('second-bag');
-    }*/
+    if(this.dragulaService.find('first.bad')){
+      this.dragulaService.destroy('first-bag');
+    }
     this.getUserStoriesSpring();
   }
 
