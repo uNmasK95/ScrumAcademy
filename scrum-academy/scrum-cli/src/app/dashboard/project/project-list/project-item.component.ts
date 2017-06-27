@@ -24,7 +24,6 @@ export class ProjectItemComponent {
 
   selectRoute(){
     //ver consoante id utilizador ver que tipo é neste projeto
-    let funct = JSON.parse(localStorage.getItem('UserTeamProject'))[0].job;
     if(localStorage.getItem('userOn')){
       let type = JSON.parse(localStorage.getItem('userOn')).type
       if(type==1){ //PO
@@ -32,6 +31,7 @@ export class ProjectItemComponent {
         localStorage.setItem('projectId',''+this.projectId);
         this.router.navigate(['projects',this.projectId, 'userstories']);
       }else{ //SM ou Dev
+          let funct = JSON.parse(localStorage.getItem('UserTeamProject'))[0].job;
           if(funct==1){ //Scrum Master neste projeto
             localStorage.setItem('projectOn',JSON.stringify(this.project));
             localStorage.setItem('teamUser',JSON.stringify(this.teamFunction));
